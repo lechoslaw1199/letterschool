@@ -52,8 +52,16 @@ export default function LearningDifferences() {
       "I'm not sure"
     ];
 
-    if (personalizedPaths.includes(option)) {
-      router.push("/personalize");
+    const mainSocialProofPaths = [
+      "No",
+      "I'd rather not say",
+      "I'm not sure"
+    ];
+
+    if (mainSocialProofPaths.includes(option)) {
+      router.push("/social-proof");
+    } else if (option === "Yes, my child has another learning difference") {
+      router.push("/social-proof-another");
     } else if (option === "Yes, my child has ADHD") {
       router.push("/social-proof-adhd");
     } else if (option === "Yes, my child has dyslexia") {

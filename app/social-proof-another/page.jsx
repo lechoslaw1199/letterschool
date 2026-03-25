@@ -25,21 +25,21 @@ const pageVariants = {
   }),
 };
 
-const autismImages = [
-  "/autist1.webp",
-  "/autist2.webp",
-  "/autist3.webp"
+const anotherImages = [
+  "/another1.webp",
+  "/another2.webp",
+  "/another3.webp"
 ];
 
-export default function SocialProofAutism() {
+export default function SocialProofAnother() {
   const router = useRouter();
   const { direction, updateDirection } = useOnboarding();
   
   // Preload all review images
   const isReady = useImagePreload([
-    "/autist1.webp",
-    "/autist2.webp",
-    "/autist3.webp",
+    "/another1.webp",
+    "/another2.webp",
+    "/another3.webp",
     "/VlQPe_m3.webp"
   ]);
 
@@ -80,16 +80,16 @@ export default function SocialProofAutism() {
             You&apos;re in good hands!
           </h1>
           <p className="text-[16px] text-[#221750]/80 font-medium text-start leading-relaxed opacity-90">
-            Hear from parents who have taught their children with autism to read with our program.
+            Hear from parents who have taught their children with learning differences to read with our program.
           </p>
         </div>
 
         <div className="w-full flex flex-col gap-4 pb-24">
-          {autismImages.map((img, index) => (
+          {anotherImages.map((img, index) => (
             <img 
               key={index} 
               src={img} 
-              alt={`Autism testimonial ${index + 1}`} 
+              alt={`Learning difference testimonial ${index + 1}`} 
               className="w-full object-contain rounded-lg"
             />
           ))}

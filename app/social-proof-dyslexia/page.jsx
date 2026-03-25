@@ -25,42 +25,23 @@ const pageVariants = {
   }),
 };
 
-const dyslexiaReviews = [
-  {
-    title: "She was struggling with dyslexia",
-    content: "My daughter just completed all 99 lessons! she is six years old now and was five when we started and struggling with reading despite my everyday efforts to teach her. I homeschool and utilize whatever tool I can. She was struggling with dyslexia and now the struggle is gone. the design helps us both stay focused. I am now using it to help my 3 year old who struggles with speech. I can already see improvement.",
-    author: "Angela"
-  },
-  {
-    title: "Fantastic!",
-    content: "My dyslexic 1st grader who loathed reading, can't wait everyday to use this app. She eagerly begs all day to play it. The slides have helped her sounding out of words immensely. Her 2 year old brother runs to watch her and participate as soon as he hears the app music start up. We are excited to see how much improvement she has as we progress. So far, it's looking promising!",
-    author: "Shawna Gilmartin"
-  },
-  {
-    title: "Amazing for my dyslexic daughter",
-    content: "My 6yo has reallly picked up on this. We are homeschooling and she has dyslexia— this ap has been AMAZING for her!!",
-    author: "Karen Leese"
-  },
-  {
-    title: "Gave my daughter the confidence boost she needed",
-    content: "We've been using this for just about 2 or 3 weeks now and my kids LOVE it! My 5 year old read his first word and is grasping the letters and their sounds incredibly. My 9 year is extremely dyslexic and this program has given her the confidence boost she needed as we work through her regular dyslexic program (which is also great btw). She started at level 1 with reading.com and it was too easy for her. So she took the assessment and was bumped to level 18. That was a huge confidence boost that she definitely needed. Since then she's been enjoying the lessons and wants to do more than one per day. She's now in the independent readers and this has flowed over into her picking up regular books at home and reading them! I highly recommend reading.com",
-    author: "Ashlee Petrilli"
-  }
+const dyslexiaImages = [
+  "/dyslexia1.webp",
+  "/dyslexia2.webp",
+  "/dyslexia3.webp"
 ];
 
-export default function DyslexiaSocialProof() {
+export default function SocialProofDyslexia() {
   const router = useRouter();
   const { direction, updateDirection } = useOnboarding();
-  const isReady = useImagePreload("/VlQPe_m3.webp");
   
-  const [emblaRef] = useEmblaCarousel(
-    { 
-      loop: true,
-      align: 'center',
-      skipSnaps: false
-    }, 
-    [Autoplay({ delay: 4000, stopOnInteraction: false })]
-  );
+  // Preload all review images
+  const isReady = useImagePreload([
+    "/dyslexia1.webp",
+    "/dyslexia2.webp",
+    "/dyslexia3.webp",
+    "/VlQPe_m3.webp"
+  ]);
 
   const handleBack = () => {
     updateDirection(-1);
@@ -70,61 +51,48 @@ export default function DyslexiaSocialProof() {
   return (
     <div className="w-full flex flex-col items-center bg-white min-h-screen relative overflow-x-clip">
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
-        <button 
-          className="absolute left-2 top-4 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
-          onClick={handleBack}
-          aria-label="Back"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="w-8 h-8">
-            <g>
-              <path d="M6.99219 12.3594C6.99219 12.625 7.09375 12.8516 7.30469 13.0547L13.3984 19.0156C13.5625 19.1875 13.7812 19.2734 14.0312 19.2734C14.5391 19.2734 14.9375 18.8828 14.9375 18.3672C14.9375 18.1172 14.8359 17.8906 14.6641 17.7188L9.17188 12.3594L14.6641 7C14.8359 6.82031 14.9375 6.59375 14.9375 6.34375C14.9375 5.83594 14.5391 5.44531 14.0312 5.44531C13.7812 5.44531 13.5625 5.53125 13.3984 5.70312L7.30469 11.6641C7.09375 11.8672 7 12.0938 6.99219 12.3594Z" fill="currentColor"></path>
-            </g>
-          </svg>
-        </button>
-        <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-7 mb-3 object-contain" />
-        <ProgressBar progress={31} />
+        <div className="w-full relative flex items-center justify-center mb-0">
+          <button 
+            className="absolute left-0 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
+            onClick={handleBack}
+            aria-label="Back"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="w-8 h-8">
+              <g>
+                <path d="M6.99219 12.3594C6.99219 12.625 7.09375 12.8516 7.30469 13.0547L13.3984 19.0156C13.5625 19.1875 13.7812 19.2734 14.0312 19.2734C14.5391 19.2734 14.9375 18.8828 14.9375 18.3672C14.9375 18.1172 14.8359 17.8906 14.6641 17.7188L9.17188 12.3594L14.6641 7C14.8359 6.82031 14.9375 6.59375 14.9375 6.34375C14.9375 5.83594 14.5391 5.44531 14.0312 5.44531C13.7812 5.44531 13.5625 5.53125 13.3984 5.70312L7.30469 11.6641C7.09375 11.8672 7 12.0938 6.99219 12.3594Z" fill="currentColor"></path>
+              </g>
+            </svg>
+          </button>
+          <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+        </div>
       </header>
 
       <motion.main
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate={isReady ? "animate" : "initial"}
+        animate="animate"
         exit="exit"
-        className="w-full max-w-[450px] flex flex-col items-center pt-8 flex-grow"
+        className="w-full max-w-[450px] flex flex-col items-center flex-grow px-6"
       >
-        <h1 className="text-[26px] font-bold text-[#221750] text-center leading-tight mb-4 px-8">
-          You're in good hands!
-        </h1>
+        <div className="w-full pt-8 pb-4">
+          <h1 className="text-[24px] font-bold text-[#221750] leading-tight mb-4 text-start">
+            You&apos;re in good hands!
+          </h1>
+          <p className="text-[16px] text-[#221750]/80 font-medium text-start leading-relaxed opacity-90">
+            Hear from parents who have taught their children with dyslexia to read with our program.
+          </p>
+        </div>
 
-        <p className="text-[18px] text-center text-purple-dark/80 font-medium mb-8 px-10 leading-relaxed">
-          Hear from parents who have taught their children with dyslexia to read with our program.
-        </p>
-
-        {/* Carousel Section */}
-        <div className="w-full overflow-hidden mb-12" ref={emblaRef}>
-          <div className="flex">
-            {dyslexiaReviews.map((review, index) => (
-              <div key={index} className="flex-[0_0_85%] min-w-0 px-3">
-                <div className="bg-[#221750] text-white p-8 rounded-[32px] flex flex-col shadow-xl shadow-purple-900/10 my-4">
-                  <h3 className="text-[20px] font-bold mb-3 leading-tight">
-                    {review.title}
-                  </h3>
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-orange-400 text-lg">★</span>
-                    ))}
-                  </div>
-                  <p className="text-[16px] leading-relaxed text-blue-100/90 mb-6 flex-grow font-medium">
-                    {review.content}
-                  </p>
-                  <p className="text-[16px] font-bold text-white mt-auto">
-                    {review.author}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="w-full flex flex-col gap-4 pb-24">
+          {dyslexiaImages.map((img, index) => (
+            <img 
+              key={index} 
+              src={img} 
+              alt={`Dyslexia testimonial ${index + 1}`} 
+              className="w-full object-contain rounded-lg"
+            />
+          ))}
         </div>
       </motion.main>
 
@@ -134,12 +102,15 @@ export default function DyslexiaSocialProof() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[450px] px-8 sticky bottom-2 z-50 mt-auto"
+        className="w-full max-w-[480px] px-8 sticky bottom-4 z-50 mt-auto pb-4"
       >
-        <motion.button 
+        <motion.button
           whileTap={{ scale: 0.98 }}
-          className="w-full h-16 bg-purple-primary text-white rounded-full text-lg font-extrabold transition-all"
-          onClick={() => router.push("/personalize")}
+          className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
+          onClick={() => {
+            updateDirection(1);
+            router.push("/milestone");
+          }}
         >
           Continue
         </motion.button>
