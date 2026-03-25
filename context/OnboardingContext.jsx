@@ -20,7 +20,9 @@ export function OnboardingProvider({ children }) {
   const [teacherRecommended, setTeacherRecommended] = useState(null);
   const [parentEmail, setParentEmail] = useState("");
   const [referralSource, setReferralSource] = useState(null);
+  const [readingStage, setReadingStage] = useState(null);
   const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
+  const [isInitialized, setIsInitialized] = useState(false);
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -40,14 +42,18 @@ export function OnboardingProvider({ children }) {
         if (data.teacherRecommended !== undefined) setTeacherRecommended(data.teacherRecommended);
         if (data.parentEmail) setParentEmail(data.parentEmail);
         if (data.referralSource) setReferralSource(data.referralSource);
+        if (data.readingStage) setReadingStage(data.readingStage);
       } catch (e) {
         console.error("Failed to parse onboarding data from localStorage", e);
       }
     }
+    setIsInitialized(true);
   }, []);
 
   // Sync to localStorage on change
   useEffect(() => {
+    if (!isInitialized) return;
+
     const dataToSave = {
       selectedAge,
       selectedReason,
@@ -60,13 +66,15 @@ export function OnboardingProvider({ children }) {
       childName,
       teacherRecommended,
       parentEmail,
-      referralSource
+      referralSource,
+      readingStage
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(dataToSave));
   }, [
     selectedAge, selectedReason, selectedStatus, schoolMethod, 
     learningDifference, homeChallenge, childGender, selectedAvatar, 
-    childName, teacherRecommended, parentEmail, referralSource
+    childName, teacherRecommended, parentEmail, referralSource,
+    readingStage, isInitialized
   ]);
 
   const updateDirection = (newDirection) => setDirection(newDirection);
@@ -97,6 +105,8 @@ export function OnboardingProvider({ children }) {
       setParentEmail,
       referralSource,
       setReferralSource,
+      readingStage,
+      setReadingStage,
       direction, 
       updateDirection 
     }}>

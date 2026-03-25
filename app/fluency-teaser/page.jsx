@@ -14,19 +14,25 @@ const pageVariants = {
   animate: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] },
+    transition: { duration: 0.4, ease: [0.43, 0.13, 0.23, 0.96] },
   },
   exit: (direction) => ({
     opacity: 0,
     x: direction > 0 ? -50 : 50,
-    transition: { duration: 0.4, ease: [0.43, 0.13, 0.23, 0.96] },
+    transition: { duration: 0.3, ease: [0.43, 0.13, 0.23, 0.96] },
   }),
 };
 
-export default function FullSentences() {
+export default function FluencyTeaser() {
   const router = useRouter();
-  const { childName, childGender, direction, updateDirection } = useOnboarding();
-  const isReady = useImagePreload("/knowing.webp");
+  const { direction, updateDirection } = useOnboarding();
+  const isReady = useImagePreload("/building.webp");
+
+  const getPossessiveCap = () => {
+    if (childGender === "Boy") return "His";
+    if (childGender === "Girl") return "Her";
+    return "Their";
+  };
 
   const handleBack = () => {
     updateDirection(-1);
@@ -35,22 +41,11 @@ export default function FullSentences() {
 
   const handleContinue = () => {
     updateDirection(1);
-    router.push("/simple-books");
-  };
-
-  const handleSkip = () => {
-    updateDirection(1);
-    router.push("/guarantee");
-  };
-
-  const getPossessive = () => {
-    if (childGender === "Boy") return "his";
-    if (childGender === "Girl") return "her";
-    return "their";
+    router.push("/reason");
   };
 
   return (
-    <div className="w-full flex flex-col items-center bg-white min-h-screen relative overflow-x-clip">
+    <div className="w-full flex flex-col items-center min-h-screen relative overflow-x-clip">
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
         <div className="w-full relative flex items-center justify-center mb-3">
           <button 
@@ -74,19 +69,29 @@ export default function FullSentences() {
         initial="initial"
         animate="animate"
         exit="exit"
-        className="w-full max-w-[480px] px-8 flex flex-col items-start flex-grow"
+        className="w-full max-w-[480px] px-8 flex flex-col items-center flex-grow"
       >
-        <div className="w-full flex justify-center mb-6 mt-4">
+        <div className="w-full flex justify-center mb-2 mt-4">
           <img 
-            src="/knowing.webp" 
-            alt="Reading simple sentences" 
-            className="w-full max-w-[400px] object-contain rounded-2xl"
+            src="/building.webp" 
+            alt="Building fluency" 
+            className="w-full max-w-[390px] object-contain "
           />
         </div>
 
-        <h1 className="text-[24px] font-bold text-[#221750] text-start leading-tight mb-8 px-4">
-          Reading simple sentences is just one milestone in a clear, structured path toward confident reading
+        <h1 className="text-[24px] font-bold text-[#221750] text-start leading-tight mb-6 px-4">
+          We&apos;ll focus on <span className="">building fluency and confidence</span>
         </h1>
+
+        <div className="text-[16px] text-start text-black font-normal mb-4 px-2 leading-relaxed">
+          Parent-guided lessons introduce new skills your child is ready for, while independent reinforcement games help them practice and succeed through small wins.
+        </div>
+
+        <div className="bg-[#FFECFF] border border-[#FBA0FF] rounded-[16px] py-2 px-4 mb-8 text-start w-full">
+          <p className="text-black text-[14px] font-normal leading-relaxed">
+            Tip: the app includes a short placement test, so your child will start exactly at the level that&apos;s right for them
+          </p>
+        </div>
       </motion.main>
 
       <motion.div

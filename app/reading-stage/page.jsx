@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useOnboarding } from "@/context/OnboardingContext";
 import ProgressBar from "@/components/ProgressBar";
+import { useImagePreload } from "@/hooks/useImagePreload";
 
 const pageVariants = {
   initial: (direction) => ({
@@ -22,18 +23,18 @@ const pageVariants = {
   }),
 };
 
-export default function LearningDifferences() {
+export default function Placement() {
   const router = useRouter();
-  const { direction, updateDirection, learningDifference, setLearningDifference } = useOnboarding();
+  const { direction, updateDirection, readingStage, setReadingStage } = useOnboarding();
+  const isReady = useImagePreload("/VlQPe_m3.webp");
 
-  const options = [
-    "No",
-    "Yes, my child has ADHD",
-    "Yes, my child has dyslexia",
-    "Yes, my child has autism",
-    "Yes, my child has another learning difference",
-    "I'd rather not say",
-    "I'm not sure"
+  const stages = [
+    "Just starting",
+    "Knows letters & sounds",
+    "Blending sounds into words",
+    "Reading simple sentences",
+    "Reading independently but needs confidence",
+    "Not sure"
   ];
 
   const handleBack = () => {
@@ -41,33 +42,29 @@ export default function LearningDifferences() {
     router.back();
   };
 
-  const handleOptionSelect = (option) => {
-    setLearningDifference(option);
+  const handleStageSelect = (stage) => {
+    setReadingStage(stage);
     updateDirection(1);
     
-    const personalizedPaths = [
-      "No",
-      "Yes, my child has another learning difference",
-      "I'd rather not say",
-      "I'm not sure"
-    ];
-
-    if (personalizedPaths.includes(option)) {
-      router.push("/personalize");
-    } else if (option === "Yes, my child has ADHD") {
-      router.push("/social-proof-adhd");
-    } else if (option === "Yes, my child has dyslexia") {
-      router.push("/social-proof-dyslexia");
-    } else if (option === "Yes, my child has autism") {
-      router.push("/social-proof-autism");
+    if (stage === "Just starting") {
+      router.push("/first-timer");
+    } else if (stage === "Knows letters & sounds") {
+      router.push("/letter-sounds");
+    } else if (stage === "Blending sounds into words") {
+      router.push("/blending");
+    } else if (stage === "Reading simple sentences") {
+      router.push("/full-sentences");
+    } else if (stage === "Reading independently but needs confidence") {
+      router.push("/confidence");
+    } else if (stage === "Not sure") {
+      router.push("/placement");
     } else {
-      // Future navigation for other learning differences
-      alert(`Selection: ${option}`);
+      router.push("/school-method");
     }
   };
 
   return (
-    <div className="w-full flex flex-col items-center overflow-x-hidden">
+    <div className="w-full flex flex-col items-center min-h-screen relative overflow-x-clip">
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
         <div className="w-full relative flex items-center justify-center mb-3">
           <button 
@@ -83,7 +80,7 @@ export default function LearningDifferences() {
           </button>
           <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
         </div>
-        <ProgressBar progress={18} />
+        <ProgressBar progress={9} />
       </header>
 
       <motion.main
@@ -92,25 +89,25 @@ export default function LearningDifferences() {
         initial="initial"
         animate="animate"
         exit="exit"
-        className="w-full max-w-[450px] px-5 pb-20 flex flex-col items-center pt-4"
+        className="w-full max-w-[480px] px-5 pb-20 flex flex-col items-center"
       >
-        <h1 className="text-[24px] font-bold mb-8 text-center text-[#221750] leading-tight px-4">
-          Does your child have any learning differences?
+        <h1 className="text-[24px] font-bold mb-6 text-center text-black leading-tight mt-6 px-4">
+          What best describes your child's <span className="">current reading stage</span>?
         </h1>
 
-        <div className="w-full flex flex-col gap-3 px-4">
-          {options.map((option) => (
+        <div className="w-full flex flex-col gap-3 px-4 mb-10">
+          {stages.map((stage) => (
             <motion.button
-              key={option}
+              key={stage}
               whileTap={{ scale: 0.98 }}
               className={`min-h-[70px] py-4 px-8 rounded-lg text-[16px] font-bold flex items-center justify-center text-center transition-all duration-200 border border-solid leading-tight ${
-                learningDifference === option 
+                readingStage === stage 
                   ? 'bg-white text-[#5032F5] border-[#221750] border-1 shadow-sm' 
                   : 'bg-white text-[#5032F5] border-[#e2e8f0]'
               }`}
-              onClick={() => handleOptionSelect(option)}
+              onClick={() => handleStageSelect(stage)}
             >
-              {option}
+              {stage}
             </motion.button>
           ))}
         </div>

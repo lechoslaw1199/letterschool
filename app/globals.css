@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply font-sans bg-white text-purple-dark flex flex-col min-h-screen items-center;
+    @apply font-sans bg-white text-black flex flex-col min-h-screen items-center;
   }
 }
 

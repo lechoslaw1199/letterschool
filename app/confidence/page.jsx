@@ -23,7 +23,7 @@ const pageVariants = {
   }),
 };
 
-export default function FullSentences() {
+export default function Confidence() {
   const router = useRouter();
   const { childName, childGender, direction, updateDirection } = useOnboarding();
   const isReady = useImagePreload("/knowing.webp");
@@ -35,7 +35,7 @@ export default function FullSentences() {
 
   const handleContinue = () => {
     updateDirection(1);
-    router.push("/simple-books");
+    router.push("/fluency-teaser");
   };
 
   const handleSkip = () => {
@@ -85,7 +85,7 @@ export default function FullSentences() {
         </div>
 
         <h1 className="text-[24px] font-bold text-[#221750] text-start leading-tight mb-8 px-4">
-          Reading simple sentences is just one milestone in a clear, structured path toward confident reading
+          Reading independently is one of the final milestones in a clear, structured path toward confident reading
         </h1>
       </motion.main>
 

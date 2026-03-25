@@ -161,7 +161,7 @@ export default function SocialProof() {
 
   return (
     <div className="w-full flex flex-col items-center bg-white min-h-screen relative overflow-x-clip">
-      <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
+      <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-4 px-5 relative shrink-0">
         <button
           className="absolute left-2 top-4 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors"
           onClick={handleBack}
@@ -173,8 +173,7 @@ export default function SocialProof() {
             </g>
           </svg>
         </button>
-        <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-7 mb-3 object-contain" />
-        <ProgressBar progress={10} />
+        <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 mb-3 object-contain" />
       </header>
 
       <motion.main
@@ -183,13 +182,13 @@ export default function SocialProof() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[450px] flex flex-col items-center flex-grow"
+        className="w-full max-w-[480px] flex flex-col items-center flex-grow"
       >
-        <div className="text-center mb-4 mt-4">
-          <h1 className="text-[28px] font-extrabold text-[#221750] leading-tight mb-1">
-            1.5M+ parents & teachers
+        <div className="text-center mb-4 mt-2">
+          <h1 className="text-[24px] font-bold text-black leading-tight mb-1">
+            <span className="text-[#5032F5]">1.5M+</span> parents & teachers
           </h1>
-          <p className="text-[16px] text-[#221750] font-medium opacity-80">
+          <p className="text-[16px] text-black font-medium opacity-80">
             are teaching how to read with Reading.com!
           </p>
         </div>
@@ -231,11 +230,11 @@ export default function SocialProof() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[450px] px-5 sticky bottom-2 z-50 mt-auto"
+        className="w-full max-w-[480px] px-8 sticky bottom-4 z-50 mt-auto pb-4"
       >
         <motion.button
           whileTap={{ scale: 0.98 }}
-          className="w-full h-16 bg-purple-primary text-white rounded-full text-lg font-extrabold transition-all"
+          className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
           onClick={() => {
             updateDirection(1);
             router.push("/milestone");

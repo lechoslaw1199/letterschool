@@ -26,7 +26,7 @@ const pageVariants = {
 export default function ValueProposition() {
   const router = useRouter();
   const { direction, updateDirection } = useOnboarding();
-  const isReady = useImagePreload(["./research-backed.webp", "./Join.webp"]);
+  const isReady = useImagePreload(["/research-backed.webp", "/welcome_p.webp"]);
 
   const handleBack = () => {
     updateDirection(-1); // Moving backward
@@ -36,19 +36,20 @@ export default function ValueProposition() {
   return (
     <div className="w-full flex flex-col items-center min-h-screen relative overflow-x-clip">
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
-        <button 
-          className="absolute left-2 top-4 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
-          onClick={handleBack}
-          aria-label="Back"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="w-8 h-8">
-            <g>
-              <path d="M6.99219 12.3594C6.99219 12.625 7.09375 12.8516 7.30469 13.0547L13.3984 19.0156C13.5625 19.1875 13.7812 19.2734 14.0312 19.2734C14.5391 19.2734 14.9375 18.8828 14.9375 18.3672C14.9375 18.1172 14.8359 17.8906 14.6641 17.7188L9.17188 12.3594L14.6641 7C14.8359 6.82031 14.9375 6.59375 14.9375 6.34375C14.9375 5.83594 14.5391 5.44531 14.0312 5.44531C13.7812 5.44531 13.5625 5.53125 13.3984 5.70312L7.30469 11.6641C7.09375 11.8672 7 12.0938 6.99219 12.3594Z" fill="currentColor"></path>
-            </g>
-          </svg>
-        </button>
-        <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-7 mb-3 object-contain" />
-        <ProgressBar progress={6} />
+        <div className="w-full relative flex items-center justify-center mb-3">
+          <button 
+            className="absolute left-0 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
+            onClick={handleBack}
+            aria-label="Back"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="w-8 h-8">
+              <g>
+                <path d="M6.99219 12.3594C6.99219 12.625 7.09375 12.8516 7.30469 13.0547L13.3984 19.0156C13.5625 19.1875 13.7812 19.2734 14.0312 19.2734C14.5391 19.2734 14.9375 18.8828 14.9375 18.3672C14.9375 18.1172 14.8359 17.8906 14.6641 17.7188L9.17188 12.3594L14.6641 7C14.8359 6.82031 14.9375 6.59375 14.9375 6.34375C14.9375 5.83594 14.5391 5.44531 14.0312 5.44531C13.7812 5.44531 13.5625 5.53125 13.3984 5.70312L7.30469 11.6641C7.09375 11.8672 7 12.0938 6.99219 12.3594Z" fill="currentColor"></path>
+              </g>
+            </svg>
+          </button>
+          <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+        </div>
       </header>
 
       <motion.main
@@ -57,28 +58,32 @@ export default function ValueProposition() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[450px] px-5 flex flex-col items-center flex-grow"
+        className="w-full max-w-[480px] px-5 flex flex-col items-center flex-grow"
       >
-        <div className="flex items-center gap-6 mb-10 text-purple-primary">
-          <img src="./research-backed.webp" className="max-w-[265px]" alt="" />
+        <div className="flex flex-col items-center mt-4 w-full">
+          <img src="/research-backed.webp" className="max-w-[280px] mb-6" alt="Research Backed" />
+          
+          <img src="/welcome_p.webp" className="w-full max-w-[480px] mb-2 object-contain" alt="Kids learning" />
+          
+          <p className="text-[14px] italic text-[#221750] font-medium text-center mb-4">
+            Join <span className="font-bold">more than 2.5 million parents</span> <br /> teaching their kids to read!
+          </p>
+
+          <div className="w-full border-t border-[#f1f5f9] mb-8"></div>
         </div>
 
-        <h1 className="text-2xl font-extrabold mb-10 text-center text-purple-dark leading-tight">
-          Reading success starts here. No<br />
-          training or prep required!
+        <h1 className="text-[24px] font-bold mb-4 text-center text-black leading-tight">
+          Your child will learn to read!<br />
+          No training or prep required.
         </h1>
 
-        <p className="text-center text-black leading-relaxed text-[18px] mb-16">
-         Start with the pre-reading skills activities like our ABC Song and move on to the lessons as soon as they are ready.
-
+        <p className="text-center text-black leading-relaxed text-[18px] mb-6 px-2">
+          Our program is based on the best of the Science of Reading and empowers parents to teach their child how to read.
         </p>
 
-        <div className="flex flex-col items-center mb-4 mt-36 md:mt-56">
-          <div className="flex">
-            <img src="./Join.webp" className="w-[160px]" alt=""/>
-          </div>
-          <p className="text-sm italic text-black font-medium text-center">Join <span className="text-purple-dark font-bold">  more than 1.5 million parents</span> <br /> teaching their kids to read!</p>
-        </div>
+        <p className="text-center text-black font-normal text-[18px]">
+          It will work for your child as well!
+        </p>
       </motion.main>
 
       <motion.div
@@ -87,14 +92,14 @@ export default function ValueProposition() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[450px] px-8 sticky bottom-2 z-50 mt-auto"
+        className="w-full max-w-[480px] px-8 sticky bottom-4 z-50 mt-auto pb-4"
       >
         <motion.button 
           whileTap={{ scale: 0.98 }}
-          className="w-full max-w-[480px] h-16 bg-purple-primary text-white rounded-full text-lg font-extrabold transition-all"
+          className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
           onClick={() => {
             updateDirection(1);
-            router.push('/reason');
+            router.push('/gender');
           }}
         >
           Continue

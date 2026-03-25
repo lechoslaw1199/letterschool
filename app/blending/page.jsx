@@ -23,7 +23,7 @@ const pageVariants = {
   }),
 };
 
-export default function FullSentences() {
+export default function Blending() {
   const router = useRouter();
   const { childName, childGender, direction, updateDirection } = useOnboarding();
   const isReady = useImagePreload("/knowing.webp");
@@ -35,7 +35,7 @@ export default function FullSentences() {
 
   const handleContinue = () => {
     updateDirection(1);
-    router.push("/simple-books");
+    router.push("/sentences-teaser");
   };
 
   const handleSkip = () => {
@@ -43,11 +43,10 @@ export default function FullSentences() {
     router.push("/guarantee");
   };
 
-  const getPossessive = () => {
-    if (childGender === "Boy") return "his";
-    if (childGender === "Girl") return "her";
-    return "their";
-  };
+  // Pronoun helpers
+  const getSubj = () => childGender === "Boy" ? "he" : childGender === "Girl" ? "she" : "they";
+  const getObj = () => childGender === "Boy" ? "him" : childGender === "Girl" ? "her" : "them";
+  const getPoss = () => childGender === "Boy" ? "his" : childGender === "Girl" ? "her" : "their";
 
   return (
     <div className="w-full flex flex-col items-center bg-white min-h-screen relative overflow-x-clip">
@@ -72,20 +71,20 @@ export default function FullSentences() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate="animate"
+        animate={isReady ? "animate" : "initial"}
         exit="exit"
         className="w-full max-w-[480px] px-8 flex flex-col items-start flex-grow"
       >
         <div className="w-full flex justify-center mb-6 mt-4">
           <img 
             src="/knowing.webp" 
-            alt="Reading simple sentences" 
+            alt="Knowing letters & sounds" 
             className="w-full max-w-[400px] object-contain rounded-2xl"
           />
         </div>
 
         <h1 className="text-[24px] font-bold text-[#221750] text-start leading-tight mb-8 px-4">
-          Reading simple sentences is just one milestone in a clear, structured path toward confident reading
+          Blending is just one milestone in a clear, structured path toward confident reading
         </h1>
       </motion.main>
 
