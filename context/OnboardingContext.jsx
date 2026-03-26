@@ -21,6 +21,11 @@ export function OnboardingProvider({ children }) {
   const [parentEmail, setParentEmail] = useState("");
   const [referralSource, setReferralSource] = useState(null);
   const [readingStage, setReadingStage] = useState(null);
+  const [screenPreference, setScreenPreference] = useState(null);
+  const [supportHistory, setSupportHistory] = useState([]);
+  const [engagementFactors, setEngagementFactors] = useState([]);
+  const [focusDuration, setFocusDuration] = useState(null);
+  const [lessonsPerWeek, setLessonsPerWeek] = useState(null);
   const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
   const [isInitialized, setIsInitialized] = useState(false);
 
@@ -43,6 +48,11 @@ export function OnboardingProvider({ children }) {
         if (data.parentEmail) setParentEmail(data.parentEmail);
         if (data.referralSource) setReferralSource(data.referralSource);
         if (data.readingStage) setReadingStage(data.readingStage);
+        if (data.screenPreference) setScreenPreference(data.screenPreference);
+        if (data.supportHistory) setSupportHistory(data.supportHistory);
+        if (data.engagementFactors) setEngagementFactors(data.engagementFactors);
+        if (data.focusDuration) setFocusDuration(data.focusDuration);
+        if (data.lessonsPerWeek) setLessonsPerWeek(data.lessonsPerWeek);
       } catch (e) {
         console.error("Failed to parse onboarding data from localStorage", e);
       }
@@ -67,14 +77,19 @@ export function OnboardingProvider({ children }) {
       teacherRecommended,
       parentEmail,
       referralSource,
-      readingStage
+      readingStage,
+      screenPreference,
+      supportHistory,
+      engagementFactors,
+      focusDuration,
+      lessonsPerWeek
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(dataToSave));
   }, [
     selectedAge, selectedReason, selectedStatus, schoolMethod, 
     learningDifference, homeChallenge, childGender, selectedAvatar, 
     childName, teacherRecommended, parentEmail, referralSource,
-    readingStage, isInitialized
+    readingStage, isInitialized, screenPreference, supportHistory, engagementFactors, focusDuration, lessonsPerWeek
   ]);
 
   const updateDirection = (newDirection) => setDirection(newDirection);
@@ -107,6 +122,16 @@ export function OnboardingProvider({ children }) {
       setReferralSource,
       readingStage,
       setReadingStage,
+      screenPreference,
+      setScreenPreference,
+      supportHistory,
+      setSupportHistory,
+      engagementFactors,
+      setEngagementFactors,
+      focusDuration,
+      setFocusDuration,
+      lessonsPerWeek,
+      setLessonsPerWeek,
       direction, 
       updateDirection 
     }}>

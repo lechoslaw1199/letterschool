@@ -48,7 +48,7 @@ const testimonials = [
 
 export default function SocialProof() {
   const router = useRouter();
-  const { direction, updateDirection } = useOnboarding();
+  const { direction, updateDirection, selectedStatus } = useOnboarding();
   const isReady = useImagePreload("/VlQPe_m3.webp");
 
   const handleBack = () => {
@@ -128,7 +128,11 @@ export default function SocialProof() {
           className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
           onClick={() => {
             updateDirection(1);
-            router.push("/milestone");
+            if (selectedStatus === "Not yet") {
+              router.push("/home-challenge");
+            } else {
+              router.push("/school-method");
+            }
           }}
         >
           Continue

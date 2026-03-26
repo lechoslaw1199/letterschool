@@ -26,33 +26,37 @@ const pageVariants = {
 const challengeContent = {
   "Lack of time": {
     title: "We get it: life gets busy!",
-    content: "That's why we've created short 15-minute lessons that you can fit into your schedule a few times a week.\n\nDon't try to do too much. Consistency is key, and slow and steady wins the race!"
+    content: "That's why we've created short 15-minute lessons that you can fit into your schedule a few times a week.\n\nDon't try to do too much. Consistency is key, and slow and steady wins the race!",
+    image: "/not_yet_image.webp"
   },
   "Too expensive": {
     title: "Less expensive than a tutor!",
-    content: "While the Reading.com program requires a paid subscription, we do our best to keep it affordable.\n\nIt's a fraction of the cost of a private tutor!"
+    content: "While the Reading.com program requires a paid subscription, we do our best to keep it affordable.",
+    highlight: "It's a fraction of the cost of a private tutor!",
+    image: "/not_yet_image.webp"
   },
   "Ineffective program(s)": {
     title: "Reading.com is research-backed and proven to work!",
-    content: "Not to throw shade on other \"educational\" apps, but a lot of them provide entertainment without real learning.\n\nOur co-learning method is based on the Science of Reading and proven to work!"
+    content: "Not to throw shade on other \"educational\" apps, but a lot of them provide entertainment without real learning.\n\nOur co-learning method is based on the Science of Reading and proven to work!",
+    image: "/not_yet_image.webp"
   },
   "Lack of motivation from them": {
     title: "Quick progress + fun = motivation",
-    content: "Our lessons are fun and built so that your child progresses quickly, feels accomplished, and comes back for more!"
+    content: "Our lessons are fun and built so that your child progresses quickly, feels accomplished, and comes back for more!",
+    image: "/not_yet_image.webp"
   },
   "Something else": {
     title: "Reading.com is research-backed and proven to work!",
-    content: "Most methods for teaching how to read are challenging.\n\nWe're confident we've built the best learn-to-read program on earth, so you never have to look anywhere else!"
+    content: "Most methods for teaching how to read are challenging.\n\nWe're confident we've built the best learn-to-read program on earth, so you never have to look anywhere else!",
+    image: "/not_yet_image.webp"
   }
 };
 
 export default function ChallengeResponse() {
   const router = useRouter();
   const { direction, updateDirection, homeChallenge } = useOnboarding();
-  const isReady = useImagePreload("/lackoftime.webp");
-
-  // Fallback if no challenge was selected
   const currentContent = challengeContent[homeChallenge] || challengeContent["Something else"];
+  const isReady = useImagePreload(currentContent.image);
 
   const handleBack = () => {
     updateDirection(-1);
@@ -61,25 +65,26 @@ export default function ChallengeResponse() {
 
   const handleContinue = () => {
     updateDirection(1);
-    router.push("/learning-differences");
+    router.push("/screen-preference");
   };
 
   return (
     <div className="w-full flex flex-col items-center min-h-screen relative overflow-x-clip">
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
-        <button 
-          className="absolute left-2 top-4 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
-          onClick={handleBack}
-          aria-label="Back"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="w-8 h-8">
-            <g>
-              <path d="M6.99219 12.3594C6.99219 12.625 7.09375 12.8516 7.30469 13.0547L13.3984 19.0156C13.5625 19.1875 13.7812 19.2734 14.0312 19.2734C14.5391 19.2734 14.9375 18.8828 14.9375 18.3672C14.9375 18.1172 14.8359 17.8906 14.6641 17.7188L9.17188 12.3594L14.6641 7C14.8359 6.82031 14.9375 6.59375 14.9375 6.34375C14.9375 5.83594 14.5391 5.44531 14.0312 5.44531C13.7812 5.44531 13.5625 5.53125 13.3984 5.70312L7.30469 11.6641C7.09375 11.8672 7 12.0938 6.99219 12.3594Z" fill="currentColor"></path>
-            </g>
-          </svg>
-        </button>
-        <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-7 mb-3 object-contain" />
-        <ProgressBar progress={27} />
+        <div className="w-full relative flex items-center justify-center mb-3">
+          <button 
+            className="absolute left-0 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
+            onClick={handleBack}
+            aria-label="Back"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="w-8 h-8">
+              <g>
+                <path d="M6.99219 12.3594C6.99219 12.625 7.09375 12.8516 7.30469 13.0547L13.3984 19.0156C13.5625 19.1875 13.7812 19.2734 14.0312 19.2734C14.5391 19.2734 14.9375 18.8828 14.9375 18.3672C14.9375 18.1172 14.8359 17.8906 14.6641 17.7188L9.17188 12.3594L14.6641 7C14.8359 6.82031 14.9375 6.59375 14.9375 6.34375C14.9375 5.83594 14.5391 5.44531 14.0312 5.44531C13.7812 5.44531 13.5625 5.53125 13.3984 5.70312L7.30469 11.6641C7.09375 11.8672 7 12.0938 6.99219 12.3594Z" fill="currentColor"></path>
+              </g>
+            </svg>
+          </button>
+          <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+        </div>
       </header>
 
       <motion.main
@@ -88,22 +93,29 @@ export default function ChallengeResponse() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[450px] px-8 flex flex-col items-center pt-8 flex-grow"
+        className="w-full max-w-[480px] px-6 flex flex-col items-center pt-8 flex-grow"
       >
-        <div className="w-full flex justify-center mb-10">
+        <div className="w-full flex justify-center mb-4 relative">
           <img 
-            src="/lackoftime.webp" 
+            src={currentContent.image} 
             alt="Teaching challenge" 
-            className="w-full max-w-[340px] object-contain rounded-3xl"
+            className="w-full max-w-[380px] object-contain"
           />
         </div>
 
-        <h1 className="text-[26px] font-bold text-[#221750] text-center leading-tight mb-6 px-4 font-quicksand">
-          {currentContent.title}
-        </h1>
+        <div className="w-full flex flex-col items-start px-2">
+          <h1 className="text-[24px] font-bold text-[#221750] leading-tight mb-4">
+            {currentContent.title}
+          </h1>
 
-        <div className="text-[18px] text-center text-purple-dark/90 font-medium mb-12 px-2 leading-relaxed whitespace-pre-line font-quicksand">
-          {currentContent.content}
+          <div className="text-[16px] text-[#221750] font-medium leading-relaxed whitespace-pre-line opacity-90">
+            {currentContent.content}
+            {currentContent.highlight && (
+              <div className="mt-6 font-bold">
+                {currentContent.highlight}
+              </div>
+            )}
+          </div>
         </div>
       </motion.main>
 
@@ -113,11 +125,11 @@ export default function ChallengeResponse() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[450px] px-8 sticky bottom-2 z-50 mt-auto"
+        className="w-full max-w-[480px] px-8 sticky bottom-4 z-50 mt-auto pb-4"
       >
         <motion.button 
           whileTap={{ scale: 0.98 }}
-          className="w-full h-16 bg-purple-primary text-white rounded-full text-lg font-extrabold transition-all"
+          className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
           onClick={handleContinue}
         >
           Continue

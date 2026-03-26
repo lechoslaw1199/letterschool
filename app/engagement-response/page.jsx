@@ -23,18 +23,23 @@ const pageVariants = {
   }),
 };
 
-export default function PhonicsBeyond() {
+export default function EngagementResponse() {
   const router = useRouter();
-  const { direction, updateDirection, selectedStatus } = useOnboarding();
-  const isReady = useImagePreload("/phonics.webp");
+  const { direction, updateDirection } = useOnboarding();
+  const isReady = useImagePreload("/engaged.webp");
 
   const handleBack = () => {
     updateDirection(-1);
     router.back();
   };
 
+  const handleContinue = () => {
+    updateDirection(1);
+    router.push("/focus-duration"); // Flow towards focus duration
+  };
+
   return (
-    <div className="w-full flex flex-col items-center min-h-screen relative overflow-x-clip">
+    <div className="w-full flex flex-col items-center min-h-screen relative overflow-x-hidden bg-white">
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
         <div className="w-full relative flex items-center justify-center mb-3">
           <button 
@@ -50,7 +55,6 @@ export default function PhonicsBeyond() {
           </button>
           <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
         </div>
-        <ProgressBar progress={50} />
       </header>
 
       <motion.main
@@ -61,49 +65,36 @@ export default function PhonicsBeyond() {
         exit="exit"
         className="w-full max-w-[480px] px-6 flex flex-col items-center pt-8 flex-grow"
       >
-        <div className="w-full flex justify-center mb-8 relative">
+        <div className="w-full flex justify-center mb-4 relative">
           <img 
-            src="/phonics.webp" 
-            alt="Parent and child learning phonics" 
+            src="/engaged.webp" 
+            alt="Reading.com engagement features" 
             className="w-full max-w-[340px] object-contain"
           />
         </div>
 
         <div className="w-full flex flex-col items-start px-2">
-          <h1 className="text-[24px] font-bold text-[#221750] leading-tight mb-6">
-            Our program stands by itself
+          <h1 className="text-[24px] font-bold text-[#221750] leading-tight mb-4">
+            Great news — Reading.com matches how your child learns best
           </h1>
 
           <div className="text-[16px] text-[#221750] font-medium leading-relaxed opacity-90">
-            <p className="mb-6">
-              We allow you to teach your child how to read without any other resources or preparation.
-            </p>
-            <p>
-              Reading.com is phonics-based AND includes the other Science of Reading pillars: phonemic awareness, fluency, vocabulary, and comprehension.
+            <p className="mb-4">
+              <span className="font-bold">Visuals or animations, touching or tapping mechanics and hands-on activities</span> help your child stay engaged while learning. They will learn to decode words, not just memorize them.
             </p>
           </div>
         </div>
+        <div className="w-full mt-auto pb-4 pt-4">
+          <motion.button 
+            whileTap={{ scale: 0.98 }}
+            className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
+            onClick={handleContinue}
+          >
+            Continue
+          </motion.button>
+        </div>
       </motion.main>
 
-      <motion.div
-        custom={direction}
-        variants={pageVariants}
-        initial="initial"
-        animate={isReady ? "animate" : "initial"}
-        exit="exit"
-        className="w-full max-w-[480px] px-8 sticky bottom-4 z-50 mt-auto pb-4"
-      >
-        <motion.button 
-          whileTap={{ scale: 0.98 }}
-          className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
-          onClick={() => {
-            updateDirection(1);
-            router.push("/screen-preference");
-          }}
-        >
-          Continue
-        </motion.button>
-      </motion.div>
     </div>
   );
 }

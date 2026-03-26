@@ -1,10 +1,10 @@
 'use client';
 
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useOnboarding } from "@/context/OnboardingContext";
 import ProgressBar from "@/components/ProgressBar";
-import { useImagePreload } from "@/hooks/useImagePreload";
+import { useState } from "react";
 
 const pageVariants = {
   initial: (direction) => ({
@@ -23,16 +23,15 @@ const pageVariants = {
   }),
 };
 
-export default function SchoolMethod() {
+export default function ScreenPreference() {
   const router = useRouter();
-  const { direction, updateDirection, schoolMethod, setSchoolMethod } = useOnboarding();
-  const isReady = useImagePreload("/VlQPe_m3.webp");
+  const { direction, updateDirection, screenPreference, setScreenPreference } = useOnboarding();
+  const [showCondition, setShowCondition] = useState(!!screenPreference);
 
   const options = [
-    "Phonics",
-    "Whole language",
-    "Balanced Literacy",
-    "I don't know"
+    "Alone",
+    "With a parent or a family member",
+    "It depends"
   ];
 
   const handleBack = () => {
@@ -40,15 +39,18 @@ export default function SchoolMethod() {
     router.back();
   };
 
-  const handleMethodSelect = (method) => {
-    setSchoolMethod(method);
+  const handleOptionSelect = (option) => {
+    setScreenPreference(option);
+    setShowCondition(true);
+  };
+
+  const handleContinue = () => {
     updateDirection(1);
-    
-    router.push("/phonics-beyond");
+    router.push("/support-history");
   };
 
   return (
-    <div className="w-full flex flex-col items-center overflow-x-hidden">
+    <div className="w-full flex flex-col items-center min-h-screen relative overflow-x-hidden bg-white">
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
         <div className="w-full relative flex items-center justify-center mb-3">
           <button 
@@ -64,40 +66,62 @@ export default function SchoolMethod() {
           </button>
           <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
         </div>
-        <ProgressBar progress={45} />
+        <ProgressBar progress={55} />
       </header>
 
       <motion.main
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate={isReady ? "animate" : "initial"}
+        animate="animate"
         exit="exit"
-        className="w-full max-w-[450px] px-5 pb-20 flex flex-col items-center"
+        className="w-full max-w-[450px] px-6 flex flex-col items-center flex-grow"
       >
-        <div className="w-full pt-4 pb-6 px-4">
+        <div className="w-full pt-4 pb-4 px-4">
           <h1 className="text-[24px] font-bold text-[#221750] leading-tight text-center">
-            What method of teaching reading do you use?
+            How does your child prefer to use a screen?
           </h1>
         </div>
 
-        <div className="w-full flex flex-col gap-3 px-4 pb-12">
+        <div className="w-full flex flex-col gap-3 px-4 mb-4">
           {options.map((option) => (
             <motion.button
               key={option}
               whileTap={{ scale: 0.98 }}
               className={`min-h-[70px] py-4 px-8 rounded-lg text-[16px] font-bold flex items-center justify-center transition-all duration-200 border border-solid leading-snug ${
-                schoolMethod === option 
-                  ? 'bg-purple-primary text-white border-purple-primary shadow-lg shadow-purple-primary/20' 
+                screenPreference === option 
+                  ? 'bg-white text-[#5032F5] border-[#221750] border-1' 
                   : 'bg-white text-[#5032F5] border-[#cbd5e1] hover:border-[#5032F5]/50'
               }`}
-              onClick={() => handleMethodSelect(option)}
+              onClick={() => handleOptionSelect(option)}
             >
               {option}
             </motion.button>
           ))}
         </div>
+
+        {showCondition && (
+          <div className="w-full px-4  mb-8">
+            <div className="bg-[#FFECFF] border border-[#FBA0FF] rounded-2xl p-2 text-center">
+              <p className="text-[14px] text-[#221750] font-medium leading-relaxed">
+                Reading.com is made for parent-child learning. According to Psychology Today, children are up to <span className="font-bold">19x more likely to learn</span> from an app when using it with a parent.
+              </p>
+            </div>
+          </div>
+        )}
+        {showCondition && (
+          <div className="w-full mt-auto pb-4 pt-4">
+            <motion.button 
+              whileTap={{ scale: 0.98 }}
+              className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
+              onClick={handleContinue}
+            >
+              Continue
+            </motion.button>
+          </div>
+        )}
       </motion.main>
+
     </div>
   );
 }
