@@ -3,8 +3,7 @@
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useOnboarding } from "@/context/OnboardingContext";
-import ProgressBar from "@/components/ProgressBar";
-import { useImagePreload } from "@/hooks/useImagePreload";
+import { useState } from "react";
 
 const pageVariants = {
   initial: (direction) => ({
@@ -23,10 +22,10 @@ const pageVariants = {
   }),
 };
 
-export default function ChildName() {
+export default function ChildNamePage() {
   const router = useRouter();
-  const { direction, updateDirection, childName, setChildName } = useOnboarding();
-  const isReady = useImagePreload("/kidSafe.webp");
+  const { childName, setChildName, direction, updateDirection } = useOnboarding();
+  const [name, setName] = useState(childName || "");
 
   const handleBack = () => {
     updateDirection(-1);
@@ -34,92 +33,92 @@ export default function ChildName() {
   };
 
   const handleContinue = () => {
-    if (childName.trim().length > 0) {
+    if (name.trim()) {
+      setChildName(name.trim());
       updateDirection(1);
-      router.push("/personalizing");
+      router.push("/reading-level");
     }
   };
 
   return (
-    <div className="w-full flex flex-col items-center min-h-screen relative overflow-x-clip">
-      <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
+    <div className="w-full min-h-screen flex flex-col items-center bg-white px-6 font-quicksand overflow-x-hidden">
+      {/* Header */}
+      <header className="w-full max-w-[450px] flex items-center justify-center py-6 relative">
         <button 
-          className="absolute left-2 top-4 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
+          className="absolute left-0 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
           onClick={handleBack}
           aria-label="Back"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="w-8 h-8">
-            <g>
-              <path d="M6.99219 12.3594C6.99219 12.625 7.09375 12.8516 7.30469 13.0547L13.3984 19.0156C13.5625 19.1875 13.7812 19.2734 14.0312 19.2734C14.5391 19.2734 14.9375 18.8828 14.9375 18.3672C14.9375 18.1172 14.8359 17.8906 14.6641 17.7188L9.17188 12.3594L14.6641 7C14.8359 6.82031 14.9375 6.59375 14.9375 6.34375C14.9375 5.83594 14.5391 5.44531 14.0312 5.44531C13.7812 5.44531 13.5625 5.53125 13.3984 5.70312L7.30469 11.6641C7.09375 11.8672 7 12.0938 6.99219 12.3594Z" fill="currentColor"></path>
-            </g>
+            <path d="M6.99219 12.3594C6.99219 12.625 7.09375 12.8516 7.30469 13.0547L13.3984 19.0156C13.5625 19.1875 13.7812 19.2734 14.0312 19.2734C14.5391 19.2734 14.9375 18.8828 14.9375 18.3672C14.9375 18.1172 14.8359 17.8906 14.6641 17.7188L9.17188 12.3594L14.6641 7C14.8359 6.82031 14.9375 6.59375 14.9375 6.34375C14.9375 5.83594 14.5391 5.44531 14.0312 5.44531C13.7812 5.44531 13.5625 5.53125 13.3984 5.70312L7.30469 11.6641C7.09375 11.8672 7 12.0938 6.99219 12.3594Z" fill="currentColor"></path>
           </svg>
         </button>
-        <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-7 mb-3 object-contain" />
-        <ProgressBar progress={43} />
+        <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
       </header>
 
       <motion.main
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate={isReady ? "animate" : "initial"}
+        animate="animate"
         exit="exit"
-        className="w-full max-w-[450px] px-8 flex flex-col items-center pt-8 flex-grow"
+        className="w-full max-w-[430px] flex flex-col items-center"
       >
-        <h1 className="text-[24px] font-bold mb-10 text-center text-[#221750] leading-tight px-4 font-quicksand">
-          What is your child's first name or nickname?
+        <h1 className="text-[24px] font-bold text-[#221750] text-center mb-6 leading-tight px-4">
+          What is your child&apos;s first name or nickname?
         </h1>
 
-        <div className="w-full flex flex-col items-center gap-6">
+        {/* Name Input */}
+        <div className="w-full px-4 mb-6">
           <input
             type="text"
-            value={childName}
-            onChange={(e) => setChildName(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             placeholder="Enter your child's first name or nickname"
-            className="w-full h-[50px] px-6 rounded-2xl border-2 border-slate-200 outline-none focus:border-black transition-all text-base font-medium text-purple-dark placeholder:text-slate-500 font-quicksand shadow-sm"
+            className="w-full h-14 px-6 rounded-xl border-2 border-black bg-white outline-none focus:border-[#a2a2a2] transition-all text-[16px] font-medium text-[#221750] placeholder:text-slate-400 shadow-sm"
           />
+        </div>
 
-          <div className="w-full bg-[#E8E6FF] rounded-full px-4 py-3 flex items-center justify-center">
-            <p className="text-black text-[12px] font-medium text-center font-quicksand">
+        {/* Continue Button */}
+        <div className="w-full px-4 mb-6">
+          <motion.button
+            whileTap={name.trim() ? { scale: 0.98 } : {}}
+            disabled={!name.trim()}
+            className={`w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md ${
+              !name.trim() ? 'opacity-50 cursor-not-allowed' : 'opacity-100 hover:brightness-105 shadow-purple-500/10'
+            }`}
+            onClick={handleContinue}
+          >
+            Continue
+          </motion.button>
+        </div>
+
+        {/* Tip Box */}
+        <div className="w-full px-4 mb-8">
+          <div className="bg-[#FFECFF] border border-[#FBA0FF] rounded-xl py-2 px-4 text-center">
+            <p className="text-[14px] text-[#221750] font-medium">
               Tip: You can add more profiles later (up to 3 children)
             </p>
           </div>
+        </div>
 
-          <div className="flex flex-col items-center mt-4">
-            <img 
-              src="/kidSafe.webp" 
-              alt="kidSAFE Certified" 
-              className="h-14 object-contain mb-4"
-            />
-            <p className="text-[12px] text-center text-slate-600 font-medium leading-relaxed max-w-[280px] font-quicksand">
-              We never share or sell any information!<br />
+        {/* kidSAFE Logo */}
+        <div className="flex flex-col items-center mb-6">
+          <img 
+            src="/kidSafe.webp" 
+            alt="kidSAFE Certified" 
+            className="h-14 object-contain mb-3"
+          />
+          <div className="text-center px-4">
+            <p className="text-[12px] text-slate-500 font-medium leading-tight mb-1">
+              We never share or sell any information!
+            </p>
+            <p className="text-[12px] text-slate-500 font-medium leading-tight">
               Your child name is only used to personalize the experience.
             </p>
           </div>
         </div>
       </motion.main>
-
-      <motion.div
-        custom={direction}
-        variants={pageVariants}
-        initial="initial"
-        animate={isReady ? "animate" : "initial"}
-        exit="exit"
-        className="w-full max-w-[450px] px-8 sticky bottom-2 z-50 mt-auto"
-      >
-        <motion.button 
-          whileTap={childName.trim().length > 0 ? { scale: 0.98 } : {}}
-          disabled={childName.trim().length === 0}
-          className={`w-full h-16 rounded-full text-lg font-extrabold transition-all duration-300 ${
-            childName.trim().length > 0
-              ? 'bg-purple-primary text-white hover:scale-[1.01]'
-              : 'bg-purple-primary/40 text-white cursor-not-allowed'
-          }`}
-          onClick={handleContinue}
-        >
-          Continue
-        </motion.button>
-      </motion.div>
     </div>
   );
 }

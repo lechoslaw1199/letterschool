@@ -100,9 +100,9 @@ export default function SocialProofDyslexia() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate={isReady ? "animate" : "initial"}
+        animate="animate"
         exit="exit"
-        className="w-full max-w-[480px] px-8 sticky bottom-4 z-50 mt-auto pb-4"
+        className="fixed bottom-0 w-full max-w-[480px] px-8 z-50 pb-3 pt-2"
       >
         <motion.button
           whileTap={{ scale: 0.98 }}

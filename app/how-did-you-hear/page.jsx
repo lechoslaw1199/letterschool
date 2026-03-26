@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useOnboarding } from "@/context/OnboardingContext";
 import ProgressBar from "@/components/ProgressBar";
-import { useImagePreload } from "@/hooks/useImagePreload";
+import { useState } from "react";
 
 const pageVariants = {
   initial: (direction) => ({
@@ -23,23 +23,42 @@ const pageVariants = {
   }),
 };
 
-export default function Placement() {
+export default function ReferralPage() {
   const router = useRouter();
-  const { direction, updateDirection } = useOnboarding();
-  const isReady = useImagePreload("/placement.webp");
+  const { direction, updateDirection, referralSource, setReferralSource } = useOnboarding();
+
+  const options = [
+    "Friends & family",
+    "Teacher",
+    "App store",
+    "Facebook",
+    "TikTok",
+    "Podcast",
+    "Instagram",
+    "TV / Streaming TV",
+    "Google",
+    "YouTube",
+    "Radio",
+    "Other"
+  ];
 
   const handleBack = () => {
     updateDirection(-1);
     router.back();
   };
 
-  const handleContinue = () => {
-    updateDirection(1);
-    router.push("/milestone"); 
+  const handleOptionSelect = (option) => {
+    setReferralSource(option);
+    
+    // Auto-navigate after a brief delay so they see the selection
+    setTimeout(() => {
+      updateDirection(1);
+      router.push("/personalizing");
+    }, 400);
   };
 
   return (
-    <div className="w-full flex flex-col items-center min-h-screen relative overflow-x-clip">
+    <div className="w-full flex flex-col items-center min-h-screen relative overflow-x-hidden bg-white font-quicksand">
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
         <div className="w-full relative flex items-center justify-center mb-3">
           <button 
@@ -55,6 +74,7 @@ export default function Placement() {
           </button>
           <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
         </div>
+        <ProgressBar progress={82} />
       </header>
 
       <motion.main
@@ -63,47 +83,31 @@ export default function Placement() {
         initial="initial"
         animate="animate"
         exit="exit"
-        className="w-full max-w-[480px] px-8 flex flex-col items-center pb-32"
+        className="w-full max-w-[450px] px-6 flex flex-col items-center pb-12"
       >
-        <div className="w-full flex justify-center mb-2 mt-4">
-          <img 
-            src="/placement.webp" 
-            alt="Placement Assessment" 
-            className="w-full max-w-[400px] object-contain rounded-2xl"
-          />
+        <div className="w-full pt-4 pb-4">
+          <h1 className="text-[24px] font-bold text-[#221750] leading-tight text-center">
+            How did you hear about us?
+          </h1>
         </div>
 
-        <h2 className="text-[24px] font-bold text-[#221750] w-full text-start mb-4 px-4">
-          Don't worry!
-        </h2>
-
-        <div className="text-[16px] text-start text-black font-normal mb-4 px-4 leading-relaxed">
-          Complete our placement assessment once in the app to find the perfect starting lesson.
-        </div>
-
-        <div className="bg-[#FFECFF] border border-[#FBA0FF] rounded-[12px] py-2 px-4 mb-2 text-start w-full">
-          <p className="text-black text-[13px] font-normal leading-tight">
-            If starting from lesson 1, you'll still be unlocking and reading together your first book at lesson 10!
-          </p>
+        <div className="w-full grid grid-cols-2 gap-3 px-2 mb-12">
+          {options.map((option) => (
+            <motion.button
+              key={option}
+              whileTap={{ scale: 0.98 }}
+              className={`min-h-[70px] py-4 px-4 rounded-lg text-[16px] font-bold flex items-center justify-center transition-all duration-200 border border-solid leading-snug text-center ${
+                referralSource === option 
+                  ? 'bg-white text-[#5032F5] border-[#221750] border-1 shadow-sm' 
+                  : 'bg-white text-[#5032F5] border-[#cbd5e1]'
+              }`}
+              onClick={() => handleOptionSelect(option)}
+            >
+              {option}
+            </motion.button>
+          ))}
         </div>
       </motion.main>
-
-      <motion.div
-        custom={direction}
-        variants={pageVariants}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-        className="fixed bottom-0 w-full max-w-[480px] px-8 z-50 pb-3 pt-2"
-      >
-        <motion.button 
-          whileTap={{ scale: 0.98 }}
-          className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
-          onClick={handleContinue}
-        >
-          Continue
-        </motion.button>
-      </motion.div>
     </div>
   );
 }

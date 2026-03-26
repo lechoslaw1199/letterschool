@@ -18,18 +18,16 @@ export default function Personalizing() {
   const isReady = useImagePreload("/didyouknow.webp");
   const [percentages, setPercentages] = useState([0, 0, 0, 0]);
   const [complete, setComplete] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
-  const popupHandledRef = useRef(false);
   const [currentStepInfo, setCurrentStepInfo] = useState({ step: 0, startPercent: 0 });
 
   const durations = [3000, 2000, 4000, 2500]; // ms
   const goalText = homeChallenge || selectedReason || selectedStatus?.replace("Yes, ", "") || "your goal";
 
   const progressSteps = [
-    { label: `Analyzing your goal (${goalText})`, id: 0 },
-    { label: `Analyzing ${childName || 'your child'}'s experience`, id: 1 },
+    { label: `Analyzing your goal`, id: 0 },
+    { label: `Analyzing experience`, id: 1 },
     { label: "Analyzing other answers", id: 2 },
-    { label: `Personalizing ${childName || 'your child'}'s profile`, id: 3 },
+    { label: `Personalizing your child's profile`, id: 3 },
   ];
 
   const startStep = (s, startP = 0) => {
@@ -43,18 +41,6 @@ export default function Personalizing() {
       const jitter = Math.random() * 5 - 2.5; 
       const displayProgress = Math.min(Math.max(rawProgress + (rawProgress < 100 ? jitter : 0), 0), 100);
 
-      // Trigger popup at step 1 (second bar) and 64%
-      if (s === 1 && displayProgress >= 64 && !popupHandledRef.current) {
-        clearInterval(interval);
-        setPercentages(prev => {
-          const next = [...prev];
-          next[1] = 64;
-          return next;
-        });
-        setCurrentStepInfo({ step: 1, startPercent: 64 });
-        setShowPopup(true);
-        return;
-      }
 
       setPercentages(prev => {
         const next = [...prev];
@@ -86,13 +72,6 @@ export default function Personalizing() {
     return () => clearInterval(interval);
   }, []);
 
-  const handlePopupResponse = (response) => {
-    if (response !== null) setTeacherRecommended(response);
-    popupHandledRef.current = true;
-    setShowPopup(false);
-    // Resume progress
-    startStep(1, 64);
-  };
 
   useEffect(() => {
     if (complete) {
@@ -108,13 +87,13 @@ export default function Personalizing() {
         variants={pageVariants}
         initial="initial"
         animate={isReady ? "animate" : "initial"}
-        className={`w-full max-w-[450px] flex flex-col items-center transition-all duration-300 ${showPopup ? 'blur-sm brightness-90 grayscale-[0.2]' : ''}`}
+        className={`w-full max-w-[450px] flex flex-col items-center transition-all duration-300`}
       >
-        <h1 className="text-[26px] font-bold text-[#221750] mb-10 font-quicksand text-center">
-          Personalizing...
+        <h1 className="text-[24px] font-bold text-[#221750] mb-4 font-quicksand text-center">
+          Personalizing your plan....
         </h1>
 
-        <div className="w-full flex flex-col gap-2 mb-12">
+        <div className="w-full flex flex-col gap-2 mb-6">
           {progressSteps.map((step, index) => {
             const isActive = percentages[index] > 0 && percentages[index] < 100;
             return (
@@ -124,7 +103,7 @@ export default function Personalizing() {
                     {step.label}
                   </span>
                   <div className="flex items-center gap-2">
-                    <span className="text-[16px] font-bold text-black font-quicksand">
+                    <span className="text-[14px] font-bold text-black font-quicksand">
                       {percentages[index]}%
                     </span>
                     {isActive && (
@@ -151,70 +130,13 @@ export default function Personalizing() {
 
         <div className="w-full flex flex-col items-center">
           <img 
-            src="/didyouknow.webp" 
+            src="/processing.webp" 
             alt="Did you know" 
-            className="w-full max-w-[160px] object-contain mb-6"
+            className="w-full max-w-[400px] pt-3 object-contain"
           />
-
-          <div className="bg-[#221750] text-white px-6 py-2 rounded-xl flex items-center gap-2 mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clipRule="evenodd" />
-            </svg>
-            <span className="font-bold text-[16px] font-quicksand tracking-tight">Did You Know?</span>
-          </div>
-
-          <p className="text-[20px] font-bold text-[#221750] text-center mb-4 leading-tight font-quicksand px-4">
-            Children are 19x more likely to learn from an app when using it with a parent
-          </p>
-
-          <p className="text-[14px] text-slate-400 font-medium font-quicksand">
-            Source: Psychology Today
-          </p>
         </div>
       </motion.div>
 
-      <AnimatePresence>
-        {showPopup && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/40 backdrop-blur-[2px]">
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-white w-full max-w-[400px] rounded-[16px] p-4 pb-4 relative shadow-2xl"
-            >
-              <button 
-                onClick={() => handlePopupResponse(null)}
-                className="absolute right-1 top-2 text-black hover:opacity-70 transition-opacity"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-
-              <h2 className="text-[17px] font-medium text-[#000000] text-center mb-4 mt-2 font-quicksand">
-                Did a teacher recommend Reading.com?
-              </h2>
-
-              <div className="flex gap-4 px-2">
-                <motion.button
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => handlePopupResponse(true)}
-                  className="flex-1 h-[52px] bg-[#583DFF] text-white rounded-full font-bold text-base shadow-lg shadow-purple-900/10"
-                >
-                  Yes
-                </motion.button>
-                <motion.button
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => handlePopupResponse(false)}
-                  className="flex-1 h-[52px] bg-[#F5F9FF] text-[#583DFF] rounded-full font-bold text-base border border-[#d1e1f7]"
-                >
-                  No
-                </motion.button>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }

@@ -59,7 +59,7 @@ export default function PhonicsBeyond() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[480px] px-6 flex flex-col items-center pt-8 flex-grow"
+        className="w-full max-w-[450px] px-8 flex flex-col items-center pt-8 pb-32"
       >
         <div className="w-full flex justify-center mb-8 relative">
           <img 
@@ -89,9 +89,9 @@ export default function PhonicsBeyond() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate={isReady ? "animate" : "initial"}
+        animate="animate"
         exit="exit"
-        className="w-full max-w-[480px] px-8 sticky bottom-4 z-50 mt-auto pb-4"
+        className="fixed bottom-0 w-full max-w-[480px] px-8 z-50 pb-3 pt-2"
       >
         <motion.button 
           whileTap={{ scale: 0.98 }}

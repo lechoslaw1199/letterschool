@@ -72,7 +72,7 @@ export default function ReinforcementGames() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[450px] px-8 flex flex-col items-center pt-6 flex-grow"
+        className="w-full max-w-[450px] px-8 flex flex-col items-center pt-6 pb-32"
       >
         <div className="flex flex-col items-center mb-6">
           <span className="text-[12px] font-medium text-black tracking-widest uppercase mb-4 border-b-[1px] border-black pb-0.5">
@@ -98,9 +98,9 @@ export default function ReinforcementGames() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate={isReady ? "animate" : "initial"}
+        animate="animate"
         exit="exit"
-        className="w-full max-w-[450px] px-8 sticky bottom-2 z-50 mt-auto"
+        className="fixed bottom-0 w-full max-w-[480px] px-8 z-50 pb-3 pt-2"
       >
         <motion.button 
           whileTap={{ scale: 0.98 }}

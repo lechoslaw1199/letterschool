@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useOnboarding } from "@/context/OnboardingContext";
-import { useImagePreload } from "@/hooks/useImagePreload";
+import { useState } from "react";
 
 const pageVariants = {
   initial: (direction) => ({
@@ -13,98 +13,94 @@ const pageVariants = {
   animate: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] },
+    transition: { duration: 0.4, ease: [0.43, 0.13, 0.23, 0.96] },
   },
   exit: (direction) => ({
     opacity: 0,
     x: direction > 0 ? -50 : 50,
-    transition: { duration: 0.4, ease: [0.43, 0.13, 0.23, 0.96] },
+    transition: { duration: 0.3, ease: [0.43, 0.13, 0.23, 0.96] },
   }),
 };
 
-export default function Woohoo() {
+export default function EmailEntry() {
   const router = useRouter();
-  const { childName, childGender, selectedAvatar, direction, updateDirection } = useOnboarding();
-
-  const avatarId = selectedAvatar || 1;
-  const isReady = useImagePreload([
-    `/avatar${avatarId}first.webp`,
-    `/avatar${avatarId}second.webp`
-  ]);
-
-  // Helper to get correct pronoun based on gender
-  const getPronoun = () => {
-    if (childGender === "Boy") return "his";
-    if (childGender === "Girl") return "her";
-    return "their";
-  };
+  const { parentEmail, setParentEmail, direction, updateDirection } = useOnboarding();
+  const [email, setEmail] = useState(parentEmail || "");
 
   const handleContinue = () => {
-    updateDirection(1);
-    router.push("/save-progress");
+    if (email.includes('@')) {
+      setParentEmail(email);
+      updateDirection(1);
+      // Route to next step
+      router.push("/child-name"); 
+    }
   };
 
   return (
-    <div className="w-full flex flex-col items-center bg-white min-h-screen relative overflow-x-clip pt-12">
+    <div className="w-full min-h-screen flex flex-col items-center bg-white md:px-6 font-quicksand overflow-x-hidden">
+      {/* Header */}
+      <header className="w-full max-w-[450px] flex justify-center py-6">
+        <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+      </header>
+
       <motion.main
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate={isReady ? "animate" : "initial"}
+        animate="animate"
         exit="exit"
-        className="w-full max-w-[450px] px-8 flex flex-col items-center flex-grow"
+        className="w-full max-w-[430px] flex flex-col items-center pt-8"
       >
-        <h1 className="text-[28px] font-bold text-[#221750] mb-8 font-quicksand text-center">
-          Woohoo!
+        <h1 className="text-[24px] font-bold text-[#221750] text-center mb-6 leading-tight px-4">
+          Enter your email to get started with a personalized reading plan
         </h1>
 
-        {/* Profile Avatar with Checkmark */}
-        <div className="relative mb-8">
-          <div className="">
-            <img 
-              src={`/avatar${selectedAvatar || 1}first.webp`} 
-              alt="Child Avatar" 
-              className="w-[115px] h-full object-cover"
-            />
-          </div>
-          
-        </div>
-
-        <div className="text-center space-y-4 mb-4">
-          <p className="text-[18px] text-[#221750] font-medium font-quicksand leading-snug px-4">
-            Based on your answers, Reading.com is a perfect fit for <span className="font-medium">{childName || 'your child'}</span>.
-          </p>
-          <p className="text-[18px] text-[#221750] font-medium font-quicksand leading-snug px-4">
-            Get ready for {getPronoun()} learn-to-read journey!
-          </p>
-        </div>
-
-        {/* Game Preview Image */}
-        <div className="w-full rounded-[24px] overflow-hidden shadow-xl mb-12 border border-slate-100">
-          <img 
-            src={`/avatar${selectedAvatar || 1}second.webp`} 
-            alt="Learning Journey Preview" 
-            className="w-full h-auto object-cover"
+        {/* Email Input */}
+        <div className="w-full px-4 mb-6">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
+            className="w-full h-14 px-3 rounded-xl border-2 border-[#000] bg-[#F5F9FF]/30 outline-none focus:border-[#a2a2a2] transition-all text-[16px] font-medium text-[#221750] placeholder:text-slate-400 shadow-sm"
           />
         </div>
-      </motion.main>
 
-      <motion.div
-        custom={direction}
-        variants={pageVariants}
-        initial="initial"
-        animate={isReady ? "animate" : "initial"}
-        exit="exit"
-        className="w-full max-w-[450px] px-8 sticky bottom-2 z-50 mt-auto"
-      >
-        <motion.button 
-          whileTap={{ scale: 0.98 }}
-          className="w-full h-16 bg-purple-primary text-white rounded-full text-lg font-extrabold transition-all"
-          onClick={handleContinue}
-        >
-          Continue
-        </motion.button>
-      </motion.div>
+        {/* Continue Button */}
+        <div className="w-full px-4 mb-8">
+          <motion.button
+            whileTap={email.includes('@') ? { scale: 0.98 } : {}}
+            disabled={!email.includes('@')}
+            className={`w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md ${
+              !email.includes('@') ? 'opacity-50 cursor-not-allowed' : 'opacity-100 hover:brightness-105'
+            }`}
+            onClick={handleContinue}
+          >
+            Continue
+          </motion.button>
+        </div>
+
+        {/* Privacy Note */}
+        <div className="w-full px-8 text-center mb-8">
+          <p className="text-[14px] text-slate-700 font-medium leading-relaxed">
+            We respect your privacy and never spam. Please read our{" "}
+            <a href="#" className="underline text-[#5032F5]">Privacy Policy</a>{" "}
+            to understand how we use your data.
+          </p>
+        </div>
+
+        {/* Social Proof Footer */}
+        <div className="w-full flex flex-col items-center mt-auto pb-10">
+          <img 
+            src="/Join.webp" 
+            alt="Parents joining" 
+            className="h-10 object-contain mb-3"
+          />
+          <p className="text-[14px] text-center text-[#221750] font-medium leading-tight px-24 italic opacity-80">
+            Join <span className="font-bold">more than 2.5 million parents</span> teaching their kids to read!
+          </p>
+        </div>
+      </motion.main>
     </div>
   );
 }

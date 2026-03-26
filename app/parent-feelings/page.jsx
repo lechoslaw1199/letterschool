@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useOnboarding } from "@/context/OnboardingContext";
 import ProgressBar from "@/components/ProgressBar";
-import { useState } from "react";
 
 const pageVariants = {
   initial: (direction) => ({
@@ -23,37 +22,43 @@ const pageVariants = {
   }),
 };
 
-export default function LessonPlan() {
+export default function ParentFeelings() {
   const router = useRouter();
-  const { direction, updateDirection, lessonsPerWeek, setLessonsPerWeek, selectedAge } = useOnboarding();
-  const [showInfo, setShowInfo] = useState(!!lessonsPerWeek);
+  const { direction, updateDirection, parentFeelings, setParentFeelings } = useOnboarding();
 
-  const options = ["1-2", "2-3", "3-4", "5+"];
+  const options = [
+    "Less stressed",
+    "Proud seeing my child succeed",
+    "Reassured knowing my child is ready for school",
+    "Not sure"
+  ];
 
   const handleBack = () => {
     updateDirection(-1);
     router.back();
   };
 
-  const handleOptionSelect = (option) => {
-    setLessonsPerWeek(option);
-    setShowInfo(true);
+  const toggleOption = (option) => {
+    if (parentFeelings.includes(option)) {
+      setParentFeelings(parentFeelings.filter(item => item !== option));
+    } else {
+      setParentFeelings([...parentFeelings, option]);
+    }
   };
 
   const handleContinue = () => {
     updateDirection(1);
-    router.push("/fluency-video"); // Towards fluency video
+    router.push("/reviews");
   };
 
-  // Age text for info box
-  const ageText = selectedAge ? `ages ${selectedAge}` : "this age";
+  const isSelected = (option) => parentFeelings.includes(option);
 
   return (
-    <div className="w-full flex flex-col items-center min-h-screen relative overflow-x-hidden bg-white">
+    <div className="w-full flex flex-col items-center min-h-screen relative overflow-x-hidden bg-white font-quicksand">
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
         <div className="w-full relative flex items-center justify-center mb-3">
-          <button
-            className="absolute left-0 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors"
+          <button 
+            className="absolute left-0 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
             onClick={handleBack}
             aria-label="Back"
           >
@@ -65,7 +70,7 @@ export default function LessonPlan() {
           </button>
           <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
         </div>
-        <ProgressBar progress={80} />
+        <ProgressBar progress={90} />
       </header>
 
       <motion.main
@@ -76,39 +81,42 @@ export default function LessonPlan() {
         exit="exit"
         className="w-full max-w-[450px] px-6 flex flex-col items-center pb-32"
       >
-        <div className="w-full pt-4 pb-4 px-4">
+        <div className="w-full pt-4 pb-2 px-4">
           <h1 className="text-[24px] font-bold text-[#221750] leading-tight text-center">
-            How many lessons a week are you planning to take?
+            How would you feel if you taught your child how to read?
           </h1>
+          <p className="text-[14px] text-purple-dark/60 font-medium text-center mt-2 mb-4">
+            Select all that apply or skip
+          </p>
         </div>
 
-        <div className="w-full flex flex-col gap-3 px-4 mb-4 mt-2">
+        <div className="w-full flex flex-col gap-3 px-4 mb-8">
           {options.map((option) => (
             <motion.button
               key={option}
               whileTap={{ scale: 0.98 }}
-              className={`min-h-[70px] py-4 px-8 rounded-lg text-[16px] font-bold flex items-center justify-center transition-all duration-200 border border-solid leading-snug ${lessonsPerWeek === option
-                  ? 'bg-white text-[#5032F5] border-[#221750] border-1 shadow-sm'
+              className={`min-h-[70px] py-4 px-6 rounded-lg text-[16px] font-bold flex items-center justify-between transition-all duration-200 border border-solid leading-snug text-left ${
+                isSelected(option) 
+                  ? 'bg-white text-[#5032F5] border-[#221750] border-1 shadow-sm' 
                   : 'bg-white text-[#5032F5] border-[#cbd5e1] hover:border-[#5032F5]/50'
-                }`}
-              onClick={() => handleOptionSelect(option)}
+              }`}
+              onClick={() => toggleOption(option)}
             >
-              {option}
+              <span className="flex-grow pr-4">{option}</span>
+              <div className={`shrink-0 w-5 h-5 rounded border flex items-center justify-center transition-colors ${
+                isSelected(option) ? 'bg-[#221750] border-[#221750]' : 'bg-transparent border-[#cbd5e1]'
+              }`}>
+                {isSelected(option) && (
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                )}
+              </div>
             </motion.button>
           ))}
         </div>
-
-        {showInfo && (
-          <div className="w-full px-4 mb-8">
-            <div className="bg-[#FFECFF] border border-[#FBA0FF] rounded-2xl p-2">
-              <p className="text-[15px] text-[#221750] font-medium leading-relaxed text-center">
-                At ages 3-4, children learn best through short, joyful sessions. <span className="font-bold">2–3 lessons a week</span> is usually plenty to build skills without pressure. Going at your child's pace helps keep learning fun and stress-free 🌿
-              </p>
-            </div>
-          </div>
-        )}
       </motion.main>
- 
+
       <motion.div
         custom={direction}
         variants={pageVariants}
@@ -117,18 +125,17 @@ export default function LessonPlan() {
         exit="exit"
         className="fixed bottom-0 w-full max-w-[480px] px-8 z-50 pb-3 pt-2"
       >
-        <motion.button
-          whileTap={lessonsPerWeek ? { scale: 0.98 } : {}}
-          disabled={!lessonsPerWeek}
+        <motion.button 
+          whileTap={parentFeelings.length > 0 ? { scale: 0.98 } : {}}
+          disabled={parentFeelings.length === 0}
           className={`w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md ${
-            !lessonsPerWeek ? 'opacity-50 cursor-not-allowed' : 'opacity-100 shadow-purple-500/20'
+            parentFeelings.length === 0 ? 'opacity-50 cursor-not-allowed' : 'opacity-100 shadow-purple-500/20'
           }`}
           onClick={handleContinue}
         >
           Continue
         </motion.button>
       </motion.div>
-
     </div>
   );
 }

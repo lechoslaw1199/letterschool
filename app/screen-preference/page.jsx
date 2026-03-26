@@ -75,7 +75,7 @@ export default function ScreenPreference() {
         initial="initial"
         animate="animate"
         exit="exit"
-        className="w-full max-w-[450px] px-6 flex flex-col items-center flex-grow"
+        className="w-full max-w-[450px] px-8 flex flex-col items-center pt-8 pb-32"
       >
         <div className="w-full pt-4 pb-4 px-4">
           <h1 className="text-[24px] font-bold text-[#221750] leading-tight text-center">
@@ -109,18 +109,26 @@ export default function ScreenPreference() {
             </div>
           </div>
         )}
-        {showCondition && (
-          <div className="w-full mt-auto pb-4 pt-4">
-            <motion.button 
-              whileTap={{ scale: 0.98 }}
-              className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
-              onClick={handleContinue}
-            >
-              Continue
-            </motion.button>
-          </div>
-        )}
       </motion.main>
+ 
+      {showCondition && (
+        <motion.div
+          custom={direction}
+          variants={pageVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          className="fixed bottom-0 w-full max-w-[480px] px-8 z-50 pb-3 pt-2"
+        >
+          <motion.button 
+            whileTap={{ scale: 0.98 }}
+            className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
+            onClick={handleContinue}
+          >
+            Continue
+          </motion.button>
+        </motion.div>
+      )}
 
     </div>
   );

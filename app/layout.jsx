@@ -16,16 +16,16 @@ export const metadata = {
   },
 };
 
-import { AnimatePresence } from "framer-motion";
+import BackgroundWrapper from "@/components/BackgroundWrapper";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${quicksand.variable} font-quicksand antialiased bg-white overflow-x-hidden`}>
+      <body className={`${quicksand.variable} font-quicksand antialiased overflow-x-hidden`}>
         <OnboardingProvider>
-          <AnimatePresence mode="wait">
+          <BackgroundWrapper>
             {children}
-          </AnimatePresence>
+          </BackgroundWrapper>
         </OnboardingProvider>
       </body>
     </html>

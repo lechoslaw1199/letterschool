@@ -23,10 +23,19 @@ const pageVariants = {
   }),
 };
 
-export default function Placement() {
+export default function ReviewsPage() {
   const router = useRouter();
   const { direction, updateDirection } = useOnboarding();
-  const isReady = useImagePreload("/placement.webp");
+  
+  const reviewImages = [
+    "/review1.webp",
+    "/review2.webp",
+    "/review3.webp",
+    "/review4.webp",
+    "/review5.webp"
+  ];
+
+  const isReady = useImagePreload(reviewImages);
 
   const handleBack = () => {
     updateDirection(-1);
@@ -35,11 +44,11 @@ export default function Placement() {
 
   const handleContinue = () => {
     updateDirection(1);
-    router.push("/milestone"); 
+    router.push("/how-did-you-hear");
   };
 
   return (
-    <div className="w-full flex flex-col items-center min-h-screen relative overflow-x-clip">
+    <div className="w-full flex flex-col items-center min-h-screen relative overflow-x-hidden bg-white font-quicksand">
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
         <div className="w-full relative flex items-center justify-center mb-3">
           <button 
@@ -61,30 +70,36 @@ export default function Placement() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate="animate"
+        animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[480px] px-8 flex flex-col items-center pb-32"
+        className="w-full max-w-[480px] px-6 flex flex-col items-center pt-4 pb-16"
       >
-        <div className="w-full flex justify-center mb-2 mt-4">
-          <img 
-            src="/placement.webp" 
-            alt="Placement Assessment" 
-            className="w-full max-w-[400px] object-contain rounded-2xl"
-          />
+        <h1 className="text-[24px] font-bold text-[#221750] leading-tight text-center mb-4 px-4">
+          Join millions of parents who changed their children&apos;s lives by making reading fluency a priority
+        </h1>
+
+        <div className="w-full flex flex-col gap-3 mb-6">
+          {reviewImages.map((src, index) => (
+            <div key={index} className="w-full flex justify-center">
+              <img 
+                src={src} 
+                alt={`Review ${index + 1}`} 
+                className="w-full object-contain"
+              />
+            </div>
+          ))}
         </div>
 
-        <h2 className="text-[24px] font-bold text-[#221750] w-full text-start mb-4 px-4">
-          Don't worry!
-        </h2>
-
-        <div className="text-[16px] text-start text-black font-normal mb-4 px-4 leading-relaxed">
-          Complete our placement assessment once in the app to find the perfect starting lesson.
-        </div>
-
-        <div className="bg-[#FFECFF] border border-[#FBA0FF] rounded-[12px] py-2 px-4 mb-2 text-start w-full">
-          <p className="text-black text-[13px] font-normal leading-tight">
-            If starting from lesson 1, you'll still be unlocking and reading together your first book at lesson 10!
+        <div className="w-full flex flex-col items-center text-center px-4 mb-4">
+          <p className="text-[14px] font-medium text-[#000000] leading-tight mb-4 uppercase tracking-wide">
+            THERE ARE THOUSANDS OF OTHER COMMENTS LIKE THIS ON SOCIAL MEDIA!
           </p>
+          <p className="text-[#000000] font-bold mb-4">&</p>
+          <div className="flex flex-col items-center">
+            <div className="text-[#F19A2C] text-[20px] mb-2 font-bold tracking-[2px]">★★★★★</div>
+            <p className="text-[14px] font-medium text-[#221750] tracking-[0.5px] mb-1">5-STAR REVIEWS</p>
+            <p className="text-[14px] font-medium text-[#221750] tracking-[0.5px]">FROM 20,000+ PARENTS & TEACHERS</p>
+          </div>
         </div>
       </motion.main>
 
@@ -92,7 +107,7 @@ export default function Placement() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate="animate"
+        animate={isReady ? "animate" : "initial"}
         exit="exit"
         className="fixed bottom-0 w-full max-w-[480px] px-8 z-50 pb-3 pt-2"
       >

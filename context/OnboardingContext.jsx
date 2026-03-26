@@ -26,6 +26,7 @@ export function OnboardingProvider({ children }) {
   const [engagementFactors, setEngagementFactors] = useState([]);
   const [focusDuration, setFocusDuration] = useState(null);
   const [lessonsPerWeek, setLessonsPerWeek] = useState(null);
+  const [parentFeelings, setParentFeelings] = useState([]);
   const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
   const [isInitialized, setIsInitialized] = useState(false);
 
@@ -53,6 +54,7 @@ export function OnboardingProvider({ children }) {
         if (data.engagementFactors) setEngagementFactors(data.engagementFactors);
         if (data.focusDuration) setFocusDuration(data.focusDuration);
         if (data.lessonsPerWeek) setLessonsPerWeek(data.lessonsPerWeek);
+        if (data.parentFeelings) setParentFeelings(data.parentFeelings);
       } catch (e) {
         console.error("Failed to parse onboarding data from localStorage", e);
       }
@@ -82,14 +84,15 @@ export function OnboardingProvider({ children }) {
       supportHistory,
       engagementFactors,
       focusDuration,
-      lessonsPerWeek
+      lessonsPerWeek,
+      parentFeelings
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(dataToSave));
   }, [
     selectedAge, selectedReason, selectedStatus, schoolMethod, 
     learningDifference, homeChallenge, childGender, selectedAvatar, 
     childName, teacherRecommended, parentEmail, referralSource,
-    readingStage, isInitialized, screenPreference, supportHistory, engagementFactors, focusDuration, lessonsPerWeek
+    readingStage, isInitialized, screenPreference, supportHistory, engagementFactors, focusDuration, lessonsPerWeek, parentFeelings
   ]);
 
   const updateDirection = (newDirection) => setDirection(newDirection);
@@ -132,6 +135,8 @@ export function OnboardingProvider({ children }) {
       setFocusDuration,
       lessonsPerWeek,
       setLessonsPerWeek,
+      parentFeelings,
+      setParentFeelings,
       direction, 
       updateDirection 
     }}>

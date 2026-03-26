@@ -63,7 +63,7 @@ export default function EngagementResponse() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[480px] px-6 flex flex-col items-center pt-8 flex-grow"
+        className="w-full max-w-[450px] px-6 flex flex-col items-center pb-32"
       >
         <div className="w-full flex justify-center mb-4 relative">
           <img 
@@ -84,16 +84,24 @@ export default function EngagementResponse() {
             </p>
           </div>
         </div>
-        <div className="w-full mt-auto pb-4 pt-4">
-          <motion.button 
-            whileTap={{ scale: 0.98 }}
-            className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
-            onClick={handleContinue}
-          >
-            Continue
-          </motion.button>
-        </div>
       </motion.main>
+ 
+      <motion.div
+        custom={direction}
+        variants={pageVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        className="fixed bottom-0 w-full max-w-[480px] px-8 z-50 pb-3 pt-2"
+      >
+        <motion.button 
+          whileTap={{ scale: 0.98 }}
+          className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
+          onClick={handleContinue}
+        >
+          Continue
+        </motion.button>
+      </motion.div>
 
     </div>
   );
