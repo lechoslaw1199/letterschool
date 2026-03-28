@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useOnboarding } from "@/context/OnboardingContext";
 import { useState, useEffect } from "react";
+import { useImagePreload } from "@/hooks/useImagePreload";
 
 const pageVariants = {
   initial: (direction) => ({
@@ -25,6 +26,7 @@ const pageVariants = {
 export default function ReadingPlanPage() {
   const router = useRouter();
   const { childName, direction, updateDirection } = useOnboarding();
+  const isReady = useImagePreload("/VlQPe_m3.webp");
 
   const handleContinue = () => {
     updateDirection(1);
@@ -57,7 +59,7 @@ export default function ReadingPlanPage() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate="animate"
+        animate={isReady ? "animate" : "initial"}
         exit="exit"
         className="w-full max-w-[430px] flex flex-col items-center pt-2"
       >
@@ -158,7 +160,7 @@ export default function ReadingPlanPage() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate="animate"
+        animate={isReady ? "animate" : "initial"}
         exit="exit"
         className="fixed bottom-0 w-full max-w-[480px] px-8 z-50 pb-3 pt-2"
       >

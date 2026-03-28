@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useOnboarding } from "@/context/OnboardingContext";
 import { useState } from "react";
+import { useImagePreload } from "@/hooks/useImagePreload";
 
 const pageVariants = {
   initial: (direction) => ({
@@ -26,6 +27,7 @@ export default function EmailEntry() {
   const router = useRouter();
   const { parentEmail, setParentEmail, direction, updateDirection } = useOnboarding();
   const [email, setEmail] = useState(parentEmail || "");
+  const isReady = useImagePreload(["/VlQPe_m3.webp", "/Join.webp"]);
 
   const handleContinue = () => {
     if (email.includes('@')) {
@@ -47,7 +49,7 @@ export default function EmailEntry() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate="animate"
+        animate={isReady ? "animate" : "initial"}
         exit="exit"
         className="w-full max-w-[430px] flex flex-col items-center pt-8"
       >

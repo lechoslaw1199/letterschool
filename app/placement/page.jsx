@@ -61,7 +61,7 @@ export default function Placement() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate="animate"
+        animate={isReady ? "animate" : "initial"}
         exit="exit"
         className="w-full max-w-[480px] px-8 flex flex-col items-center pb-32"
       >
@@ -92,7 +92,7 @@ export default function Placement() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate="animate"
+        animate={isReady ? "animate" : "initial"}
         exit="exit"
         className="fixed bottom-0 w-full max-w-[480px] px-8 z-50 pb-3 pt-2"
       >

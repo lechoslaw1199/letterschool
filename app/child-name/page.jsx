@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useOnboarding } from "@/context/OnboardingContext";
 import { useState } from "react";
+import { useImagePreload } from "@/hooks/useImagePreload";
 
 const pageVariants = {
   initial: (direction) => ({
@@ -26,6 +27,7 @@ export default function ChildNamePage() {
   const router = useRouter();
   const { childName, setChildName, direction, updateDirection } = useOnboarding();
   const [name, setName] = useState(childName || "");
+  const isReady = useImagePreload(["/VlQPe_m3.webp", "/kidSafe.webp"]);
 
   const handleBack = () => {
     updateDirection(-1);
@@ -60,7 +62,7 @@ export default function ChildNamePage() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate="animate"
+        animate={isReady ? "animate" : "initial"}
         exit="exit"
         className="w-full max-w-[430px] flex flex-col items-center"
       >

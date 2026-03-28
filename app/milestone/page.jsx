@@ -56,7 +56,7 @@ export default function Milestone() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate="animate"
+        animate={isReady ? "animate" : "initial"}
         exit="exit"
         className="w-full max-w-[480px] px-8 flex flex-col items-start flex-grow"
       >

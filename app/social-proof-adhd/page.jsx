@@ -71,7 +71,7 @@ export default function SocialProofADHD() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate="animate"
+        animate={isReady ? "animate" : "initial"}
         exit="exit"
         className="w-full max-w-[450px] flex flex-col items-center flex-grow px-6"
       >

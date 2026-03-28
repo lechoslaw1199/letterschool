@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useOnboarding } from "@/context/OnboardingContext";
 import ProgressBar from "@/components/ProgressBar";
 import { useState } from "react";
+import { useImagePreload } from "@/hooks/useImagePreload";
 
 const pageVariants = {
   initial: (direction) => ({
@@ -26,6 +27,7 @@ const pageVariants = {
 export default function ScreenPreference() {
   const router = useRouter();
   const { direction, updateDirection, screenPreference, setScreenPreference } = useOnboarding();
+  const isReady = useImagePreload("/VlQPe_m3.webp");
   const [showCondition, setShowCondition] = useState(!!screenPreference);
 
   const options = [
@@ -73,17 +75,17 @@ export default function ScreenPreference() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate="animate"
+        animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[450px] px-8 flex flex-col items-center pt-8 pb-32"
+        className="w-full max-w-[450px] px-8 flex flex-col items-center pt-2 pb-10"
       >
-        <div className="w-full pt-4 pb-4 px-4">
+        <div className="w-full pt-4 pb-4">
           <h1 className="text-[24px] font-bold text-[#221750] leading-tight text-center">
             How does your child prefer to use a screen?
           </h1>
         </div>
 
-        <div className="w-full flex flex-col gap-3 px-4 mb-4">
+        <div className="w-full flex flex-col gap-3 mb-4">
           {options.map((option) => (
             <motion.button
               key={option}
@@ -116,7 +118,7 @@ export default function ScreenPreference() {
           custom={direction}
           variants={pageVariants}
           initial="initial"
-          animate="animate"
+          animate={isReady ? "animate" : "initial"}
           exit="exit"
           className="fixed bottom-0 w-full max-w-[480px] px-8 z-50 pb-3 pt-2"
         >

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useOnboarding } from "@/context/OnboardingContext";
 import ProgressBar from "@/components/ProgressBar";
 import { useState } from "react";
+import { useImagePreload } from "@/hooks/useImagePreload";
 
 const pageVariants = {
   initial: (direction) => ({
@@ -26,6 +27,7 @@ const pageVariants = {
 export default function FocusDuration() {
   const router = useRouter();
   const { direction, updateDirection, focusDuration, setFocusDuration } = useOnboarding();
+  const isReady = useImagePreload("/VlQPe_m3.webp");
   const [showContinue, setShowContinue] = useState(!!focusDuration);
 
   const options = [
@@ -75,7 +77,7 @@ export default function FocusDuration() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate="animate"
+        animate={isReady ? "animate" : "initial"}
         exit="exit"
         className="w-full max-w-[450px] px-6 flex flex-col items-center pb-32"
       >
@@ -108,7 +110,7 @@ export default function FocusDuration() {
           custom={direction}
           variants={pageVariants}
           initial="initial"
-          animate="animate"
+          animate={isReady ? "animate" : "initial"}
           exit="exit"
           className="fixed bottom-0 w-full max-w-[480px] px-8 z-50 pb-3 pt-2"
         >

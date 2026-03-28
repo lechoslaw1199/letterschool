@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useOnboarding } from "@/context/OnboardingContext";
 import ProgressBar from "@/components/ProgressBar";
+import { useImagePreload } from "@/hooks/useImagePreload";
 
 const pageVariants = {
   initial: (direction) => ({
@@ -25,6 +26,7 @@ const pageVariants = {
 export default function LearningDifferences() {
   const router = useRouter();
   const { direction, updateDirection, learningDifference, setLearningDifference } = useOnboarding();
+  const isReady = useImagePreload("/VlQPe_m3.webp");
 
   const options = [
     "No",
@@ -98,7 +100,7 @@ export default function LearningDifferences() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate="animate"
+        animate={isReady ? "animate" : "initial"}
         exit="exit"
         className="w-full max-w-[450px] px-5 pb-20 flex flex-col items-center pt-4"
       >

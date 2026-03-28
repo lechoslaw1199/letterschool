@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useOnboarding } from "@/context/OnboardingContext";
 import ProgressBar from "@/components/ProgressBar";
 import { useState } from "react";
+import { useImagePreload } from "@/hooks/useImagePreload";
 
 const pageVariants = {
   initial: (direction) => ({
@@ -26,6 +27,7 @@ const pageVariants = {
 export default function ReferralPage() {
   const router = useRouter();
   const { direction, updateDirection, referralSource, setReferralSource } = useOnboarding();
+  const isReady = useImagePreload("/VlQPe_m3.webp");
 
   const options = [
     "Friends & family",
@@ -81,7 +83,7 @@ export default function ReferralPage() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate="animate"
+        animate={isReady ? "animate" : "initial"}
         exit="exit"
         className="w-full max-w-[450px] px-6 flex flex-col items-center pb-12"
       >

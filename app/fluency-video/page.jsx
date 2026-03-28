@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useOnboarding } from "@/context/OnboardingContext";
 import ProgressBar from "@/components/ProgressBar";
+import { useImagePreload } from "@/hooks/useImagePreload";
 import { useState, useRef } from "react";
 
 const pageVariants = {
@@ -26,6 +27,7 @@ const pageVariants = {
 export default function FluencyVideo() {
   const router = useRouter();
   const { direction, updateDirection, focusDuration } = useOnboarding();
+  const isReady = useImagePreload(["/VlQPe_m3.webp", "/video_poster.png"]);
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -82,7 +84,7 @@ export default function FluencyVideo() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate="animate"
+        animate={isReady ? "animate" : "initial"}
         exit="exit"
         className="w-full max-w-[480px] px-6 flex flex-col items-center pt-2 pb-32"
       >
@@ -103,6 +105,7 @@ export default function FluencyVideo() {
             <video 
               ref={videoRef}
               src="/reading.mp4" 
+              poster="/video_poster.png"
               className="w-full h-full object-cover" 
               playsInline
               onPlay={() => setIsPlaying(true)}
@@ -131,7 +134,7 @@ export default function FluencyVideo() {
         custom={direction}
         variants={pageVariants}
         initial="initial"
-        animate="animate"
+        animate={isReady ? "animate" : "initial"}
         exit="exit"
         className="fixed bottom-0 w-full max-w-[480px] px-8 z-50 pb-3 pt-2"
       >

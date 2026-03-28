@@ -15,7 +15,7 @@ const pageVariants = {
 export default function Personalizing() {
   const router = useRouter();
   const { childName, selectedReason, homeChallenge, selectedStatus, setTeacherRecommended } = useOnboarding();
-  const isReady = useImagePreload("/didyouknow.webp");
+  const isReady = useImagePreload("/processing.webp");
   const [percentages, setPercentages] = useState([0, 0, 0, 0]);
   const [complete, setComplete] = useState(false);
   const [currentStepInfo, setCurrentStepInfo] = useState({ step: 0, startPercent: 0 });

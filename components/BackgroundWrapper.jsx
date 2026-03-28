@@ -12,6 +12,7 @@ export default function BackgroundWrapper({ children }) {
 
   return (
     <motion.div
+      initial={false}
       animate={{ backgroundColor: bgColor }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
       className="min-h-screen w-full flex flex-col items-center overflow-x-hidden"
