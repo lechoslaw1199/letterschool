@@ -15,9 +15,7 @@ export function OnboardingProvider({ children }) {
   const [learningDifference, setLearningDifference] = useState(null);
   const [homeChallenge, setHomeChallenge] = useState(null);
   const [childGender, setChildGender] = useState(null);
-  const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [childName, setChildName] = useState("");
-  const [teacherRecommended, setTeacherRecommended] = useState(null);
   const [parentEmail, setParentEmail] = useState("");
   const [referralSource, setReferralSource] = useState(null);
   const [readingStage, setReadingStage] = useState(null);
@@ -36,25 +34,35 @@ export function OnboardingProvider({ children }) {
     if (savedData) {
       try {
         const data = JSON.parse(savedData);
-        if (data.selectedAge) setSelectedAge(data.selectedAge);
-        if (data.selectedReason) setSelectedReason(data.selectedReason);
-        if (data.selectedStatus) setSelectedStatus(data.selectedStatus);
-        if (data.schoolMethod) setSchoolMethod(data.schoolMethod);
-        if (data.learningDifference) setLearningDifference(data.learningDifference);
-        if (data.homeChallenge) setHomeChallenge(data.homeChallenge);
-        if (data.childGender) setChildGender(data.childGender);
-        if (data.selectedAvatar) setSelectedAvatar(data.selectedAvatar);
-        if (data.childName) setChildName(data.childName);
-        if (data.teacherRecommended !== undefined) setTeacherRecommended(data.teacherRecommended);
-        if (data.parentEmail) setParentEmail(data.parentEmail);
-        if (data.referralSource) setReferralSource(data.referralSource);
-        if (data.readingStage) setReadingStage(data.readingStage);
-        if (data.screenPreference) setScreenPreference(data.screenPreference);
-        if (data.supportHistory) setSupportHistory(data.supportHistory);
-        if (data.engagementFactors) setEngagementFactors(data.engagementFactors);
-        if (data.focusDuration) setFocusDuration(data.focusDuration);
-        if (data.lessonsPerWeek) setLessonsPerWeek(data.lessonsPerWeek);
-        if (data.parentFeelings) setParentFeelings(data.parentFeelings);
+        
+        // 10-minute TTL check (10 * 60 * 1000 ms)
+        const tenMinutes = 10 * 60 * 1000;
+        const now = Date.now();
+        
+        if (data.timestamp && (now - data.timestamp > tenMinutes)) {
+          console.log("Onboarding data expired. Clearing storage.");
+          localStorage.removeItem(STORAGE_KEY);
+          // Also clear individual keys used by static pages if any
+          localStorage.removeItem('onboarding_childName'); 
+        } else {
+          if (data.selectedAge) setSelectedAge(data.selectedAge);
+          if (data.selectedReason) setSelectedReason(data.selectedReason);
+          if (data.selectedStatus) setSelectedStatus(data.selectedStatus);
+          if (data.schoolMethod) setSchoolMethod(data.schoolMethod);
+          if (data.learningDifference) setLearningDifference(data.learningDifference);
+          if (data.homeChallenge) setHomeChallenge(data.homeChallenge);
+          if (data.childGender) setChildGender(data.childGender);
+          if (data.childName) setChildName(data.childName);
+          if (data.parentEmail) setParentEmail(data.parentEmail);
+          if (data.referralSource) setReferralSource(data.referralSource);
+          if (data.readingStage) setReadingStage(data.readingStage);
+          if (data.screenPreference) setScreenPreference(data.screenPreference);
+          if (data.supportHistory) setSupportHistory(data.supportHistory);
+          if (data.engagementFactors) setEngagementFactors(data.engagementFactors);
+          if (data.focusDuration) setFocusDuration(data.focusDuration);
+          if (data.lessonsPerWeek) setLessonsPerWeek(data.lessonsPerWeek);
+          if (data.parentFeelings) setParentFeelings(data.parentFeelings);
+        }
       } catch (e) {
         console.error("Failed to parse onboarding data from localStorage", e);
       }
@@ -67,6 +75,7 @@ export function OnboardingProvider({ children }) {
     if (!isInitialized) return;
 
     const dataToSave = {
+      timestamp: Date.now(), // Add TTL timestamp
       selectedAge,
       selectedReason,
       selectedStatus,
@@ -74,9 +83,7 @@ export function OnboardingProvider({ children }) {
       learningDifference,
       homeChallenge,
       childGender,
-      selectedAvatar,
       childName,
-      teacherRecommended,
       parentEmail,
       referralSource,
       readingStage,
@@ -88,10 +95,15 @@ export function OnboardingProvider({ children }) {
       parentFeelings
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(dataToSave));
+    
+    // Also sync the separate key used by static checkout.html
+    if (childName) {
+      localStorage.setItem('onboarding_childName', childName);
+    }
   }, [
     selectedAge, selectedReason, selectedStatus, schoolMethod, 
-    learningDifference, homeChallenge, childGender, selectedAvatar, 
-    childName, teacherRecommended, parentEmail, referralSource,
+    learningDifference, homeChallenge, childGender, 
+    childName, parentEmail, referralSource,
     readingStage, isInitialized, screenPreference, supportHistory, engagementFactors, focusDuration, lessonsPerWeek, parentFeelings
   ]);
 
@@ -113,12 +125,8 @@ export function OnboardingProvider({ children }) {
       setHomeChallenge,
       childGender,
       setChildGender,
-      selectedAvatar,
-      setSelectedAvatar,
       childName,
       setChildName,
-      teacherRecommended,
-      setTeacherRecommended,
       parentEmail,
       setParentEmail,
       referralSource,

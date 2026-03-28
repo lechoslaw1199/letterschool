@@ -111,7 +111,7 @@
             <div class="rounded-2xl overflow-hidden ">
                 <img src="/goal.webp" alt="Now vs Goal Comparison" class="w-full h-auto">
                 <h1 class="text-[24px] font-bold leading-tight mb-4 mt-4">
-                    Unlock <span class="child-name text-[#5032F5]">abhisksej</span>'s Reading Potential!
+                    Unlock <span class="child-name text-[#5032F5]">your child</span>'s Reading Potential!
                 </h1>
             </div>
         </section>
@@ -141,7 +141,7 @@
                                     <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="3"
                                         stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
-                                <span class="text-[14px] font-bold text-[#221750] child-name">abhisksej_mar28</span>
+                                 <span class="text-[14px] font-bold text-[#221750] badge-id">your child</span>
                             </div>
                         </div>
 
@@ -660,26 +660,37 @@
     </main>
 
     <script>
-        // Personalization Logic
+        // Personalization & TTL Logic
         document.addEventListener('DOMContentLoaded', () => {
-            const childName = localStorage.getItem('onboarding_childName') || 'abhisksej';
-            const now = new Date();
-            const monthNames = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
-            const dateStr = `${monthNames[now.getMonth()]}${now.getDate()}`;
-            const badgeId = `${childName.toLowerCase().replace(/[^a-z0-9]/g, '')}_${dateStr}`;
+            const STORAGE_KEY = 'reading_onboarding_data';
+            const tenMinutes = 10 * 60 * 1000;
+            const now = Date.now();
+            let childName = 'your child'; // Initial default
+            
+            const savedData = localStorage.getItem(STORAGE_KEY);
+            if (savedData) {
+                try {
+                    const data = JSON.parse(savedData);
+                    // 10-minute TTL check
+                    if (data.timestamp && (now - data.timestamp > tenMinutes)) {
+                        localStorage.removeItem(STORAGE_KEY);
+                        localStorage.removeItem('onboarding_childName');
+                    } else if (data.childName) {
+                        childName = data.childName;
+                    }
+                } catch (e) {}
+            }
+
+            // Secondary check from individual key
+            if (childName === 'your child') {
+                childName = localStorage.getItem('onboarding_childName') || 'your child';
+            }
 
             // Update all name instances
-            document.querySelectorAll('.child-name').forEach(el => {
-                el.textContent = el.classList.contains('badge-id') ? badgeId : childName;
-                if (el.tagName === 'SPAN' && el.parentElement.id === 'promo-code') {
-                    el.textContent = badgeId;
-                }
-            });
+            document.querySelectorAll('.child-name').forEach(el => el.textContent = childName);
+            document.querySelectorAll('.badge-id').forEach(el => el.textContent = childName);
 
-            // Specific fix for the ticket child-name (it needs to show the badge ID)
-            document.querySelector('.child-name:not(h1 span)').textContent = badgeId;
-
-            // Countdown Timers logic
+            // Refined Countdown Timers logic
             function setupTimer(duration, minClass, secClass) {
                 let timer = duration;
                 
