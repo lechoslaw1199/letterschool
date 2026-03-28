@@ -27,7 +27,7 @@ const pageVariants = {
 export default function FluencyVideo() {
   const router = useRouter();
   const { direction, updateDirection, focusDuration } = useOnboarding();
-  const isReady = useImagePreload(["/VlQPe_m3.webp", "/video_poster.png"]);
+  const isReady = useImagePreload(["/VlQPe_m3.webp", "/reading-poster.png"]);
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -105,7 +105,7 @@ export default function FluencyVideo() {
             <video 
               ref={videoRef}
               src="/reading.mp4" 
-              poster="/video_poster.png"
+              poster="/reading-poster.png"
               className="w-full h-full object-cover" 
               playsInline
               onPlay={() => setIsPlaying(true)}
