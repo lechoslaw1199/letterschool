@@ -109,11 +109,7 @@ export default function SocialProofADHD() {
           className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
           onClick={() => {
             updateDirection(1);
-            if (selectedStatus === "Not yet") {
-              router.push("/home-challenge");
-            } else {
-              router.push("/school-method");
-            }
+            router.push("/school-method");
           }}
         >
           Continue

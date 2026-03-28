@@ -63,9 +63,9 @@ export default function EngagementResponse() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[450px] px-6 flex flex-col items-center pb-32"
+        className="w-full max-w-[450px] px-6 flex flex-col items-center pb-28"
       >
-        <div className="w-full flex justify-center mb-4 relative">
+        <div className="w-full flex justify-center mb-4 mt-4 relative">
           <img 
             src="/engaged.webp" 
             alt="Reading.com engagement features" 

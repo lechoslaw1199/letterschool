@@ -105,7 +105,7 @@ export default function SupportHistory() {
           </button>
           <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
         </div>
-        <ProgressBar progress={60} />
+        <ProgressBar progress={48} />
       </header>
 
       <motion.main

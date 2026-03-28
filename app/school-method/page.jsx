@@ -64,7 +64,7 @@ export default function SchoolMethod() {
           </button>
           <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
         </div>
-        <ProgressBar progress={45} />
+        <ProgressBar progress={33} />
       </header>
 
       <motion.main

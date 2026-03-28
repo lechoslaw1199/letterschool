@@ -62,7 +62,7 @@ export default function ChildGender() {
           </button>
           <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
         </div>
-        <ProgressBar progress={3} />
+        <ProgressBar progress={5} />
       </header>
 
       <motion.main

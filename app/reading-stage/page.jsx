@@ -80,7 +80,7 @@ export default function Placement() {
           </button>
           <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
         </div>
-        <ProgressBar progress={9} />
+        <ProgressBar progress={10} />
       </header>
 
       <motion.main

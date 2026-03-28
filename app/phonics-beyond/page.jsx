@@ -50,7 +50,6 @@ export default function PhonicsBeyond() {
           </button>
           <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
         </div>
-        <ProgressBar progress={50} />
       </header>
 
       <motion.main
@@ -98,7 +97,7 @@ export default function PhonicsBeyond() {
           className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
           onClick={() => {
             updateDirection(1);
-            router.push("/screen-preference");
+            router.push("/home-challenge");
           }}
         >
           Continue

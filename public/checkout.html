@@ -174,7 +174,7 @@
         <section id="plans-top" class="mx-5 mb-8 flex flex-col gap-4">
             <!-- 1 Year Plan -->
             <div id="card-year"
-                class="bg-white rounded-[16px] border-2 border-slate-100 overflow-hidden cursor-pointer transition-all"
+                class="bg-[#DCD6FE] rounded-[16px] border-2 border-[#5032F5] overflow-hidden cursor-pointer shadow-md transition-all"
                 onclick="selectPlan('year')">
                 <div
                     class="bg-[#5032F5] text-white py-1 text-center text-[15px] font-bold tracking-tight pointer-events-none">
@@ -183,7 +183,8 @@
                 <div class="p-3 flex items-center justify-between pointer-events-none">
                     <div class="flex items-center gap-4">
                         <div
-                            class="w-7 h-7 rounded-full border-[1px] border-black flex items-center justify-center radio-circle">
+                            class="w-7 h-7 rounded-full border-[1px] border-[#5032F5] flex items-center justify-center radio-circle">
+                            <div class="w-4 h-4 bg-[#5032F5] rounded-full scale-110"></div>
                         </div>
                         <div>
                             <h3 class="text-[18px] font-bold text-[#5135F3]">1-Year Plan</h3>
@@ -196,51 +197,6 @@
 
                     <!-- Tag Price Badge -->
                     <div class="relative w-[110px] h-[48px] flex items-center justify-center">
-                        <svg class="absolute inset-0 w-full h-full text-[#E5E5E5] tag-svg transition-colors"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 46" fill="none"
-                            preserveAspectRatio="none">
-                            <path fill="currentColor"
-                                d="M13.5715 3.25036C15.0796 1.20634 17.4688 0 20.009 0H96C100.418 0 104 3.58172 104 8V38C104 42.4183 100.418 46 96 46H20.009C17.4689 46 15.0796 44.7937 13.5715 42.7496L2.50435 27.7496C0.420961 24.9259 0.420962 21.0741 2.50435 18.2504L13.5715 3.25036Z">
-                            </path>
-                        </svg>
-                        <div class="relative z-10 flex items-center pr-2 gap-0.5 price-wrap">
-                            <div
-                                class="text-[14px] font-bold self-start mt-1.5 price-text text-[#5135F3] transition-colors">
-                                $</div>
-                            <div
-                                class="text-[36px] font-black leading-none price-text text-[#5135F3] transition-colors">
-                                6</div>
-                            <div class="flex flex-col">
-                                <div
-                                    class="text-[16px] font-black leading-none price-text text-[#5135F3] transition-colors">
-                                    24</div>
-                                <div
-                                    class="text-[10px] font-bold lowercase tracking-tighter subtext text-[#5032F5] -mt-1 transition-colors">
-                                    per month</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 1 Month Plan -->
-            <div id="card-month"
-                class="bg-[#DCD6FE] rounded-[16px] border-2 border-[#5032F5] overflow-hidden cursor-pointer shadow-md transition-all"
-                onclick="selectPlan('month')">
-                <div class="p-4 flex items-center justify-between">
-                    <div class="flex items-center gap-4">
-                        <div
-                            class="w-7 h-7 rounded-full border-[1px] border-[#5032F5] flex items-center justify-center radio-circle">
-                            <div class="w-4 h-4 bg-[#5032F5] rounded-full"></div>
-                        </div>
-                        <div>
-                            <h3 class="text-[19px] font-bold text-[#5135F3]">1-Month Plan</h3>
-                            <p class="text-[14px] font-bold text-[#5135F3]">$12.49</p>
-                        </div>
-                    </div>
-
-                    <!-- Tag Price Badge (Selected State) -->
-                    <div class="relative w-[120px] h-[48px] flex items-center justify-center">
                         <svg class="absolute inset-0 w-full h-full text-[#5135F3] tag-svg transition-colors"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 46" fill="none"
                             preserveAspectRatio="none">
@@ -252,14 +208,58 @@
                             <div
                                 class="text-[14px] font-bold self-start mt-1.5 price-text text-white transition-colors">
                                 $</div>
-                            <div class="text-[36px] font-black leading-none price-text text-white transition-colors">12
-                            </div>
+                            <div
+                                class="text-[36px] font-black leading-none price-text text-white transition-colors">
+                                6</div>
                             <div class="flex flex-col">
                                 <div
                                     class="text-[16px] font-black leading-none price-text text-white transition-colors">
-                                    49</div>
+                                    24</div>
                                 <div
                                     class="text-[10px] font-bold lowercase tracking-tighter subtext text-white -mt-1 transition-colors">
+                                    per month</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1 Month Plan -->
+            <div id="card-month"
+                class="bg-white rounded-[16px] border-2 border-slate-100 overflow-hidden cursor-pointer shadow-sm transition-all"
+                onclick="selectPlan('month')">
+                <div class="p-4 flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="w-7 h-7 rounded-full border-[1px] border-black flex items-center justify-center radio-circle">
+                        </div>
+                        <div>
+                            <h3 class="text-[19px] font-bold text-[#5135F3]">1-Month Plan</h3>
+                            <p class="text-[14px] font-bold text-[#5135F3]">$12.49</p>
+                        </div>
+                    </div>
+
+                    <!-- Tag Price Badge (Unselected State) -->
+                    <div class="relative w-[120px] h-[48px] flex items-center justify-center">
+                        <svg class="absolute inset-0 w-full h-full text-[#E5E5E5] tag-svg transition-colors"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 46" fill="none"
+                            preserveAspectRatio="none">
+                            <path fill="currentColor"
+                                d="M13.5715 3.25036C15.0796 1.20634 17.4688 0 20.009 0H96C100.418 0 104 3.58172 104 8V38C104 42.4183 100.418 46 96 46H20.009C17.4689 46 15.0796 44.7937 13.5715 42.7496L2.50435 27.7496C0.420961 24.9259 0.420962 21.0741 2.50435 18.2504L13.5715 3.25036Z">
+                            </path>
+                        </svg>
+                        <div class="relative z-10 flex items-center pr-2 gap-0.5 price-wrap">
+                            <div
+                                class="text-[14px] font-bold self-start mt-1.5 price-text text-[#5135F3] transition-colors">
+                                $</div>
+                            <div class="text-[36px] font-black leading-none price-text text-[#5135F3] transition-colors">12
+                            </div>
+                            <div class="flex flex-col">
+                                <div
+                                    class="text-[16px] font-black leading-none price-text text-[#5135F3] transition-colors">
+                                    49</div>
+                                <div
+                                    class="text-[10px] font-bold lowercase tracking-tighter subtext text-[#5032F5] -mt-1 transition-colors">
                                     per month</div>
                             </div>
                         </div>
@@ -548,7 +548,7 @@
             <section id="plans" class="flex flex-col gap-4">
                 <!-- 1 Year Plan -->
                 <div id="card-year-bottom"
-                    class="bg-white rounded-[16px] border-2 border-slate-100 overflow-hidden cursor-pointer transition-all"
+                    class="bg-[#DCD6FE] rounded-[16px] border-2 border-[#5032F5] overflow-hidden cursor-pointer shadow-md transition-all"
                     onclick="selectPlan('year')">
                     <div
                         class="bg-[#5032F5] text-white py-1 text-center text-[15px] font-bold tracking-tight pointer-events-none">
@@ -557,7 +557,8 @@
                     <div class="p-3 flex items-center justify-between pointer-events-none">
                         <div class="flex items-center gap-4">
                             <div
-                                class="w-7 h-7 rounded-full border-[1px] border-black flex items-center justify-center radio-circle">
+                                class="w-7 h-7 rounded-full border-[1px] border-[#5032F5] flex items-center justify-center radio-circle">
+                                <div class="w-4 h-4 bg-[#5032F5] rounded-full scale-110"></div>
                             </div>
                             <div>
                                 <h3 class="text-[18px] font-bold text-[#5135F3]">1-Year Plan</h3>
@@ -570,51 +571,6 @@
 
                         <!-- Tag Price Badge -->
                         <div class="relative w-[110px] h-[48px] flex items-center justify-center">
-                            <svg class="absolute inset-0 w-full h-full text-[#E5E5E5] tag-svg transition-colors"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 46" fill="none"
-                                preserveAspectRatio="none">
-                                <path fill="currentColor"
-                                    d="M13.5715 3.25036C15.0796 1.20634 17.4688 0 20.009 0H96C100.418 0 104 3.58172 104 8V38C104 42.4183 100.418 46 96 46H20.009C17.4689 46 15.0796 44.7937 13.5715 42.7496L2.50435 27.7496C0.420961 24.9259 0.420962 21.0741 2.50435 18.2504L13.5715 3.25036Z">
-                                </path>
-                            </svg>
-                            <div class="relative z-10 flex items-center pr-2 gap-0.5 price-wrap">
-                                <div
-                                    class="text-[14px] font-bold self-start mt-1.5 price-text text-[#5135F3] transition-colors">
-                                    $</div>
-                                <div
-                                    class="text-[36px] font-black leading-none price-text text-[#5135F3] transition-colors">
-                                    6</div>
-                                <div class="flex flex-col">
-                                    <div
-                                        class="text-[16px] font-black leading-none price-text text-[#5135F3] transition-colors">
-                                        24</div>
-                                    <div
-                                        class="text-[10px] font-bold lowercase tracking-tighter subtext text-[#5032F5] -mt-1 transition-colors">
-                                        per month</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 1 Month Plan -->
-                <div id="card-month-bottom"
-                    class="bg-[#DCD6FE] rounded-[16px] border-2 border-[#5032F5] overflow-hidden cursor-pointer shadow-md transition-all"
-                    onclick="selectPlan('month')">
-                    <div class="p-4 flex items-center justify-between">
-                        <div class="flex items-center gap-4">
-                            <div
-                                class="w-7 h-7 rounded-full border-[1px] border-[#5032F5] flex items-center justify-center radio-circle">
-                                <div class="w-4 h-4 bg-[#5032F5] rounded-full"></div>
-                            </div>
-                            <div>
-                                <h3 class="text-[19px] font-bold text-[#5135F3]">1-Month Plan</h3>
-                                <p class="text-[14px] font-bold text-[#5135F3]">$12.49</p>
-                            </div>
-                        </div>
-
-                        <!-- Tag Price Badge (Selected State) -->
-                        <div class="relative w-[120px] h-[48px] flex items-center justify-center">
                             <svg class="absolute inset-0 w-full h-full text-[#5135F3] tag-svg transition-colors"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 46" fill="none"
                                 preserveAspectRatio="none">
@@ -628,14 +584,58 @@
                                     $</div>
                                 <div
                                     class="text-[36px] font-black leading-none price-text text-white transition-colors">
+                                    6</div>
+                                <div class="flex flex-col">
+                                    <div
+                                        class="text-[16px] font-black leading-none price-text text-white transition-colors">
+                                        24</div>
+                                    <div
+                                        class="text-[10px] font-bold lowercase tracking-tighter subtext text-white -mt-1 transition-colors">
+                                        per month</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1 Month Plan -->
+                <div id="card-month-bottom"
+                    class="bg-white rounded-[16px] border-2 border-slate-100 overflow-hidden cursor-pointer shadow-sm transition-all"
+                    onclick="selectPlan('month')">
+                    <div class="p-4 flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-7 h-7 rounded-full border-[1px] border-black flex items-center justify-center radio-circle">
+                            </div>
+                            <div>
+                                <h3 class="text-[19px] font-bold text-[#5135F3]">1-Month Plan</h3>
+                                <p class="text-[14px] font-bold text-[#5135F3]">$12.49</p>
+                            </div>
+                        </div>
+
+                        <!-- Tag Price Badge (Unselected State) -->
+                        <div class="relative w-[120px] h-[48px] flex items-center justify-center">
+                            <svg class="absolute inset-0 w-full h-full text-[#E5E5E5] tag-svg transition-colors"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 46" fill="none"
+                                preserveAspectRatio="none">
+                                <path fill="currentColor"
+                                    d="M13.5715 3.25036C15.0796 1.20634 17.4688 0 20.009 0H96C100.418 0 104 3.58172 104 8V38C104 42.4183 100.418 46 96 46H20.009C17.4689 46 15.0796 44.7937 13.5715 42.7496L2.50435 27.7496C0.420961 24.9259 0.420962 21.0741 2.50435 18.2504L13.5715 3.25036Z">
+                                </path>
+                            </svg>
+                            <div class="relative z-10 flex items-center pr-2 gap-0.5 price-wrap">
+                                <div
+                                    class="text-[14px] font-bold self-start mt-1.5 price-text text-[#5135F3] transition-colors">
+                                    $</div>
+                                <div
+                                    class="text-[36px] font-black leading-none price-text text-[#5135F3] transition-colors">
                                     12
                                 </div>
                                 <div class="flex flex-col">
                                     <div
-                                        class="text-[16px] font-black leading-none price-text text-white transition-colors">
+                                        class="text-[16px] font-black leading-none price-text text-[#5135F3] transition-colors">
                                         49</div>
                                     <div
-                                        class="text-[10px] font-bold lowercase tracking-tighter subtext text-white -mt-1 transition-colors">
+                                        class="text-[10px] font-bold lowercase tracking-tighter subtext text-[#5032F5] -mt-1 transition-colors">
                                         per month</div>
                                 </div>
                             </div>
@@ -794,7 +794,7 @@
         }
 
         // Plan State
-        let currentPlan = 'month';
+        let currentPlan = 'year';
 
         function handleStartToday() {
             const planName = currentPlan === 'year' ? '1-Year Plan ($74.94)' : '1-Month Plan ($12.49)';

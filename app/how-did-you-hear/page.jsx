@@ -76,7 +76,7 @@ export default function ReferralPage() {
           </button>
           <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
         </div>
-        <ProgressBar progress={82} />
+        <ProgressBar progress={66} />
       </header>
 
       <motion.main

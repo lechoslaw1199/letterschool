@@ -72,7 +72,7 @@ export default function ParentFeelings() {
           </button>
           <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
         </div>
-        <ProgressBar progress={90} />
+        <ProgressBar progress={63} />
       </header>
 
       <motion.main
