@@ -3,7 +3,6 @@
 import { useOnboarding } from "@/context/OnboardingContext";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import ProgressBar from "@/components/ProgressBar";
 import { useImagePreload } from "@/hooks/useImagePreload";
 
 const pageVariants = {

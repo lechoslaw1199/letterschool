@@ -28,7 +28,8 @@ export default function ReadingPlanPage() {
 
   const handleContinue = () => {
     updateDirection(1);
-    router.push("/guarantee");
+    // Standardize redirect to the static high-fidelity checkout page
+    window.location.href = '/checkout.html';
   };
 
   const handleBack = () => {

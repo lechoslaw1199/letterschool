@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading.com | Checkout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #82E9FF 0%, #A594F9 50%, #D55CFF 100%);
+        }
+
+        .plan-selected {
+            border-color: #5032F5;
+            background: #EEF2FF;
+        }
+
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .btn-pulse {
+            animation: pulse-purple 2s infinite;
+        }
+
+        @keyframes pulse-purple {
+            0% { box-shadow: 0 0 0 0 rgba(81, 53, 243, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(81, 53, 243, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(81, 53, 243, 0); }
+        }
+
+        /* Swiper Custom Styles */
+        .email-swiper {
+            width: 100%;
+            padding: 10px 0;
+            overflow: hidden;
+        }
+
+        .swiper-slide {
+            width: auto;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            display: flex;
+            justify-content: center;
+        }
+
+        .email-badge {
+            background: #F0EEFF;
+            color: #221750;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(80, 50, 245, 0.05);
+        }
+
+        /* Video Swiper Styles */
+        .video-swiper {
+            width: 100%;
+            padding-bottom: 40px;
+        }
+
+        .video-swiper .swiper-pagination-bullet {
+            background: #E2E8F0;
+            opacity: 1;
+            width: 10px;
+            height: 10px;
+            margin: 0 10px !important;
+        }
+
+        .video-swiper .swiper-pagination-bullet-active {
+            background: #475569;
+        }
+    </style>
+</head>
+
+<body class=" text-[#221750]">
+
+    <!-- Sticky Header -->
+    <header class="sticky-header bg-white px-4 py-3">
+        <div class="max-w-[450px] mx-auto flex items-center justify-between">
+            <div class="text-[10px] sm:text-[12px] font-normal text-black leading-tight tracking-wider">
+                50% discount<br>reserved for:
+            </div>
+            <div id="header-timer" class="text-[18px] font-bold text-[#5032F5] digital-timer">
+                09:45
+            </div>
+            <button onclick="document.getElementById('plans-top').scrollIntoView({behavior: 'smooth'})" class="bg-[#5135F3] text-white px-16 py-2.5 rounded-full text-[15px] font-bold btn-pulse">
+                Get my plan
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-[450px] mx-auto">
+
+        <!-- Hero Section -->
+        <section class="px-3 pt-4 pb-2 text-center">
+            <div class="rounded-2xl overflow-hidden ">
+                <img src="/goal.webp" alt="Now vs Goal Comparison" class="w-full h-auto">
+                <h1 class="text-[24px] font-bold leading-tight mb-4 mt-4">
+                    Unlock <span class="child-name text-[#5032F5]">abhisksej</span>'s Reading Potential!
+                </h1>
+            </div>
+        </section>
+
+        <!-- Special Offer Ticket Box -->
+        <section class="mx-5 mb-8">
+            <div class="bg-[#F4F5E6] rounded-[22px] p-2 relative overflow-hidden border-2 border-white">
+                <!-- Ticket Divider Image -->
+                <img src="/borderdashed.webp" class="absolute left-0 right-0 top-1/2 -translate-y-1/2 w-full h-auto z-0"
+                    alt="divider">
+
+                <div class="relative z-10">
+                    <!-- Top Part: Tag and Message -->
+                    <div class="flex items-center justify-center mb-4    pt-2">
+                        <img src="/discount.webp" alt="Discount Tag" class="h-10 w-10 object-contain mb-3">
+                        <h2 class="text-[14px] font-semibold text-[#221750] tracking-tight">Special 50% Discount is
+                            Applied!</h2>
+                    </div>
+
+                    <!-- Bottom Part: Promo & Timer -->
+                    <div class="flex items-center justify-between gap-3 pt-2">
+                        <!-- Promo Code Box -->
+                        <div
+                            class="flex-[1.4] bg-white rounded-xl h-[52px] flex items-center px-4 shadow-sm border border-slate-100">
+                            <div class="flex items-center gap-3">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-[#71A21E]">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <span class="text-[14px] font-bold text-[#221750] child-name">abhisksej_mar28</span>
+                            </div>
+                        </div>
+
+                        <!-- Refined Countdown Timer -->
+                        <div id="ff-box"
+                            class="flex-1 h-[52px] bg-[#E4EBCF] rounded-xl flex items-center justify-center overflow-hidden">
+                            <div id="ff-countdown" class="flex items-center gap-2.5 scale-[0.75] origin-center">
+                                <div class="flex flex-col items-center">
+                                    <span class="ff-min text-[24px] font-black leading-none text-[#71A31D]">10</span>
+                                    <span
+                                        class="text-[10px] font-black text-[#160F05] uppercase tracking-tighter">minutes</span>
+                                </div>
+                                <div class="flex flex-col items-center justify-center gap-1.5 -mt-3">
+                                    <div class="w-1.5 h-1.5 bg-[#71A31D] rounded-full"></div>
+                                    <div class="w-1.5 h-1.5 bg-[#71A31D] rounded-full"></div>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <span class="ff-sec text-[28px] font-black leading-none text-[#71A31D]">00</span>
+                                    <span
+                                        class="text-[10px] font-black text-[#160F05] uppercase tracking-tighter">seconds</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Plans -->
+        <section id="plans-top" class="mx-5 mb-8 flex flex-col gap-4">
+            <!-- 1 Year Plan -->
+            <div id="card-year"
+                class="bg-white rounded-[16px] border-2 border-slate-100 overflow-hidden cursor-pointer transition-all"
+                onclick="selectPlan('year')">
+                <div
+                    class="bg-[#5032F5] text-white py-1 text-center text-[15px] font-bold tracking-tight pointer-events-none">
+                    50% OFF
+                </div>
+                <div class="p-3 flex items-center justify-between pointer-events-none">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="w-7 h-7 rounded-full border-[1px] border-black flex items-center justify-center radio-circle">
+                        </div>
+                        <div>
+                            <h3 class="text-[18px] font-bold text-[#5135F3]">1-Year Plan</h3>
+                            <div class="flex items-center gap-2">
+                                <span class="text-slate-300 line-through font-medium text-[16px]">$149.88</span>
+                                <span class="text-[#5135F3] font-medium text-[16px]">$74.94</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tag Price Badge -->
+                    <div class="relative w-[110px] h-[48px] flex items-center justify-center">
+                        <svg class="absolute inset-0 w-full h-full text-[#E5E5E5] tag-svg transition-colors"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 46" fill="none"
+                            preserveAspectRatio="none">
+                            <path fill="currentColor"
+                                d="M13.5715 3.25036C15.0796 1.20634 17.4688 0 20.009 0H96C100.418 0 104 3.58172 104 8V38C104 42.4183 100.418 46 96 46H20.009C17.4689 46 15.0796 44.7937 13.5715 42.7496L2.50435 27.7496C0.420961 24.9259 0.420962 21.0741 2.50435 18.2504L13.5715 3.25036Z">
+                            </path>
+                        </svg>
+                        <div class="relative z-10 flex items-center pr-2 gap-0.5 price-wrap">
+                            <div
+                                class="text-[14px] font-bold self-start mt-1.5 price-text text-[#5135F3] transition-colors">
+                                $</div>
+                            <div
+                                class="text-[36px] font-black leading-none price-text text-[#5135F3] transition-colors">
+                                6</div>
+                            <div class="flex flex-col">
+                                <div
+                                    class="text-[16px] font-black leading-none price-text text-[#5135F3] transition-colors">
+                                    24</div>
+                                <div
+                                    class="text-[10px] font-bold lowercase tracking-tighter subtext text-[#5032F5] -mt-1 transition-colors">
+                                    per month</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1 Month Plan -->
+            <div id="card-month"
+                class="bg-[#DCD6FE] rounded-[16px] border-2 border-[#5032F5] overflow-hidden cursor-pointer shadow-md transition-all"
+                onclick="selectPlan('month')">
+                <div class="p-4 flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="w-7 h-7 rounded-full border-[1px] border-[#5032F5] flex items-center justify-center radio-circle">
+                            <div class="w-4 h-4 bg-[#5032F5] rounded-full"></div>
+                        </div>
+                        <div>
+                            <h3 class="text-[19px] font-bold text-[#5135F3]">1-Month Plan</h3>
+                            <p class="text-[14px] font-bold text-[#5135F3]">$12.49</p>
+                        </div>
+                    </div>
+
+                    <!-- Tag Price Badge (Selected State) -->
+                    <div class="relative w-[120px] h-[48px] flex items-center justify-center">
+                        <svg class="absolute inset-0 w-full h-full text-[#5135F3] tag-svg transition-colors"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 46" fill="none"
+                            preserveAspectRatio="none">
+                            <path fill="currentColor"
+                                d="M13.5715 3.25036C15.0796 1.20634 17.4688 0 20.009 0H96C100.418 0 104 3.58172 104 8V38C104 42.4183 100.418 46 96 46H20.009C17.4689 46 15.0796 44.7937 13.5715 42.7496L2.50435 27.7496C0.420961 24.9259 0.420962 21.0741 2.50435 18.2504L13.5715 3.25036Z">
+                            </path>
+                        </svg>
+                        <div class="relative z-10 flex items-center pr-2 gap-0.5 price-wrap">
+                            <div
+                                class="text-[14px] font-bold self-start mt-1.5 price-text text-white transition-colors">
+                                $</div>
+                            <div class="text-[36px] font-black leading-none price-text text-white transition-colors">12
+                            </div>
+                            <div class="flex flex-col">
+                                <div
+                                    class="text-[16px] font-black leading-none price-text text-white transition-colors">
+                                    49</div>
+                                <div
+                                    class="text-[10px] font-bold lowercase tracking-tighter subtext text-white -mt-1 transition-colors">
+                                    per month</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main CTA -->
+        <section class="px-6 mb-8">
+            <button
+                onclick="handleStartToday()"
+                class="w-full bg-black text-white h-14 rounded-full text-[18px] font-black shadow-2xl active:scale-[0.98] transition-all mb-8">
+                Start Today
+            </button>
+            <div class="flex flex-col items-center">
+                <p class="text-[14px] font-black text-slate-700 tracking-widest mb-4">Guaranteed safe checkout</p>
+                <div
+                    class="flex justify-center items-center gap-10 w-full px-4 mb-2 border border-slate-200 rounded-xl p-4">
+                    <img src="/visa.webp" alt="Visa" class="h-5 object-contain">
+                    <img src="/mastercard.webp" alt="Mastercard" class="h-5 object-contain">
+                    <img src="/visacards.webp" alt="Mastercard" class="h-5 object-contain">
+                    <img src="/american-express.webp" alt="American Express" class="h-5 object-contain">
+
+                </div>
+                <p class="text-[12px] font-medium text-black mt-2 text-center">All transactions are secure and encrypted
+                </p>
+            </div>
+        </section>
+
+        <!-- Guarantee Section -->
+        <section class="px-6 mb-12">
+            <div
+                class="bg-white rounded-2xl p-2 border border-slate-100 shadow-sm flex flex-col items-center text-start">
+                <img src="/moneyback.webp" alt="30 Day Money Back Guarantee" class="h-16 mb-4">
+                <h3 class="text-[18px] font-bold mb-3">30-day money-back guarantee</h3>
+                <p class="text-[13px] text-slate-600 leading-relaxed px-2">
+                    We're confident in the quality of our reading program — thousands of families use it every day to
+                    help their children become confident readers. If after 30 days you're not satisfied, simply contact
+                    us — we guarantee a full refund.
+                </p>
+            </div>
+        </section>
+
+        <!-- Expert Endorsement -->
+        <section class="bg-[#24194D] py-4 px-2 flex flex-col items-center text-center rounded-2xl">
+            <h2 class="text-white text-[28px] font-black mb-6 leading-tight">
+                Developed with ❤️ by <br>Education Experts
+            </h2>
+            <p class="text-white/80 text-[16px] font-medium leading-relaxed mb-10 px-2">
+                Reading.com is the ground-breaking phonics program brought to you by Teaching.com, a world leader in
+                education helping over 64 million children since 1998.
+            </p>
+
+            <div class="w-full rounded-[32px] overflow-hidden mb-12 shadow-2xl border-4 border-white/10">
+                <img src="/KidsLoveit.webp" alt="" class="w-full">
+            </div>
+
+            <div class="mb-10 w-full">
+                <button
+                    onclick="document.getElementById('plans').scrollIntoView({behavior: 'smooth'})"
+                    class="w-full bg-[#D45BFF] text-white h-14 rounded-full text-[18px] font-black shadow-2xl active:scale-[0.98] transition-all">
+                    Start Today
+                </button>
+            </div>
+        </section>
+
+        <!-- Science of Reading -->
+        <section class="py-6 px-6 text-center">
+            <h2 class="text-[24px] font-semibold text-[#221750] mb-4">Based on the Science of Reading</h2>
+            <div class="w-full max-w-[450px] mx-auto mb-4">
+                <img src="/comprehension.webp" alt="5 Pillars of Reading" class="w-full">
+            </div>
+
+            <!-- Awards Row -->
+            <div class="flex items-center justify-center gap-8 mb-4">
+                <img src="/TKhB_Tsn.webp" alt="Awards Recognition" class="w-full object-contain">
+            </div>
+        </section>
+
+        <!-- Jessica Farmer Testimonial -->
+        <section class="mb-4">
+            <div class="px-4">
+                <img src="/jessica.webp" alt="Jessica Farmer Testimonial" class="w-full rounded-[32px]">
+            </div>
+        </section>
+
+        <!-- What you get section -->
+        <section class="bg-white py-4 px-6">
+            <h2 class="text-[24px] font-black text-center text-[#221750] mb-8">
+                What you get with <span class="text-[#5135F3]">Reading.com</span>
+            </h2>
+
+            <div class="w-full mb-10">
+                <img src="/whatyouget.webp" alt="Reading.com App Preview" class="w-full">
+            </div>
+
+            <div class="space-y-6 px-2 mb-6">
+                <!-- Feature 1 -->
+                <div>
+                    <h3 class="font-bold text-[17px] text-[#221750] mb-2 px-10">Personalized Learning Plan</h3>
+                    <div class="flex items-start gap-4">
+                        <svg class="w-6 h-6 text-[#000000] shrink-0" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor">
+                            <path d="M20 6L9 17L4 12" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <p class="text-[15px] font-medium text-slate-600 leading-snug">
+                            Tailored to your child's needs for better engagement and success
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div>
+                    <h3 class="font-bold text-[17px] text-[#221750] mb-2 px-10">Fun Interactive Games</h3>
+                    <div class="flex items-start gap-4">
+                        <svg class="w-6 h-6 text-[#000000] shrink-0" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor">
+                            <path d="M20 6L9 17L4 12" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <p class="text-[15px] font-medium text-slate-600 leading-snug">
+                            Proven to keep kids excited and motivated while learning
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div>
+                    <h3 class="font-bold text-[17px] text-[#221750] mb-2 px-10">Step-by-Step Progress Tracking</h3>
+                    <div class="flex items-start gap-4">
+                        <svg class="w-6 h-6 text-[#000000] shrink-0" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor">
+                            <path d="M20 6L9 17L4 12" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <p class="text-[15px] font-medium text-slate-600 leading-snug">
+                            Track improvements in reading skills and celebrate milestones
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full pb-4">
+                <button
+                    onclick="document.getElementById('plans').scrollIntoView({behavior: 'smooth'})"
+                    class="w-full bg-[#5032F5] text-white h-14 rounded-full text-[18px] font-black shadow-xl active:scale-[0.98] transition-all">
+                    Start Today
+                </button>
+            </div>
+            <!-- Email Social Proof Carousel -->
+            <section class="py-4 bg-white">
+                <h2 class="text-center text-[#221750] text-[18px] font-black mb-2">
+                    876 parents joined today
+                </h2>
+
+                <div class="swiper email-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="email-badge">a***er@aol.com</div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="email-badge">steph***ez@gmail.com</div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="email-badge">josep***44@gmail.com</div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="email-badge">patri***61@hotmail.com</div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="email-badge">m***y@yahoo.com</div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="email-badge">k***2@gmx.com</div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="email-badge">s***e@outlook.com</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Video Feedback Section -->
+            <section class="py-4 bg-white text-center overflow-hidden">
+                <h2 class="text-[26px] font-black text-[#221750] mb-4 leading-tight font-quicksand">
+                    Why millions of parents <span class="text-[#5135F3]">love</span> teaching their children with us
+                </h2>
+
+                <div class="swiper video-swiper max-w-[500px] mx-auto overflow-visible">
+                    <div class="swiper-wrapper">
+                        <!-- Justine Slide -->
+                        <div class="swiper-slide">
+                            <div
+                                class="relative w-[320px] sm:w-[450px] aspect-square mx-auto rounded-full overflow-hidden bg-slate-100 shadow-xl">
+                                <video id="video-justine" class="w-full h-full object-cover" src="/Justine-feedback.mp4"
+                                    playsinline></video>
+                                <button onclick="toggleVideo('justine')"
+                                    class="absolute inset-0 flex items-center justify-center transition-opacity duration-300">
+                                    <div id="btn-justine"
+                                        class="w-14 h-14 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
+                                        <svg class="w-10 h-10 text-white fill-current" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z" />
+                                        </svg>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Cristina Slide -->
+                        <div class="swiper-slide">
+                            <div
+                                class="relative w-[320px] sm:w-[450px] aspect-square mx-auto rounded-full overflow-hidden bg-slate-100 shadow-xl">
+                                <video id="video-cristina" class="w-full h-full object-cover"
+                                    src="/Cristina-feedback.mp4" playsinline></video>
+                                <button onclick="toggleVideo('cristina')"
+                                    class="absolute inset-0 flex items-center justify-center transition-opacity duration-300">
+                                    <div id="btn-cristina"
+                                        class="w-14 h-14 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
+                                        <svg class="w-10 h-10 text-white fill-current" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z" />
+                                        </svg>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Pagination -->
+                    <div class="swiper-pagination !static mt-8"></div>
+                </div>
+            </section>
+
+            <!-- Written Testimonials Section -->
+            <section class="py-4">
+                <div class="max-w-[500px] mx-auto">
+                    <!-- Review 1 -->
+                    <div class="bg-white rounded-xl p-2 shadow-sm border border-slate-200 mb-6">
+                        <img src="/stars.webp" alt="5 Stars" class="w-28 mb-2">
+                        <h3 class="text-[#221750] font-black text-[18px] mb-3">CBlakey902</h3>
+                        <p class="text-slate-600 text-[16px] leading-[1.6] font-normal">
+                            I love getting to sit alongside my daughter and do the lessons together. I was sold after
+                            our second lesson as I could already see improvement in her reading! The best part is how
+                            she is gaining confidence in her reading and she enjoys the lessons. I would recommend this
+                            to any friends who want to help teach their child to read or have a child struggling to
+                            read.
+                        </p>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="bg-white rounded-xl p-2 shadow-sm border border-slate-200 mb-6">
+                        <img src="/stars.webp" alt="5 Stars" class="w-28 mb-2">
+                        <h3 class="text-[#221750] font-black text-[20px] mb-3">Justmellie</h3>
+                        <p class="text-slate-600 text-[16px] leading-[1.6] font-normal">
+                            My son is 8 and is still having a hard time reading. We tried this app a week ago and things
+                            he was struggling with (like blending sounds) is noticeable better. I love that they do a
+                            first lesson and then an assessment to find what lesson to continue on. Another thing that
+                            is helpful is that the books hide the picture before reading. This forces him to actually
+                            read. In normal books he would "guess" the words based on the picture and not actually read.
+                            My son said the app feels like a video game and he loves video games!!! And he actually
+                            wants to do it with me. I am so thankful.
+                        </p>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="bg-white rounded-xl p-2 shadow-sm border border-slate-200 mb-6">
+                        <img src="/stars.webp" alt="5 Stars" class="w-28 mb-2 not-italic">
+                        <h3 class="text-[#221750] font-black text-[20px] mb-3 not-italic">Amber</h3>
+                        <p class="text-slate-600 text-[16px] leading-[1.6] font-normal not-italic">
+                            My son really struggled with reading in Kindergarten. We tried all the apps and exercises
+                            his teacher suggested (including ABCmouse and Starfall), but nothing was helping. He worked
+                            hard and showed some improvement throughout the year but was still pretty far behind most of
+                            his classmates at the end of the school year. We started using this app about 6 weeks ago
+                            and I've already seen a HUGE improvement in his reading and confidence! I love the way the
+                            slider encourages kids to sound out each letter sound individually and the slow sound/fast
+                            sound indicator really helps with blending sounds. Overall, very impressed with the
+                            reading.com app!
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h1 class="text-[24px] font-bold leading-tight mb-4 mt-4 text-center">
+                    Unlock <span class="child-name text-[#5032F5]">abhisksej</span>'s Reading Potential!
+                </h1>
+            </section>
+
+            <!-- Pricing Plans -->
+            <section id="plans" class="flex flex-col gap-4">
+                <!-- 1 Year Plan -->
+                <div id="card-year-bottom"
+                    class="bg-white rounded-[16px] border-2 border-slate-100 overflow-hidden cursor-pointer transition-all"
+                    onclick="selectPlan('year')">
+                    <div
+                        class="bg-[#5032F5] text-white py-1 text-center text-[15px] font-bold tracking-tight pointer-events-none">
+                        50% OFF
+                    </div>
+                    <div class="p-3 flex items-center justify-between pointer-events-none">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-7 h-7 rounded-full border-[1px] border-black flex items-center justify-center radio-circle">
+                            </div>
+                            <div>
+                                <h3 class="text-[18px] font-bold text-[#5135F3]">1-Year Plan</h3>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-slate-300 line-through font-medium text-[16px]">$149.88</span>
+                                    <span class="text-[#5135F3] font-medium text-[16px]">$74.94</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tag Price Badge -->
+                        <div class="relative w-[110px] h-[48px] flex items-center justify-center">
+                            <svg class="absolute inset-0 w-full h-full text-[#E5E5E5] tag-svg transition-colors"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 46" fill="none"
+                                preserveAspectRatio="none">
+                                <path fill="currentColor"
+                                    d="M13.5715 3.25036C15.0796 1.20634 17.4688 0 20.009 0H96C100.418 0 104 3.58172 104 8V38C104 42.4183 100.418 46 96 46H20.009C17.4689 46 15.0796 44.7937 13.5715 42.7496L2.50435 27.7496C0.420961 24.9259 0.420962 21.0741 2.50435 18.2504L13.5715 3.25036Z">
+                                </path>
+                            </svg>
+                            <div class="relative z-10 flex items-center pr-2 gap-0.5 price-wrap">
+                                <div
+                                    class="text-[14px] font-bold self-start mt-1.5 price-text text-[#5135F3] transition-colors">
+                                    $</div>
+                                <div
+                                    class="text-[36px] font-black leading-none price-text text-[#5135F3] transition-colors">
+                                    6</div>
+                                <div class="flex flex-col">
+                                    <div
+                                        class="text-[16px] font-black leading-none price-text text-[#5135F3] transition-colors">
+                                        24</div>
+                                    <div
+                                        class="text-[10px] font-bold lowercase tracking-tighter subtext text-[#5032F5] -mt-1 transition-colors">
+                                        per month</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1 Month Plan -->
+                <div id="card-month-bottom"
+                    class="bg-[#DCD6FE] rounded-[16px] border-2 border-[#5032F5] overflow-hidden cursor-pointer shadow-md transition-all"
+                    onclick="selectPlan('month')">
+                    <div class="p-4 flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-7 h-7 rounded-full border-[1px] border-[#5032F5] flex items-center justify-center radio-circle">
+                                <div class="w-4 h-4 bg-[#5032F5] rounded-full"></div>
+                            </div>
+                            <div>
+                                <h3 class="text-[19px] font-bold text-[#5135F3]">1-Month Plan</h3>
+                                <p class="text-[14px] font-bold text-[#5135F3]">$12.49</p>
+                            </div>
+                        </div>
+
+                        <!-- Tag Price Badge (Selected State) -->
+                        <div class="relative w-[120px] h-[48px] flex items-center justify-center">
+                            <svg class="absolute inset-0 w-full h-full text-[#5135F3] tag-svg transition-colors"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 46" fill="none"
+                                preserveAspectRatio="none">
+                                <path fill="currentColor"
+                                    d="M13.5715 3.25036C15.0796 1.20634 17.4688 0 20.009 0H96C100.418 0 104 3.58172 104 8V38C104 42.4183 100.418 46 96 46H20.009C17.4689 46 15.0796 44.7937 13.5715 42.7496L2.50435 27.7496C0.420961 24.9259 0.420962 21.0741 2.50435 18.2504L13.5715 3.25036Z">
+                                </path>
+                            </svg>
+                            <div class="relative z-10 flex items-center pr-2 gap-0.5 price-wrap">
+                                <div
+                                    class="text-[14px] font-bold self-start mt-1.5 price-text text-white transition-colors">
+                                    $</div>
+                                <div
+                                    class="text-[36px] font-black leading-none price-text text-white transition-colors">
+                                    12
+                                </div>
+                                <div class="flex flex-col">
+                                    <div
+                                        class="text-[16px] font-black leading-none price-text text-white transition-colors">
+                                        49</div>
+                                    <div
+                                        class="text-[10px] font-bold lowercase tracking-tighter subtext text-white -mt-1 transition-colors">
+                                        per month</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button
+                    onclick="handleStartToday()"
+                    class="w-full bg-black text-white h-14 rounded-full text-[18px] font-black shadow-2xl active:scale-[0.98] transition-all">
+                    Start Today
+                </button>
+
+                <div class="flex flex-col justify-center">
+                    <p class="text-center">
+                        <span class="text-black font-bold ">Any issues?</span>
+                        Contact our friendly support at
+                    </p>
+                    <a href="mailto:support@reading.com" class="text-blue-700 text-center text-sm underline">support@reading.com</a>
+                </div>
+            </section>
+    </main>
+
+    <script>
+        // Personalization Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const childName = localStorage.getItem('onboarding_childName') || 'abhisksej';
+            const now = new Date();
+            const monthNames = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+            const dateStr = `${monthNames[now.getMonth()]}${now.getDate()}`;
+            const badgeId = `${childName.toLowerCase().replace(/[^a-z0-9]/g, '')}_${dateStr}`;
+
+            // Update all name instances
+            document.querySelectorAll('.child-name').forEach(el => {
+                el.textContent = el.classList.contains('badge-id') ? badgeId : childName;
+                if (el.tagName === 'SPAN' && el.parentElement.id === 'promo-code') {
+                    el.textContent = badgeId;
+                }
+            });
+
+            // Specific fix for the ticket child-name (it needs to show the badge ID)
+            document.querySelector('.child-name:not(h1 span)').textContent = badgeId;
+
+            // Countdown Timers logic
+            function setupTimer(duration, minClass, secClass) {
+                let timer = duration;
+                
+                const updateUI = () => {
+                    const minutes = Math.floor(timer / 60).toString().padStart(2, '0');
+                    const seconds = (timer % 60).toString().padStart(2, '0');
+
+                    document.querySelectorAll(minClass).forEach(el => el.textContent = minutes);
+                    document.querySelectorAll(secClass).forEach(el => el.textContent = seconds);
+
+                    const headerTimer = document.getElementById('header-timer');
+                    if (headerTimer) headerTimer.textContent = `${minutes}:${seconds}`;
+                };
+
+                updateUI(); // Immediate show
+
+                const interval = setInterval(() => {
+                    if (timer <= 0) {
+                        clearInterval(interval);
+                        return;
+                    }
+                    timer--;
+                    updateUI();
+                }, 1000);
+            }
+
+            // Start synchronized timers (10:00 = 600s)
+            setupTimer(600, '.ff-min', '.ff-sec');
+        });
+    </script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper
+        document.addEventListener('DOMContentLoaded', () => {
+            new Swiper('.email-swiper', {
+                slidesPerView: 'auto',
+                centeredSlides: true,
+                spaceBetween: 10,
+                loop: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                grabCursor: true,
+            });
+
+            // Video Swiper with Fade Effect
+            const videoSwiper = new Swiper('.video-swiper', {
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                on: {
+                    slideChange: function () {
+                        // Pause all videos on slide change
+                        document.querySelectorAll('video').forEach(v => {
+                            v.pause();
+                            if (v.nextElementSibling) v.nextElementSibling.style.opacity = '1';
+                        });
+                    }
+                }
+            });
+        });
+
+        // Video Toggle Logic
+        const PLAY_SVG = '<svg class="w-10 h-10 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+        const PAUSE_SVG = '<svg class="w-10 h-10 text-white fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+
+        function toggleVideo(id) {
+            const video = document.getElementById(`video-${id}`);
+            const btnContainer = document.getElementById(`btn-${id}`);
+            const overlay = btnContainer.parentElement;
+
+            if (video.paused) {
+                video.play();
+                btnContainer.innerHTML = PAUSE_SVG;
+                overlay.style.opacity = '0';
+
+                // Show pause button on hover
+                overlay.parentElement.onmouseenter = () => {
+                    if (!video.paused) overlay.style.opacity = '1';
+                };
+                overlay.parentElement.onmouseleave = () => {
+                    if (!video.paused) overlay.style.opacity = '0';
+                };
+            } else {
+                video.pause();
+                btnContainer.innerHTML = PLAY_SVG;
+                overlay.style.opacity = '1';
+            }
+
+            video.onended = () => {
+                btnContainer.innerHTML = PLAY_SVG;
+                overlay.style.opacity = '1';
+            };
+        }
+
+        // Plan State
+        let currentPlan = 'month';
+
+        function handleStartToday() {
+            const planName = currentPlan === 'year' ? '1-Year Plan ($74.94)' : '1-Month Plan ($12.49)';
+            alert(`Proceeding with: ${planName}`);
+        }
+
+        // Refined Plan Selection logic
+        function selectPlan(type) {
+            currentPlan = type;
+            const allYearCards = document.querySelectorAll('[id^="card-year"]');
+            const allMonthCards = document.querySelectorAll('[id^="card-month"]');
+
+            const updateCards = (cards, isSelectedType) => {
+                cards.forEach(el => {
+                    const radio = el.querySelector('.radio-circle');
+                    const tagSvg = el.querySelector('.tag-svg');
+                    const priceTexts = el.querySelectorAll('.price-text');
+                    const subtext = el.querySelector('.subtext');
+                    const mainText = el.querySelector('h3');
+
+                    if (isSelectedType) {
+                        el.classList.add('border-[#5032F5]', 'bg-[#DCD6FE]', 'shadow-md');
+                        el.classList.remove('border-slate-100', 'bg-white', 'shadow-sm');
+                        if (radio) {
+                            radio.classList.remove('border-black');
+                            radio.classList.add('border-[#5032F5]');
+                            radio.innerHTML = '<div class="w-4 h-4 bg-[#5032F5] rounded-full scale-110"></div>';
+                        }
+                        if (tagSvg) {
+                            tagSvg.classList.remove('text-[#E5E5E5]');
+                            tagSvg.classList.add('text-[#5135F3]');
+                        }
+                        priceTexts.forEach(t => {
+                            t.classList.remove('text-[#5135F3]');
+                            t.classList.add('text-white');
+                        });
+                        if (subtext) {
+                            subtext.classList.remove('text-[#5032F5]');
+                            subtext.classList.add('text-white');
+                        }
+                        if (mainText) {
+                            mainText.classList.remove('text-[#5135F3]', 'text-[#221750]');
+                            mainText.classList.add('text-[#5135F3]');
+                        }
+                    } else {
+                        el.classList.remove('border-[#5032F5]', 'bg-[#DCD6FE]', 'shadow-md');
+                        el.classList.add('border-slate-100', 'bg-white', 'shadow-sm');
+                        if (radio) {
+                            radio.classList.remove('border-[#5032F5]');
+                            radio.classList.add('border-black');
+                            radio.innerHTML = '';
+                        }
+                        if (tagSvg) {
+                            tagSvg.classList.add('text-[#E5E5E5]');
+                            tagSvg.classList.remove('text-[#5135F3]');
+                        }
+                        priceTexts.forEach(t => {
+                            t.classList.add('text-[#5135F3]');
+                            t.classList.remove('text-white');
+                        });
+                        if (subtext) {
+                            subtext.classList.add('text-[#5032F5]');
+                            subtext.classList.remove('text-white');
+                        }
+                    }
+                });
+            };
+
+            updateCards(allYearCards, type === 'year');
+            updateCards(allMonthCards, type === 'month');
+        }
+    </script>
+</body>
+
+</html>
