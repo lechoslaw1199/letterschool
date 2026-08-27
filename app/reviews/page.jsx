@@ -62,7 +62,7 @@ export default function ReviewsPage() {
               </g>
             </svg>
           </button>
-          <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+          <img src="/letterschool-logo-name.svg" alt="LetterSchool" className="h-6 object-contain" />
         </div>
       </header>
 
@@ -75,7 +75,7 @@ export default function ReviewsPage() {
         className="w-full max-w-[480px] px-6 flex flex-col items-center pt-4 pb-16"
       >
         <h1 className="text-[24px] font-bold text-[#221750] leading-tight text-center mb-4 px-4">
-          Join millions of parents who changed their children&apos;s lives by making reading fluency a priority
+          Join millions of parents who gave their children the gift of confident letter writing and spelling
         </h1>
 
         <div className="w-full flex flex-col gap-3 mb-6">
@@ -96,9 +96,9 @@ export default function ReviewsPage() {
           </p>
           <p className="text-[#000000] font-bold mb-4">&</p>
           <div className="flex flex-col items-center">
-            <div className="text-[#F19A2C] text-[20px] mb-2 font-bold tracking-[2px]">★★★★★</div>
-            <p className="text-[14px] font-medium text-[#221750] tracking-[0.5px] mb-1">5-STAR REVIEWS</p>
-            <p className="text-[14px] font-medium text-[#221750] tracking-[0.5px]">FROM 20,000+ PARENTS & TEACHERS</p>
+            <div className="text-[#F59E0B] text-[18px] mb-1 tracking-[2px]">★★★★★</div>
+            <p className="text-[13px] font-bold text-[#182238] tracking-[0.5px] mb-1 uppercase">4.5 / 5 STARS RATED</p>
+            <p className="text-[13px] font-semibold text-[#64748B] tracking-[0.5px] uppercase">FROM 20,000+ PARENTS, TEACHERS & OTS</p>
           </div>
         </div>
       </motion.main>
@@ -113,7 +113,7 @@ export default function ReviewsPage() {
       >
         <motion.button 
           whileTap={{ scale: 0.98 }}
-          className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
+          className="w-full h-14 bg-[#099FF9] hover:bg-[#0088EE] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
           onClick={handleContinue}
         >
           Continue

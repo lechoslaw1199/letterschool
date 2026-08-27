@@ -4,15 +4,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reading.com | Teach Your Child To Read Early, Step By Step</title>
+    <title>LetterSchool | Teach Your Child To Write & Spell!</title>
+    <link rel="icon" type="image/svg+xml" href="/letterschool-logo-only.svg">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/gotham-rounded" rel="stylesheet">
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
+        @font-face {
+            font-family: 'Gotham Rounded';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: url('/fonts/GothamRounded-Light.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Gotham Rounded';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('/fonts/GothamRounded-Light.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Gotham Rounded';
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+            src: url('/fonts/GothamRounded-Light.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Gotham Rounded';
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+            src: url('/fonts/GothamRounded-Medium.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Gotham Rounded';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url('/fonts/GothamRounded-Medium.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Gotham Rounded';
+            font-style: normal;
+            font-weight: 800;
+            font-display: swap;
+            src: url('/fonts/GothamRounded-Bold.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Gotham Rounded';
+            font-style: normal;
+            font-weight: 900;
+            font-display: swap;
+            src: url('/fonts/GothamRounded-Bold.woff') format('woff');
+        }
+
         body {
-            font-family: 'Quicksand', sans-serif;
+            font-family: 'Gotham Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         .gradient-bg {
@@ -20,7 +70,7 @@
         }
 
         .plan-selected {
-            border-color: #5032F5;
+            border-color: #099FF9;
             background: #EEF2FF;
         }
 
@@ -95,10 +145,10 @@
             <div class="text-[10px] sm:text-[12px] font-normal text-black leading-tight tracking-wider">
                 50% discount<br>reserved for:
             </div>
-            <div id="header-timer" class="text-[18px] font-bold text-[#5032F5] digital-timer">
+            <div id="header-timer" class="text-[18px] font-bold text-[#099FF9] digital-timer">
                 09:45
             </div>
-            <button onclick="document.getElementById('plans-top').scrollIntoView({behavior: 'smooth'})" class="bg-[#5135F3] text-white px-16 py-2.5 rounded-full text-[15px] font-bold btn-pulse">
+            <button onclick="document.getElementById('plans-top').scrollIntoView({behavior: 'smooth'})" class="bg-[#099FF9] text-white px-16 py-2.5 rounded-full text-[15px] font-bold btn-pulse">
                 Get my plan
             </button>
         </div>
@@ -109,9 +159,9 @@
         <!-- Hero Section -->
         <section class="px-3 pt-4 pb-2 text-center">
             <div class="rounded-2xl overflow-hidden ">
-                <img src="/goal.webp" alt="Now vs Goal Comparison" class="w-full h-auto">
+                <img src="/proven-method2.webp" alt="Proven Method" class="w-full h-auto rounded-2xl">
                 <h1 class="text-[24px] font-bold leading-tight mb-4 mt-4">
-                    Unlock <span class="child-name text-[#5032F5]">your child</span>'s Reading Potential!
+                    Unlock <span class="child-name text-[#099FF9]">your child</span>'s Writing & Spelling Potential!
                 </h1>
             </div>
         </section>
@@ -174,30 +224,30 @@
         <section id="plans-top" class="mx-5 mb-8 flex flex-col gap-4">
             <!-- 1 Year Plan -->
             <div id="card-year"
-                class="bg-[#DCD6FE] rounded-[16px] border-2 border-[#5032F5] overflow-hidden cursor-pointer shadow-md transition-all"
+                class="bg-[#E0F2FE] rounded-[16px] border-2 border-[#099FF9] overflow-hidden cursor-pointer shadow-md transition-all"
                 onclick="selectPlan('year')">
                 <div
-                    class="bg-[#5032F5] text-white py-1 text-center text-[15px] font-bold tracking-tight pointer-events-none">
+                    class="bg-[#099FF9] text-white py-1 text-center text-[15px] font-bold tracking-tight pointer-events-none">
                     50% OFF
                 </div>
                 <div class="p-3 flex items-center justify-between pointer-events-none">
                     <div class="flex items-center gap-4">
                         <div
-                            class="w-7 h-7 rounded-full border-[1px] border-[#5032F5] flex items-center justify-center radio-circle">
-                            <div class="w-4 h-4 bg-[#5032F5] rounded-full scale-110"></div>
+                            class="w-7 h-7 rounded-full border-[1px] border-[#099FF9] flex items-center justify-center radio-circle">
+                            <div class="w-4 h-4 bg-[#099FF9] rounded-full scale-110"></div>
                         </div>
                         <div>
-                            <h3 class="text-[18px] font-bold text-[#5135F3]">1-Year Plan</h3>
+                            <h3 class="text-[18px] font-bold text-[#099FF9]">1-Year Plan</h3>
                             <div class="flex items-center gap-2">
                                 <span class="text-slate-300 line-through font-medium text-[16px]">$149.88</span>
-                                <span class="text-[#5135F3] font-medium text-[16px]">$74.94</span>
+                                <span class="text-[#099FF9] font-medium text-[16px]">$74.94</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Tag Price Badge -->
                     <div class="relative w-[110px] h-[48px] flex items-center justify-center">
-                        <svg class="absolute inset-0 w-full h-full text-[#5135F3] tag-svg transition-colors"
+                        <svg class="absolute inset-0 w-full h-full text-[#099FF9] tag-svg transition-colors"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 46" fill="none"
                             preserveAspectRatio="none">
                             <path fill="currentColor"
@@ -234,8 +284,8 @@
                             class="w-7 h-7 rounded-full border-[1px] border-black flex items-center justify-center radio-circle">
                         </div>
                         <div>
-                            <h3 class="text-[19px] font-bold text-[#5135F3]">1-Month Plan</h3>
-                            <p class="text-[14px] font-bold text-[#5135F3]">$12.49</p>
+                            <h3 class="text-[19px] font-bold text-[#099FF9]">1-Month Plan</h3>
+                            <p class="text-[14px] font-bold text-[#099FF9]">$12.49</p>
                         </div>
                     </div>
 
@@ -250,16 +300,16 @@
                         </svg>
                         <div class="relative z-10 flex items-center pr-2 gap-0.5 price-wrap">
                             <div
-                                class="text-[14px] font-bold self-start mt-1.5 price-text text-[#5135F3] transition-colors">
+                                class="text-[14px] font-bold self-start mt-1.5 price-text text-[#099FF9] transition-colors">
                                 $</div>
-                            <div class="text-[36px] font-black leading-none price-text text-[#5135F3] transition-colors">12
+                            <div class="text-[36px] font-black leading-none price-text text-[#099FF9] transition-colors">12
                             </div>
                             <div class="flex flex-col">
                                 <div
-                                    class="text-[16px] font-black leading-none price-text text-[#5135F3] transition-colors">
+                                    class="text-[16px] font-black leading-none price-text text-[#099FF9] transition-colors">
                                     49</div>
                                 <div
-                                    class="text-[10px] font-bold lowercase tracking-tighter subtext text-[#5032F5] -mt-1 transition-colors">
+                                    class="text-[10px] font-bold lowercase tracking-tighter subtext text-[#099FF9] -mt-1 transition-colors">
                                     per month</div>
                             </div>
                         </div>
@@ -297,8 +347,8 @@
                 <img src="/moneyback.webp" alt="30 Day Money Back Guarantee" class="h-16 mb-4">
                 <h3 class="text-[18px] font-bold mb-3">30-day money-back guarantee</h3>
                 <p class="text-[13px] text-slate-600 leading-relaxed px-2">
-                    We're confident in the quality of our reading program — thousands of families use it every day to
-                    help their children become confident readers. If after 30 days you're not satisfied, simply contact
+                    We're confident in the quality of the LetterSchool program — thousands of families use it every day to
+                    help their children master handwriting, letter sounds, and spelling. If after 30 days you're not satisfied, simply contact
                     us — we guarantee a full refund.
                 </p>
             </div>
@@ -310,8 +360,7 @@
                 Developed with ❤️ by <br>Education Experts
             </h2>
             <p class="text-white/80 text-[16px] font-medium leading-relaxed mb-10 px-2">
-                Reading.com is the ground-breaking phonics program brought to you by Teaching.com, a world leader in
-                education helping over 64 million children since 1998.
+                LetterSchool is the award-winning handwriting and spelling curriculum loved by over 7 million children and used at more than 5,000 schools worldwide.
             </p>
 
             <div class="w-full rounded-[32px] overflow-hidden mb-12 shadow-2xl border-4 border-white/10">
@@ -329,7 +378,7 @@
 
         <!-- Science of Reading -->
         <section class="py-6 px-6 text-center">
-            <h2 class="text-[24px] font-semibold text-[#221750] mb-4">Based on the Science of Reading</h2>
+            <h2 class="text-[24px] font-semibold text-[#221750] mb-4">Based on Proven Handwriting & Phonics Curricula</h2>
             <div class="w-full max-w-[450px] mx-auto mb-4">
                 <img src="/comprehension.webp" alt="5 Pillars of Reading" class="w-full">
             </div>
@@ -350,11 +399,11 @@
         <!-- What you get section -->
         <section class="bg-white py-4 px-6">
             <h2 class="text-[24px] font-black text-center text-[#221750] mb-8">
-                What you get with <span class="text-[#5135F3]">Reading.com</span>
+                What you get with <span class="text-[#099FF9]">LetterSchool</span>
             </h2>
 
             <div class="w-full mb-10">
-                <img src="/whatyouget.webp" alt="Reading.com App Preview" class="w-full">
+                <img src="/languages.webp" alt="LetterSchool Languages Preview" class="w-full rounded-2xl">
             </div>
 
             <div class="space-y-6 px-2 mb-6">
@@ -395,7 +444,7 @@
                             <path d="M20 6L9 17L4 12" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                         <p class="text-[15px] font-medium text-slate-600 leading-snug">
-                            Track improvements in reading skills and celebrate milestones
+                            Track improvements in handwriting & fine motor skills and celebrate Golden Levels
                         </p>
                     </div>
                 </div>
@@ -404,7 +453,7 @@
             <div class="w-full pb-4">
                 <button
                     onclick="document.getElementById('plans').scrollIntoView({behavior: 'smooth'})"
-                    class="w-full bg-[#5032F5] text-white h-14 rounded-full text-[18px] font-black shadow-xl active:scale-[0.98] transition-all">
+                    class="w-full bg-[#099FF9] text-white h-14 rounded-full text-[18px] font-black shadow-xl active:scale-[0.98] transition-all">
                     Start Today
                 </button>
             </div>
@@ -444,19 +493,20 @@
             <!-- Video Feedback Section -->
             <section class="py-4 bg-white text-center overflow-hidden">
                 <h2 class="text-[26px] font-black text-[#221750] mb-4 leading-tight font-quicksand">
-                    Why millions of parents <span class="text-[#5135F3]">love</span> teaching their children with us
+                    Why millions of parents <span class="text-[#099FF9]">love</span> teaching their children with us
                 </h2>
 
                 <div class="swiper video-swiper max-w-[500px] mx-auto overflow-visible">
                     <div class="swiper-wrapper">
-                        <!-- Justine Slide -->
+                        <!-- TAS Video 1 Slide -->
                         <div class="swiper-slide">
                             <div
-                                class="relative w-[320px] sm:w-[450px] aspect-square mx-auto rounded-full overflow-hidden bg-slate-100 shadow-xl">
-                                <video id="video-justine" class="w-full h-full object-cover" src="/Justine-feedback.mp4"
-                                    playsinline></video>
-                                <button onclick="toggleVideo('justine')"
-                                    class="absolute inset-0 flex items-center justify-center transition-opacity duration-300">
+                                class="relative w-full max-w-[340px] aspect-[9/16] mx-auto rounded-[24px] overflow-hidden bg-slate-950 shadow-2xl border border-slate-200/50 cursor-pointer"
+                                onclick="toggleVideo('justine')">
+                                <video id="video-justine" class="w-full h-full object-cover" src="/tas-tv11-homeschool.mp4"
+                                    poster="/checkout-v1-poster.jpeg" playsinline preload="metadata"></video>
+                                <button
+                                    class="absolute inset-0 flex items-center justify-center transition-opacity duration-300 pointer-events-none">
                                     <div id="btn-justine"
                                         class="w-14 h-14 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
                                         <svg class="w-10 h-10 text-white fill-current" viewBox="0 0 24 24">
@@ -466,14 +516,15 @@
                                 </button>
                             </div>
                         </div>
-                        <!-- Cristina Slide -->
+                        <!-- TAS Video 2 Slide -->
                         <div class="swiper-slide">
                             <div
-                                class="relative w-[320px] sm:w-[450px] aspect-square mx-auto rounded-full overflow-hidden bg-slate-100 shadow-xl">
+                                class="relative w-full max-w-[340px] aspect-[9/16] mx-auto rounded-[24px] overflow-hidden bg-slate-950 shadow-2xl border border-slate-200/50 cursor-pointer"
+                                onclick="toggleVideo('cristina')">
                                 <video id="video-cristina" class="w-full h-full object-cover"
-                                    src="/Cristina-feedback.mp4" playsinline></video>
-                                <button onclick="toggleVideo('cristina')"
-                                    class="absolute inset-0 flex items-center justify-center transition-opacity duration-300">
+                                    src="/tas-tv14-endorsement.mp4" poster="/checkout-v2-poster.jpeg" playsinline preload="metadata"></video>
+                                <button
+                                    class="absolute inset-0 flex items-center justify-center transition-opacity duration-300 pointer-events-none">
                                     <div id="btn-cristina"
                                         class="w-14 h-14 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
                                         <svg class="w-10 h-10 text-white fill-current" viewBox="0 0 24 24">
@@ -495,44 +546,27 @@
                     <!-- Review 1 -->
                     <div class="bg-white rounded-xl p-2 shadow-sm border border-slate-200 mb-6">
                         <img src="/stars.webp" alt="5 Stars" class="w-28 mb-2">
-                        <h3 class="text-[#221750] font-black text-[18px] mb-3">CBlakey902</h3>
+                        <h3 class="text-[#221750] font-black text-[18px] mb-3">Sarah M. (Kindergarten Mom)</h3>
                         <p class="text-slate-600 text-[16px] leading-[1.6] font-normal">
-                            I love getting to sit alongside my daughter and do the lessons together. I was sold after
-                            our second lesson as I could already see improvement in her reading! The best part is how
-                            she is gaining confidence in her reading and she enjoys the lessons. I would recommend this
-                            to any friends who want to help teach their child to read or have a child struggling to
-                            read.
+                            My 4-year-old son refused to hold a pencil or practice letters. LetterSchool made it feel like an exciting game! The multi-sensory tracing and animations keep him focused, and his preschool teacher already noticed huge improvements in his pencil grip and confidence.
                         </p>
                     </div>
 
                     <!-- Review 2 -->
                     <div class="bg-white rounded-xl p-2 shadow-sm border border-slate-200 mb-6">
                         <img src="/stars.webp" alt="5 Stars" class="w-28 mb-2">
-                        <h3 class="text-[#221750] font-black text-[20px] mb-3">Justmellie</h3>
+                        <h3 class="text-[#221750] font-black text-[20px] mb-3">Emily R., MS, OTR/L (Occupational Therapist)</h3>
                         <p class="text-slate-600 text-[16px] leading-[1.6] font-normal">
-                            My son is 8 and is still having a hard time reading. We tried this app a week ago and things
-                            he was struggling with (like blending sounds) is noticeable better. I love that they do a
-                            first lesson and then an assessment to find what lesson to continue on. Another thing that
-                            is helpful is that the books hide the picture before reading. This forces him to actually
-                            read. In normal books he would "guess" the words based on the picture and not actually read.
-                            My son said the app feels like a video game and he loves video games!!! And he actually
-                            wants to do it with me. I am so thankful.
+                            As a pediatric OT, I recommend LetterSchool to all my clients with fine motor or sensory processing delays. The 3-step learning method (See, Trace, Write) builds proper letter formation habits without the frustration of traditional worksheets.
                         </p>
                     </div>
 
                     <!-- Review 3 -->
                     <div class="bg-white rounded-xl p-2 shadow-sm border border-slate-200 mb-6">
                         <img src="/stars.webp" alt="5 Stars" class="w-28 mb-2 not-italic">
-                        <h3 class="text-[#221750] font-black text-[20px] mb-3 not-italic">Amber</h3>
+                        <h3 class="text-[#221750] font-black text-[20px] mb-3 not-italic">David K. (Homeschool Parent of 2)</h3>
                         <p class="text-slate-600 text-[16px] leading-[1.6] font-normal not-italic">
-                            My son really struggled with reading in Kindergarten. We tried all the apps and exercises
-                            his teacher suggested (including ABCmouse and Starfall), but nothing was helping. He worked
-                            hard and showed some improvement throughout the year but was still pretty far behind most of
-                            his classmates at the end of the school year. We started using this app about 6 weeks ago
-                            and I've already seen a HUGE improvement in his reading and confidence! I love the way the
-                            slider encourages kids to sound out each letter sound individually and the slow sound/fast
-                            sound indicator really helps with blending sounds. Overall, very impressed with the
-                            reading.com app!
+                            Homeschooling our daughter was overwhelming when it came to letter writing. LetterSchool took all the stress away. The choice of curricula (Handwriting Without Tears & D'Nealian) matches our state standards, and she proudly shows us every letter she writes!
                         </p>
                     </div>
                 </div>
@@ -540,7 +574,7 @@
 
             <section>
                 <h1 class="text-[24px] font-bold leading-tight mb-4 mt-4 text-center">
-                    Unlock <span class="child-name text-[#5032F5]">abhisksej</span>'s Reading Potential!
+                    Unlock <span class="child-name text-[#099FF9]">abhisksej</span>'s Writing & Spelling Potential!
                 </h1>
             </section>
 
@@ -548,30 +582,30 @@
             <section id="plans" class="flex flex-col gap-4">
                 <!-- 1 Year Plan -->
                 <div id="card-year-bottom"
-                    class="bg-[#DCD6FE] rounded-[16px] border-2 border-[#5032F5] overflow-hidden cursor-pointer shadow-md transition-all"
+                    class="bg-[#E0F2FE] rounded-[16px] border-2 border-[#099FF9] overflow-hidden cursor-pointer shadow-md transition-all"
                     onclick="selectPlan('year')">
                     <div
-                        class="bg-[#5032F5] text-white py-1 text-center text-[15px] font-bold tracking-tight pointer-events-none">
+                        class="bg-[#099FF9] text-white py-1 text-center text-[15px] font-bold tracking-tight pointer-events-none">
                         50% OFF
                     </div>
                     <div class="p-3 flex items-center justify-between pointer-events-none">
                         <div class="flex items-center gap-4">
                             <div
-                                class="w-7 h-7 rounded-full border-[1px] border-[#5032F5] flex items-center justify-center radio-circle">
-                                <div class="w-4 h-4 bg-[#5032F5] rounded-full scale-110"></div>
+                                class="w-7 h-7 rounded-full border-[1px] border-[#099FF9] flex items-center justify-center radio-circle">
+                                <div class="w-4 h-4 bg-[#099FF9] rounded-full scale-110"></div>
                             </div>
                             <div>
-                                <h3 class="text-[18px] font-bold text-[#5135F3]">1-Year Plan</h3>
+                                <h3 class="text-[18px] font-bold text-[#099FF9]">1-Year Plan</h3>
                                 <div class="flex items-center gap-2">
                                     <span class="text-slate-300 line-through font-medium text-[16px]">$149.88</span>
-                                    <span class="text-[#5135F3] font-medium text-[16px]">$74.94</span>
+                                    <span class="text-[#099FF9] font-medium text-[16px]">$74.94</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Tag Price Badge -->
                         <div class="relative w-[110px] h-[48px] flex items-center justify-center">
-                            <svg class="absolute inset-0 w-full h-full text-[#5135F3] tag-svg transition-colors"
+                            <svg class="absolute inset-0 w-full h-full text-[#099FF9] tag-svg transition-colors"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 46" fill="none"
                                 preserveAspectRatio="none">
                                 <path fill="currentColor"
@@ -608,8 +642,8 @@
                                 class="w-7 h-7 rounded-full border-[1px] border-black flex items-center justify-center radio-circle">
                             </div>
                             <div>
-                                <h3 class="text-[19px] font-bold text-[#5135F3]">1-Month Plan</h3>
-                                <p class="text-[14px] font-bold text-[#5135F3]">$12.49</p>
+                                <h3 class="text-[19px] font-bold text-[#099FF9]">1-Month Plan</h3>
+                                <p class="text-[14px] font-bold text-[#099FF9]">$12.49</p>
                             </div>
                         </div>
 
@@ -624,18 +658,18 @@
                             </svg>
                             <div class="relative z-10 flex items-center pr-2 gap-0.5 price-wrap">
                                 <div
-                                    class="text-[14px] font-bold self-start mt-1.5 price-text text-[#5135F3] transition-colors">
+                                    class="text-[14px] font-bold self-start mt-1.5 price-text text-[#099FF9] transition-colors">
                                     $</div>
                                 <div
-                                    class="text-[36px] font-black leading-none price-text text-[#5135F3] transition-colors">
+                                    class="text-[36px] font-black leading-none price-text text-[#099FF9] transition-colors">
                                     12
                                 </div>
                                 <div class="flex flex-col">
                                     <div
-                                        class="text-[16px] font-black leading-none price-text text-[#5135F3] transition-colors">
+                                        class="text-[16px] font-black leading-none price-text text-[#099FF9] transition-colors">
                                         49</div>
                                     <div
-                                        class="text-[10px] font-bold lowercase tracking-tighter subtext text-[#5032F5] -mt-1 transition-colors">
+                                        class="text-[10px] font-bold lowercase tracking-tighter subtext text-[#099FF9] -mt-1 transition-colors">
                                         per month</div>
                                 </div>
                             </div>
@@ -654,7 +688,7 @@
                         <span class="text-black font-bold ">Any issues?</span>
                         Contact our friendly support at
                     </p>
-                    <a href="mailto:support@reading.com" class="text-blue-700 text-center text-sm underline">support@reading.com</a>
+                    <a href="mailto:support@letterschool.org" class="text-blue-700 text-center text-sm underline">support@letterschool.org</a>
                 </div>
             </section>
     </main>
@@ -767,29 +801,32 @@
         function toggleVideo(id) {
             const video = document.getElementById(`video-${id}`);
             const btnContainer = document.getElementById(`btn-${id}`);
-            const overlay = btnContainer.parentElement;
+            if (!video) return;
+            const overlay = btnContainer ? btnContainer.parentElement : null;
 
             if (video.paused) {
-                video.play();
-                btnContainer.innerHTML = PAUSE_SVG;
-                overlay.style.opacity = '0';
-
-                // Show pause button on hover
-                overlay.parentElement.onmouseenter = () => {
-                    if (!video.paused) overlay.style.opacity = '1';
-                };
-                overlay.parentElement.onmouseleave = () => {
-                    if (!video.paused) overlay.style.opacity = '0';
-                };
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        if (btnContainer) btnContainer.innerHTML = PAUSE_SVG;
+                        if (overlay) overlay.style.opacity = '0';
+                    }).catch(err => {
+                        console.log('Autoplay issue:', err);
+                        video.muted = false;
+                        video.play();
+                        if (btnContainer) btnContainer.innerHTML = PAUSE_SVG;
+                        if (overlay) overlay.style.opacity = '0';
+                    });
+                }
             } else {
                 video.pause();
-                btnContainer.innerHTML = PLAY_SVG;
-                overlay.style.opacity = '1';
+                if (btnContainer) btnContainer.innerHTML = PLAY_SVG;
+                if (overlay) overlay.style.opacity = '1';
             }
 
             video.onended = () => {
-                btnContainer.innerHTML = PLAY_SVG;
-                overlay.style.opacity = '1';
+                if (btnContainer) btnContainer.innerHTML = PLAY_SVG;
+                if (overlay) overlay.style.opacity = '1';
             };
         }
 
@@ -816,47 +853,47 @@
                     const mainText = el.querySelector('h3');
 
                     if (isSelectedType) {
-                        el.classList.add('border-[#5032F5]', 'bg-[#DCD6FE]', 'shadow-md');
+                        el.classList.add('border-[#099FF9]', 'bg-[#E0F2FE]', 'shadow-md');
                         el.classList.remove('border-slate-100', 'bg-white', 'shadow-sm');
                         if (radio) {
                             radio.classList.remove('border-black');
-                            radio.classList.add('border-[#5032F5]');
-                            radio.innerHTML = '<div class="w-4 h-4 bg-[#5032F5] rounded-full scale-110"></div>';
+                            radio.classList.add('border-[#099FF9]');
+                            radio.innerHTML = '<div class="w-4 h-4 bg-[#099FF9] rounded-full scale-110"></div>';
                         }
                         if (tagSvg) {
                             tagSvg.classList.remove('text-[#E5E5E5]');
-                            tagSvg.classList.add('text-[#5135F3]');
+                            tagSvg.classList.add('text-[#099FF9]');
                         }
                         priceTexts.forEach(t => {
-                            t.classList.remove('text-[#5135F3]');
+                            t.classList.remove('text-[#099FF9]');
                             t.classList.add('text-white');
                         });
                         if (subtext) {
-                            subtext.classList.remove('text-[#5032F5]');
+                            subtext.classList.remove('text-[#099FF9]');
                             subtext.classList.add('text-white');
                         }
                         if (mainText) {
-                            mainText.classList.remove('text-[#5135F3]', 'text-[#221750]');
-                            mainText.classList.add('text-[#5135F3]');
+                            mainText.classList.remove('text-[#099FF9]', 'text-[#221750]');
+                            mainText.classList.add('text-[#099FF9]');
                         }
                     } else {
-                        el.classList.remove('border-[#5032F5]', 'bg-[#DCD6FE]', 'shadow-md');
+                        el.classList.remove('border-[#099FF9]', 'bg-[#E0F2FE]', 'shadow-md');
                         el.classList.add('border-slate-100', 'bg-white', 'shadow-sm');
                         if (radio) {
-                            radio.classList.remove('border-[#5032F5]');
+                            radio.classList.remove('border-[#099FF9]');
                             radio.classList.add('border-black');
                             radio.innerHTML = '';
                         }
                         if (tagSvg) {
                             tagSvg.classList.add('text-[#E5E5E5]');
-                            tagSvg.classList.remove('text-[#5135F3]');
+                            tagSvg.classList.remove('text-[#099FF9]');
                         }
                         priceTexts.forEach(t => {
-                            t.classList.add('text-[#5135F3]');
+                            t.classList.add('text-[#099FF9]');
                             t.classList.remove('text-white');
                         });
                         if (subtext) {
-                            subtext.classList.add('text-[#5032F5]');
+                            subtext.classList.add('text-[#099FF9]');
                             subtext.classList.remove('text-white');
                         }
                     }

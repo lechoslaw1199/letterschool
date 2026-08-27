@@ -27,7 +27,7 @@ export default function EmailEntry() {
   const router = useRouter();
   const { parentEmail, setParentEmail, direction, updateDirection } = useOnboarding();
   const [email, setEmail] = useState(parentEmail || "");
-  const isReady = useImagePreload(["/VlQPe_m3.webp", "/Join.webp"]);
+  const isReady = useImagePreload(["/letterschool-logo-name.svg", "/Join.webp"]);
 
   const handleContinue = () => {
     if (email.includes('@')) {
@@ -42,7 +42,7 @@ export default function EmailEntry() {
     <div className="w-full min-h-screen flex flex-col items-center bg-white md:px-6 font-quicksand overflow-x-hidden">
       {/* Header */}
       <header className="w-full max-w-[450px] flex justify-center py-6">
-        <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+        <img src="/letterschool-logo-name.svg" alt="LetterSchool" className="h-6 object-contain" />
       </header>
 
       <motion.main
@@ -54,7 +54,7 @@ export default function EmailEntry() {
         className="w-full max-w-[430px] flex flex-col items-center pt-8"
       >
         <h1 className="text-[24px] font-bold text-[#221750] text-center mb-6 leading-tight px-4">
-          Enter your email to get started with a personalized reading plan
+          Enter your email to get started with a personalized writing plan
         </h1>
 
         {/* Email Input */}
@@ -73,7 +73,7 @@ export default function EmailEntry() {
           <motion.button
             whileTap={email.includes('@') ? { scale: 0.98 } : {}}
             disabled={!email.includes('@')}
-            className={`w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md ${
+            className={`w-full h-14 bg-[#099FF9] hover:bg-[#0088EE] text-white rounded-full text-[18px] font-bold transition-all shadow-md ${
               !email.includes('@') ? 'opacity-50 cursor-not-allowed' : 'opacity-100 hover:brightness-105'
             }`}
             onClick={handleContinue}
@@ -99,7 +99,7 @@ export default function EmailEntry() {
             className="h-10 object-contain mb-3"
           />
           <p className="text-[14px] text-center text-[#221750] font-medium leading-tight px-24 italic opacity-80">
-            Join <span className="font-bold">more than 2.5 million parents</span> teaching their kids to read!
+            Join <span className="font-bold">more than 7 million kids</span> who've learned to write and spell with LetterSchool!
           </p>
         </div>
       </motion.main>

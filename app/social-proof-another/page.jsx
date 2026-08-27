@@ -3,10 +3,7 @@
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useOnboarding } from "@/context/OnboardingContext";
-import ProgressBar from "@/components/ProgressBar";
 import { useImagePreload } from "@/hooks/useImagePreload";
-import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
 
 const pageVariants = {
   initial: (direction) => ({
@@ -33,14 +30,13 @@ const anotherImages = [
 
 export default function SocialProofAnother() {
   const router = useRouter();
-  const { direction, updateDirection, selectedStatus } = useOnboarding();
-  
-  // Preload all review images
+  const { direction, updateDirection } = useOnboarding();
+
   const isReady = useImagePreload([
     "/another1.webp",
     "/another2.webp",
     "/another3.webp",
-    "/VlQPe_m3.webp"
+    "/letterschool-logo-name.svg"
   ]);
 
   const handleBack = () => {
@@ -49,11 +45,11 @@ export default function SocialProofAnother() {
   };
 
   return (
-    <div className="w-full flex flex-col items-center bg-white min-h-screen relative overflow-x-clip">
+    <div className="w-full flex flex-col items-center bg-white min-h-screen relative overflow-x-clip font-quicksand">
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
         <div className="w-full relative flex items-center justify-center mb-0">
-          <button 
-            className="absolute left-0 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
+          <button
+            className="absolute left-0 text-slate-700 flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors"
             onClick={handleBack}
             aria-label="Back"
           >
@@ -63,7 +59,7 @@ export default function SocialProofAnother() {
               </g>
             </svg>
           </button>
-          <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+          <img src="/letterschool-logo-name.svg" alt="LetterSchool" className="h-6 object-contain" />
         </div>
       </header>
 
@@ -80,16 +76,16 @@ export default function SocialProofAnother() {
             You&apos;re in good hands!
           </h1>
           <p className="text-[16px] text-[#221750]/80 font-medium text-start leading-relaxed opacity-90">
-            Hear from parents who have taught their children with learning differences to read with our program.
+            See what parents and educators say about LetterSchool&apos;s proven handwriting and spelling system.
           </p>
         </div>
 
         <div className="w-full flex flex-col gap-4 pb-24">
           {anotherImages.map((img, index) => (
-            <img 
-              key={index} 
-              src={img} 
-              alt={`Learning difference testimonial ${index + 1}`} 
+            <img
+              key={index}
+              src={img}
+              alt={`Parent testimonial ${index + 1}`}
               className="w-full object-contain rounded-lg"
             />
           ))}
@@ -106,7 +102,7 @@ export default function SocialProofAnother() {
       >
         <motion.button
           whileTap={{ scale: 0.98 }}
-          className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
+          className="w-full h-14 bg-[#099FF9] hover:bg-[#0088EE] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
           onClick={() => {
             updateDirection(1);
             router.push("/school-method");

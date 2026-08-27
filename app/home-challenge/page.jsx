@@ -26,7 +26,7 @@ const pageVariants = {
 export default function HomeChallenge() {
   const router = useRouter();
   const { direction, updateDirection, homeChallenge, setHomeChallenge } = useOnboarding();
-  const isReady = useImagePreload("/VlQPe_m3.webp");
+  const isReady = useImagePreload("/letterschool-logo-name.svg");
 
   const options = [
     "Lack of time",
@@ -52,7 +52,7 @@ export default function HomeChallenge() {
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
         <div className="w-full relative flex items-center justify-center mb-3">
           <button 
-            className="absolute left-0 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
+            className="absolute left-0 text-slate-700 flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
             onClick={handleBack}
             aria-label="Back"
           >
@@ -62,7 +62,7 @@ export default function HomeChallenge() {
               </g>
             </svg>
           </button>
-          <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+          <img src="/letterschool-logo-name.svg" alt="LetterSchool" className="h-6 object-contain" />
         </div>
         <ProgressBar progress={40} />
       </header>
@@ -77,7 +77,7 @@ export default function HomeChallenge() {
       >
         <div className="w-full pt-4 pb-4 px-4">
           <h1 className="text-[24px] font-bold text-[#221750] leading-tight mb-4 text-center">
-            What&apos;s the main challenge you&apos;ve faced when teaching your child how to read?
+            What&apos;s the main challenge you&apos;ve faced when teaching your child to write and spell?
           </h1>
         </div>
 
@@ -88,8 +88,8 @@ export default function HomeChallenge() {
               whileTap={{ scale: 0.98 }}
               className={`min-h-[70px] py-4 px-8 rounded-lg text-[16px] font-bold flex items-center justify-center transition-all duration-200 border border-solid leading-snug ${
                 homeChallenge === option 
-                  ? 'bg-purple-primary text-white border-purple-primary shadow-lg shadow-purple-primary/20' 
-                  : 'bg-white text-[#5032F5] border-[#cbd5e1] hover:border-[#5032F5]/50'
+                  ? 'bg-white text-[#5032F5] border-[#221750] border-1 shadow-sm' 
+                  : 'bg-white text-[#5032F5] border-[#e2e8f0]'
               }`}
               onClick={() => handleOptionSelect(option)}
             >

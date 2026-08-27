@@ -52,7 +52,7 @@ export default function ReinforcementGames() {
     <div className="w-full flex flex-col items-center bg-white min-h-screen relative overflow-x-clip">
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
         <button 
-          className="absolute left-2 top-4 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
+          className="absolute left-2 top-4 text-slate-700 flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
           onClick={handleBack}
           aria-label="Back"
         >
@@ -62,7 +62,7 @@ export default function ReinforcementGames() {
             </g>
           </svg>
         </button>
-        <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-7 mb-3 object-contain" />
+        <img src="/letterschool-logo-name.svg" alt="LetterSchool" className="h-7 mb-3 object-contain" />
         <ProgressBar progress={78} />
       </header>
 
@@ -76,7 +76,7 @@ export default function ReinforcementGames() {
       >
         <div className="flex flex-col items-center mb-6">
           <span className="text-[12px] font-medium text-black tracking-widest uppercase mb-4 border-b-[1px] border-black pb-0.5">
-            WHY READING.COM WORKS
+            WHY LETTERSCHOOL WORKS
           </span>
           <h1 className="text-[24px] font-bold text-[#221750] text-center px-2 leading-tight font-quicksand">
             ...And reinforcement games!
@@ -104,7 +104,7 @@ export default function ReinforcementGames() {
       >
         <motion.button 
           whileTap={{ scale: 0.98 }}
-          className="w-full h-16 bg-purple-primary text-white rounded-full text-lg font-extrabold transition-all"
+          className="w-full h-16 bg-[#099FF9] hover:bg-[#0088EE] text-white rounded-full text-lg font-extrabold transition-all"
           onClick={handleContinue}
         >
           Continue

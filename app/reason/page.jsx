@@ -27,7 +27,7 @@ const pageVariants = {
 export default function TeachingReason() {
   const router = useRouter();
   const { childGender, direction, updateDirection, selectedReason, setSelectedReason } = useOnboarding();
-  const isReady = useImagePreload("/VlQPe_m3.webp");
+  const isReady = useImagePreload("/letterschool-logo-name.svg");
 
   const getSubj = () => childGender === "Boy" ? "he" : childGender === "Girl" ? "she" : "they";
   const getObj = () => childGender === "Boy" ? "him" : childGender === "Girl" ? "her" : "them";
@@ -36,7 +36,7 @@ export default function TeachingReason() {
   const reasons = [
     `I want to give ${getObj()} a confident head start before school`,
     `${getSubjCap()} is struggling, and I want to help ${getObj()} catch up`,
-    "I'm homeschooling and need a strong reading curriculum",
+    "I'm homeschooling and need a strong writing & spelling curriculum",
     `I want to stay involved and support what ${getSubj()} is learning at school`,
     "Something else"
   ];
@@ -63,7 +63,7 @@ export default function TeachingReason() {
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
         <div className="w-full relative flex items-center justify-center mb-3">
           <button 
-            className="absolute left-0 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
+            className="absolute left-0 text-slate-700 flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
             onClick={handleBack}
             aria-label="Back"
           >
@@ -73,7 +73,7 @@ export default function TeachingReason() {
               </g>
             </svg>
           </button>
-          <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+          <img src="/letterschool-logo-name.svg" alt="LetterSchool" className="h-6 object-contain" />
         </div>
         <ProgressBar progress={20} />
       </header>
@@ -87,7 +87,7 @@ export default function TeachingReason() {
         className="w-full max-w-[480px] px-5 pb-20 flex flex-col items-center"
       >
         <h1 className="text-[24px] font-bold mb-4 text-center text-[#221750] leading-tight px-4  mt-4">
-          What's the main reason you want to teach your child to read?
+          What's the main reason you want to teach your child to write?
         </h1>
 
         <div className="flex flex-col gap-3 w-full">

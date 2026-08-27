@@ -26,7 +26,7 @@ const pageVariants = {
 export default function Placement() {
   const router = useRouter();
   const { direction, updateDirection } = useOnboarding();
-  const isReady = useImagePreload("/placement.webp");
+  const isReady = useImagePreload("/guidance.jpeg");
 
   const handleBack = () => {
     updateDirection(-1);
@@ -43,7 +43,7 @@ export default function Placement() {
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
         <div className="w-full relative flex items-center justify-center mb-3">
           <button 
-            className="absolute left-0 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
+            className="absolute left-0 text-slate-700 flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
             onClick={handleBack}
             aria-label="Back"
           >
@@ -53,7 +53,7 @@ export default function Placement() {
               </g>
             </svg>
           </button>
-          <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+          <img src="/letterschool-logo-name.svg" alt="LetterSchool" className="h-6 object-contain" />
         </div>
       </header>
 
@@ -67,7 +67,7 @@ export default function Placement() {
       >
         <div className="w-full flex justify-center mb-2 mt-4">
           <img 
-            src="/placement.webp" 
+            src="/guidance.jpeg" 
             alt="Placement Assessment" 
             className="w-full max-w-[400px] object-contain rounded-2xl"
           />
@@ -83,7 +83,7 @@ export default function Placement() {
 
         <div className="bg-[#FFECFF] border border-[#FBA0FF] rounded-[12px] py-2 px-4 mb-2 text-start w-full">
           <p className="text-black text-[13px] font-normal leading-tight">
-            If starting from lesson 1, you'll still be unlocking and reading together your first book at lesson 10!
+            If starting from lesson 1, you'll still be tracing and writing complete letters by lesson 10!
           </p>
         </div>
       </motion.main>
@@ -98,7 +98,7 @@ export default function Placement() {
       >
         <motion.button 
           whileTap={{ scale: 0.98 }}
-          className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
+          className="w-full h-14 bg-[#099FF9] hover:bg-[#0088EE] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
           onClick={handleContinue}
         >
           Continue

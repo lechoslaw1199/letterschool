@@ -26,7 +26,7 @@ const pageVariants = {
 export default function SimpleBooksTeaser() {
   const router = useRouter();
   const { childGender, direction, updateDirection } = useOnboarding();
-  const isReady = useImagePreload("/simple.webp");
+  const isReady = useImagePreload("/proven-method.jpg");
 
   const getPossessiveCap = () => {
     if (childGender === "Boy") return "His";
@@ -49,7 +49,7 @@ export default function SimpleBooksTeaser() {
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
         <div className="w-full relative flex items-center justify-center mb-3">
           <button 
-            className="absolute left-0 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
+            className="absolute left-0 text-slate-700 flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
             onClick={handleBack}
             aria-label="Back"
           >
@@ -59,7 +59,7 @@ export default function SimpleBooksTeaser() {
               </g>
             </svg>
           </button>
-          <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+          <img src="/letterschool-logo-name.svg" alt="LetterSchool" className="h-6 object-contain" />
         </div>
       </header>
 
@@ -71,20 +71,20 @@ export default function SimpleBooksTeaser() {
         exit="exit"
         className="w-full max-w-[480px] px-8 flex flex-col items-center flex-grow"
       >
-        <div className="w-full flex justify-center mb-2 mt-4">
+        <div className="w-full flex justify-center mb-6 mt-4">
           <img 
-            src="/simple.webp" 
-            alt="Reading simple books" 
-            className="w-full max-w-[390px] object-contain "
+            src="/proven-method.jpg" 
+            alt="Writing and spelling simple words" 
+            className="w-full max-w-[400px] object-contain rounded-3xl"
           />
         </div>
 
         <h1 className="text-[24px] font-bold text-[#221750] text-start leading-tight mb-6 px-4">
-          {getPossessiveCap()} next step is <span className="text-black">reading simple books with support</span>
+          {getPossessiveCap()} next step is <span className="text-black">writing and spelling simple words with guidance</span>
         </h1>
 
         <div className="text-[16px] text-start text-black font-normal mb-4 px-2 leading-relaxed">
-          Lessons and games build on your child&apos;s skills, while co-read books gently guide them into reading. You&apos;ll read some parts, and your child will read sections matched to their level — <span className="font-bold">creating confident, joyful moments along the way.</span>
+          Lessons and games build on your child&apos;s skills, while guided spelling and tracing exercises introduce word formation. Your child will trace, spell, and write at their own pace — <span className="font-bold">creating confident, joyful moments along the way.</span>
         </div>
 
         <div className="bg-[#FFECFF] border border-[#FBA0FF] rounded-[16px] py-2 px-4 mb-8 text-start w-full">
@@ -104,7 +104,7 @@ export default function SimpleBooksTeaser() {
       >
         <motion.button 
           whileTap={{ scale: 0.98 }}
-          className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
+          className="w-full h-14 bg-[#099FF9] hover:bg-[#0088EE] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
           onClick={handleContinue}
         >
           Continue

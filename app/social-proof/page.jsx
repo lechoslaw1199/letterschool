@@ -3,10 +3,7 @@
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useOnboarding } from "@/context/OnboardingContext";
-import ProgressBar from "@/components/ProgressBar";
 import { useImagePreload } from "@/hooks/useImagePreload";
-import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
 
 const pageVariants = {
   initial: (direction) => ({
@@ -25,43 +22,43 @@ const pageVariants = {
   }),
 };
 
-const testimonials = [
-  {
-    title: "This has been an amazing experience for my family",
-    date: "May 26",
-    author: "Cancersucks1221",
-    text: "I have two boys that are four and five. I wanted them to start learning how to read before either started kindergarten. They started at the same time and I was immediately impressed with the app. It's the perfect combination of fun for the kids, and baby steps from a lesson perspective. We called it \"learning time\" and every day I would tell them it's time to do it, but would never force it. I left it up to them. They can both read at a kindergarten level now, and I am guessing my five year old is probably at first grade. Totally worth the subscription price in my opinion. I wish they didn't stop at 99 lessons!"
-  },
-  {
-    title: "Amazed!",
-    date: "Apr 21",
-    author: "Tam7890",
-    text: "I downloaded the app and it is super friendly to create both your children's account and yours as a parent. Love, that it is not only an app to learn to read, but also to spend time together with our children. Also, I am amazed with the kind of knowledge check it has through games! It actually worked to check if he really learned and I was thrilled. Recommended 100%."
-  },
-  {
-    title: "So different from other reading apps",
-    date: "May 26",
-    author: "Smmarquis",
-    text: "I really like that this app is meant for a parent and kid to do together...I love bonding with my kids over learning and reading and this makes it so easy to do that. It's extremely user friendly and easy for someone like me who isn't a teacher and I can see real progress in my son's skills."
-  }
+const reviewImages = [
+  "/review1.webp",
+  "/review2.webp",
+  "/review3.webp",
+  "/review4.webp",
+  "/review5.webp"
 ];
 
-export default function SocialProof() {
+export default function SocialProofPage() {
   const router = useRouter();
-  const { direction, updateDirection, selectedStatus } = useOnboarding();
-  const isReady = useImagePreload("/VlQPe_m3.webp");
+  const { direction, updateDirection } = useOnboarding();
+
+  const isReady = useImagePreload([
+    "/review1.webp",
+    "/review2.webp",
+    "/review3.webp",
+    "/review4.webp",
+    "/review5.webp",
+    "/letterschool-logo-name.svg"
+  ]);
 
   const handleBack = () => {
     updateDirection(-1);
     router.back();
   };
 
+  const handleContinue = () => {
+    updateDirection(1);
+    router.push("/school-method");
+  };
+
   return (
-    <div className="w-full flex flex-col items-center bg-white min-h-screen relative overflow-x-clip">
+    <div className="w-full flex flex-col items-center bg-white min-h-screen relative overflow-x-clip font-quicksand">
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
-        <div className="w-full relative flex items-center justify-center mb-3">
-          <button 
-            className="absolute left-0 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
+        <div className="w-full relative flex items-center justify-center mb-0">
+          <button
+            className="absolute left-0 text-slate-700 flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors"
             onClick={handleBack}
             aria-label="Back"
           >
@@ -71,7 +68,7 @@ export default function SocialProof() {
               </g>
             </svg>
           </button>
-          <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+          <img src="/letterschool-logo-name.svg" alt="LetterSchool" className="h-6 object-contain" />
         </div>
       </header>
 
@@ -81,36 +78,25 @@ export default function SocialProof() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[480px] flex flex-col items-center flex-grow"
+        className="w-full max-w-[450px] flex flex-col items-center flex-grow px-6"
       >
-        <div className="w-full px-6 pt-8 pb-4">
+        <div className="w-full pt-8 pb-4">
           <h1 className="text-[24px] font-bold text-[#221750] leading-tight mb-4 text-start">
-            Supporting what your child learns at school
+            You&apos;re in good hands!
           </h1>
-          <p className="text-[16px] text-black font-medium text-start leading-relaxed opacity-90">
-            Our co-learning experience combines meaningful screen time and quality time with your child 👇
+          <p className="text-[16px] text-[#221750]/80 font-medium text-start leading-relaxed opacity-90">
+            Join millions of parents who gave their children the gift of confident letter writing and spelling.
           </p>
         </div>
 
-        <div className="w-full flex flex-col gap-4 px-6 pb-24">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-[#F2F2F6] p-3 rounded-[16px] flex flex-col border border-gray-100 shadow-sm">
-              <h3 className="text-[16px] font-bold text-[#221750] mb-3 leading-snug">
-                {testimonial.title}
-              </h3>
-              <div className="flex items-center justify-between mb-3 text-[16px] text-black">
-                <div className="flex gap-1 text-[#EF8836] text-xl">
-                  {"★★★★★".split("").map((s, i) => <span key={i} className="">★</span>)}
-                </div>
-                <div className="flex flex-col items-end">
-                   <span>{testimonial.date}</span>
-                   <span className="font-medium text-gray-500">{testimonial.author}</span>
-                </div>
-              </div>
-              <p className="text-[16px] leading-relaxed text-[#221750] opacity-80 font-bold">
-                {testimonial.text}
-              </p>
-            </div>
+        <div className="w-full flex flex-col gap-4 pb-24">
+          {reviewImages.map((img, index) => (
+            <img
+              key={index}
+              src={img}
+              alt={`Parent review ${index + 1}`}
+              className="w-full object-contain rounded-lg"
+            />
           ))}
         </div>
       </motion.main>
@@ -125,11 +111,8 @@ export default function SocialProof() {
       >
         <motion.button
           whileTap={{ scale: 0.98 }}
-          className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
-          onClick={() => {
-            updateDirection(1);
-            router.push("/school-method");
-          }}
+          className="w-full h-14 bg-[#099FF9] hover:bg-[#0088EE] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
+          onClick={handleContinue}
         >
           Continue
         </motion.button>

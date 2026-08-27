@@ -31,13 +31,13 @@ const challengeContent = {
   },
   "Too expensive": {
     title: "Less expensive than a tutor!",
-    content: "While the Reading.com program requires a paid subscription, we do our best to keep it affordable.",
+    content: "While the LetterSchool program requires a paid subscription, we do our best to keep it affordable.",
     highlight: "It's a fraction of the cost of a private tutor!",
     image: "/not_yet_image.webp"
   },
   "Ineffective program(s)": {
-    title: "Reading.com is research-backed and proven to work!",
-    content: "Not to throw shade on other \"educational\" apps, but a lot of them provide entertainment without real learning.\n\nOur co-learning method is based on the Science of Reading and proven to work!",
+    title: "LetterSchool is research-backed and proven to work!",
+    content: "Not to throw shade on other \"educational\" apps, but a lot of them provide entertainment without real learning.\n\nOur guided letter-tracing method is based on proven handwriting pedagogy and proven to work!",
     image: "/not_yet_image.webp"
   },
   "Lack of motivation from them": {
@@ -46,8 +46,8 @@ const challengeContent = {
     image: "/not_yet_image.webp"
   },
   "Something else": {
-    title: "Reading.com is research-backed and proven to work!",
-    content: "Most methods for teaching how to read are challenging.\n\nWe're confident we've built the best learn-to-read program on earth, so you never have to look anywhere else!",
+    title: "LetterSchool is research-backed and proven to work!",
+    content: "Most apps for teaching letter writing can be boring or ineffective.\n\nWe're confident we've built the most engaging letter-writing and spelling program on earth, so you never have to look anywhere else!",
     image: "/not_yet_image.webp"
   }
 };
@@ -73,7 +73,7 @@ export default function ChallengeResponse() {
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
         <div className="w-full relative flex items-center justify-center mb-3">
           <button 
-            className="absolute left-0 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
+            className="absolute left-0 text-slate-700 flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
             onClick={handleBack}
             aria-label="Back"
           >
@@ -83,7 +83,7 @@ export default function ChallengeResponse() {
               </g>
             </svg>
           </button>
-          <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+          <img src="/letterschool-logo-name.svg" alt="LetterSchool" className="h-6 object-contain" />
         </div>
       </header>
 
@@ -129,7 +129,7 @@ export default function ChallengeResponse() {
       >
         <motion.button 
           whileTap={{ scale: 0.98 }}
-          className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
+          className="w-full h-14 bg-[#099FF9] hover:bg-[#0088EE] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
           onClick={handleContinue}
         >
           Continue

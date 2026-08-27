@@ -27,7 +27,7 @@ export default function ChildNamePage() {
   const router = useRouter();
   const { childName, setChildName, direction, updateDirection } = useOnboarding();
   const [name, setName] = useState(childName || "");
-  const isReady = useImagePreload(["/VlQPe_m3.webp", "/kidSafe.webp"]);
+  const isReady = useImagePreload(["/letterschool-logo-name.svg", "/kidSafe.webp"]);
 
   const handleBack = () => {
     updateDirection(-1);
@@ -47,7 +47,7 @@ export default function ChildNamePage() {
       {/* Header */}
       <header className="w-full max-w-[450px] flex items-center justify-center py-6 relative">
         <button 
-          className="absolute left-0 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
+          className="absolute left-0 text-slate-700 flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
           onClick={handleBack}
           aria-label="Back"
         >
@@ -55,7 +55,7 @@ export default function ChildNamePage() {
             <path d="M6.99219 12.3594C6.99219 12.625 7.09375 12.8516 7.30469 13.0547L13.3984 19.0156C13.5625 19.1875 13.7812 19.2734 14.0312 19.2734C14.5391 19.2734 14.9375 18.8828 14.9375 18.3672C14.9375 18.1172 14.8359 17.8906 14.6641 17.7188L9.17188 12.3594L14.6641 7C14.8359 6.82031 14.9375 6.59375 14.9375 6.34375C14.9375 5.83594 14.5391 5.44531 14.0312 5.44531C13.7812 5.44531 13.5625 5.53125 13.3984 5.70312L7.30469 11.6641C7.09375 11.8672 7 12.0938 6.99219 12.3594Z" fill="currentColor"></path>
           </svg>
         </button>
-        <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+        <img src="/letterschool-logo-name.svg" alt="LetterSchool" className="h-6 object-contain" />
       </header>
 
       <motion.main
@@ -86,7 +86,7 @@ export default function ChildNamePage() {
           <motion.button
             whileTap={name.trim() ? { scale: 0.98 } : {}}
             disabled={!name.trim()}
-            className={`w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md ${
+            className={`w-full h-14 bg-[#099FF9] hover:bg-[#0088EE] text-white rounded-full text-[18px] font-bold transition-all shadow-md ${
               !name.trim() ? 'opacity-50 cursor-not-allowed' : 'opacity-100 hover:brightness-105 shadow-purple-500/10'
             }`}
             onClick={handleContinue}

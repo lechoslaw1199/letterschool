@@ -26,7 +26,7 @@ const pageVariants = {
 export default function SchoolMethod() {
   const router = useRouter();
   const { direction, updateDirection, schoolMethod, setSchoolMethod } = useOnboarding();
-  const isReady = useImagePreload("/VlQPe_m3.webp");
+  const isReady = useImagePreload("/letterschool-logo-name.svg");
 
   const options = [
     "Phonics",
@@ -52,7 +52,7 @@ export default function SchoolMethod() {
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
         <div className="w-full relative flex items-center justify-center mb-3">
           <button 
-            className="absolute left-0 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
+            className="absolute left-0 text-slate-700 flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
             onClick={handleBack}
             aria-label="Back"
           >
@@ -62,7 +62,7 @@ export default function SchoolMethod() {
               </g>
             </svg>
           </button>
-          <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+          <img src="/letterschool-logo-name.svg" alt="LetterSchool" className="h-6 object-contain" />
         </div>
         <ProgressBar progress={33} />
       </header>
@@ -77,7 +77,7 @@ export default function SchoolMethod() {
       >
         <div className="w-full pt-4 pb-6 px-4">
           <h1 className="text-[24px] font-bold text-[#221750] leading-tight text-center">
-            What method of teaching reading do you use?
+            What method of teaching letter writing do you use?
           </h1>
         </div>
 
@@ -88,8 +88,8 @@ export default function SchoolMethod() {
               whileTap={{ scale: 0.98 }}
               className={`min-h-[70px] py-4 px-8 rounded-lg text-[16px] font-bold flex items-center justify-center transition-all duration-200 border border-solid leading-snug ${
                 schoolMethod === option 
-                  ? 'bg-purple-primary text-white border-purple-primary shadow-lg shadow-purple-primary/20' 
-                  : 'bg-white text-[#5032F5] border-[#cbd5e1] hover:border-[#5032F5]/50'
+                  ? 'bg-white text-[#5032F5] border-[#221750] border-1 shadow-sm' 
+                  : 'bg-white text-[#5032F5] border-[#e2e8f0]'
               }`}
               onClick={() => handleMethodSelect(option)}
             >

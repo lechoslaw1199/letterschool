@@ -25,7 +25,7 @@ const pageVariants = {
 export default function AgeSelection() {
   const { selectedAge, setSelectedAge, direction, updateDirection } = useOnboarding();
   const router = useRouter();
-  const isReady = useImagePreload(["/VlQPe_m3.webp", "/TKhB_Tsn.webp"]);
+  const isReady = useImagePreload(["/letterschool-logo-name.svg", "/TKhB_Tsn.webp"]);
 
   const ages = [
     "Under 3", "3", "3 ½",
@@ -43,7 +43,7 @@ export default function AgeSelection() {
     <div className="w-full flex flex-col items-center overflow-x-hidden">
       <header className="w-full max-w-[480px] flex flex-col items-center pt-8 pb-0 px-5 relative shrink-0">
         <div className="w-full relative flex items-center justify-center mb-4">
-          <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+          <img src="/letterschool-logo-name.svg" alt="LetterSchool" className="h-7 object-contain" />
         </div>
       </header>
 
@@ -56,7 +56,7 @@ export default function AgeSelection() {
         className="w-full max-w-[480px] px-5 pb-16 flex flex-col items-center"
       >
         <h1 className="text-[24px] font-bold mb-4 text-center text-black">
-          <span className="text-[#5032F5]">How old</span> is your child?
+          <span className="text-[#099FF9]">How old</span> is your child?
         </h1>
 
         <div className="grid grid-cols-3 gap-3 w-full mb-6">
@@ -64,10 +64,10 @@ export default function AgeSelection() {
             <motion.button
               key={age}
               whileTap={{ scale: 0.98 }}
-              className={`h-[70px] rounded-lg text-[16px] font-semibold flex items-center justify-center transition-all duration-200 border border-solid ${
+              className={`h-[70px] rounded-xl text-[16px] font-bold flex items-center justify-center transition-all duration-200 border-2 ${
                 selectedAge === age 
-                  ? 'bg-white text-[#5032F5] border-[#221750] border-1 shadow-sm' 
-                  : 'bg-white text-[#5032F5] border-[#e2e8f0]'
+                  ? 'bg-[#E0F2FE] text-[#099FF9] border-[#099FF9] shadow-sm' 
+                  : 'bg-white text-[#182238] border-[#e2e8f0] hover:border-[#099FF9]/40'
               }`}
               onClick={() => handleAgeSelect(age)}
             >
@@ -76,9 +76,9 @@ export default function AgeSelection() {
           ))}
         </div>
 
-        <div className="bg-[#FFF0FB] border border-[#FBA0FF] rounded-[20px] py-2 px-2 mb-2 text-center w-full">
-          <p className="text-[#000000] text-[12px] font-medium">
-            Tip: You can add more profiles later (up to 3 children)
+        <div className="bg-[#EBF7FF] border border-[#BAE6FD] rounded-[20px] py-2.5 px-4 mb-4 text-center w-full">
+          <p className="text-[#0369A1] text-[13px] font-semibold">
+            ✨ Tip: You can add more child profiles later (up to 3 children)
           </p>
         </div>
 
@@ -87,9 +87,9 @@ export default function AgeSelection() {
         </div>
 
         <div className="flex flex-col items-center text-center w-full">
-          <div className="text-[#F19A2C] text-[16px] mb-1 tracking-[2px]">★★★★★</div>
-          <p className="text-[14px] font-semibold text-black tracking-[0.5px] uppercase">5-STAR REVIEWS</p>
-          <p className="text-[14px] font-semibold text-black tracking-[0.5px] uppercase">FROM 20,000+ PARENTS & TEACHERS</p>
+          <div className="text-[#F59E0B] text-[18px] mb-1 tracking-[2px]">★★★★★</div>
+          <p className="text-[13px] font-bold text-[#182238] tracking-[0.5px] uppercase">4.5 / 5 STARS RATED</p>
+          <p className="text-[13px] font-semibold text-[#64748B] tracking-[0.5px] uppercase">FROM 20,000+ PARENTS, TEACHERS & OTs</p>
         </div>
       </motion.main>
     </div>

@@ -1,18 +1,54 @@
-import { Quicksand } from "next/font/google";
+import localFont from "next/font/local";
 import { OnboardingProvider } from "@/context/OnboardingContext";
 import "./globals.css";
 
-const quicksand = Quicksand({
-  subsets: ["latin"],
-  variable: "--font-quicksand",
-  weight: ["300", "400", "500", "600", "700"],
+const gothamRounded = localFont({
+  src: [
+    {
+      path: "./fonts/GothamRounded-Light.woff",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "./fonts/GothamRounded-Light.woff",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/GothamRounded-Light.woff",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/GothamRounded-Medium.woff",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "./fonts/GothamRounded-Medium.woff",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "./fonts/GothamRounded-Bold.woff",
+      weight: "800",
+      style: "normal",
+    },
+    {
+      path: "./fonts/GothamRounded-Bold.woff",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-gotham",
+  display: "swap",
 });
 
 export const metadata = {
-  title: "Reading.com | Teach Your Child To Read Early, Step By Step",
-  description: "Reading.com is a children's learning-to-read app that helps kids learn to read early, step by step.",
+  title: "LetterSchool | Teach Your Child To Write and Spell!",
+  description: "LetterSchool is the #1 alphabet tracing and words spelling app for toddlers and pre-schoolers. Recommended by parents, teachers, and occupational therapists.",
   icons: {
-    icon: "/favicon-32.png",
+    icon: "/letterschool-logo-only.svg",
   },
 };
 
@@ -21,7 +57,7 @@ import BackgroundWrapper from "@/components/BackgroundWrapper";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${quicksand.variable} font-quicksand antialiased overflow-x-hidden`}>
+      <body className={`${gothamRounded.variable} font-gotham antialiased overflow-x-hidden`}>
         <OnboardingProvider>
           <BackgroundWrapper>
             {children}

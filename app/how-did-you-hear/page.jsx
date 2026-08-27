@@ -27,7 +27,7 @@ const pageVariants = {
 export default function ReferralPage() {
   const router = useRouter();
   const { direction, updateDirection, referralSource, setReferralSource } = useOnboarding();
-  const isReady = useImagePreload("/VlQPe_m3.webp");
+  const isReady = useImagePreload("/letterschool-logo-name.svg");
 
   const options = [
     "Friends & family",
@@ -64,7 +64,7 @@ export default function ReferralPage() {
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
         <div className="w-full relative flex items-center justify-center mb-3">
           <button 
-            className="absolute left-0 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
+            className="absolute left-0 text-slate-700 flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
             onClick={handleBack}
             aria-label="Back"
           >
@@ -74,7 +74,7 @@ export default function ReferralPage() {
               </g>
             </svg>
           </button>
-          <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+          <img src="/letterschool-logo-name.svg" alt="LetterSchool" className="h-6 object-contain" />
         </div>
         <ProgressBar progress={66} />
       </header>

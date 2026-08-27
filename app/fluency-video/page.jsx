@@ -27,7 +27,7 @@ const pageVariants = {
 export default function FluencyVideo() {
   const router = useRouter();
   const { direction, updateDirection, focusDuration } = useOnboarding();
-  const isReady = useImagePreload(["/VlQPe_m3.webp", "/reading-poster.png"]);
+  const isReady = useImagePreload(["/letterschool-logo-name.svg", "/fluency-thumbnail.jpeg"]);
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -66,7 +66,7 @@ export default function FluencyVideo() {
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
         <div className="w-full relative flex items-center justify-center mb-3">
           <button 
-            className="absolute left-0 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
+            className="absolute left-0 text-slate-700 flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
             onClick={handleBack}
             aria-label="Back"
           >
@@ -76,7 +76,7 @@ export default function FluencyVideo() {
               </g>
             </svg>
           </button>
-          <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+          <img src="/letterschool-logo-name.svg" alt="LetterSchool" className="h-6 object-contain" />
         </div>
       </header>
 
@@ -104,10 +104,11 @@ export default function FluencyVideo() {
           >
             <video 
               ref={videoRef}
-              src="/reading.mp4" 
-              poster="/reading-poster.png"
+              src="/tas-tv13-focus.mp4" 
+              poster="/fluency-thumbnail.jpeg"
               className="w-full h-full object-cover" 
               playsInline
+              preload="metadata"
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
               onEnded={() => setIsPlaying(false)}
@@ -140,7 +141,7 @@ export default function FluencyVideo() {
       >
         <motion.button 
           whileTap={{ scale: 0.98 }}
-          className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
+          className="w-full h-14 bg-[#099FF9] hover:bg-[#0088EE] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
           onClick={handleContinue}
         >
           Continue

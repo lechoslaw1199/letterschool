@@ -26,7 +26,7 @@ const pageVariants = {
 export default function StartedReading() {
   const router = useRouter();
   const { direction, updateDirection, selectedStatus, setSelectedStatus } = useOnboarding();
-  const isReady = useImagePreload("/VlQPe_m3.webp");
+  const isReady = useImagePreload("/letterschool-logo-name.svg");
 
   const options = [
     "Yes, at school",
@@ -56,7 +56,7 @@ export default function StartedReading() {
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
         <div className="w-full relative flex items-center justify-center mb-3">
           <button 
-            className="absolute left-0 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
+            className="absolute left-0 text-slate-700 flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
             onClick={handleBack}
             aria-label="Back"
           >
@@ -66,7 +66,7 @@ export default function StartedReading() {
               </g>
             </svg>
           </button>
-          <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+          <img src="/letterschool-logo-name.svg" alt="LetterSchool" className="h-6 object-contain" />
         </div>
         <ProgressBar progress={8} />
       </header>
@@ -80,7 +80,7 @@ export default function StartedReading() {
         className="w-full max-w-[480px] px-5 pb-20 flex flex-col items-center"
       >
         <h1 className="text-[24px] font-bold mb-6 text-center text-black leading-tight mt-6 px-4">
-          Has your child already started <span className="text-[#5032F5]">learning to read</span>?
+          Has your child already started <span className="text-[#5032F5]">learning to write and trace letters</span>?
         </h1>
 
         <div className="w-full flex flex-col gap-3 px-4">

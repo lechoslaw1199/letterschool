@@ -63,7 +63,7 @@ export default function SocialProofAutism() {
               </g>
             </svg>
           </button>
-          <img src="/VlQPe_m3.webp" alt="Reading.com" className="h-6 object-contain" />
+          <img src="/letterschool-logo-name.svg" alt="LetterSchool" className="h-6 object-contain" />
         </div>
       </header>
 
@@ -80,7 +80,7 @@ export default function SocialProofAutism() {
             You&apos;re in good hands!
           </h1>
           <p className="text-[16px] text-[#221750]/80 font-medium text-start leading-relaxed opacity-90">
-            Hear from parents who have taught their children with autism to read with our program.
+            Hear from parents who have helped their children with autism learn to write and trace letters with LetterSchool.
           </p>
         </div>
 
