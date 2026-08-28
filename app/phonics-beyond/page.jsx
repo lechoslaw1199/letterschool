@@ -26,7 +26,7 @@ const pageVariants = {
 export default function PhonicsBeyond() {
   const router = useRouter();
   const { direction, updateDirection, selectedStatus } = useOnboarding();
-  const isReady = useImagePreload("/phonics.webp");
+  const isReady = useImagePreload("/a-writing.jpeg");
 
   const handleBack = () => {
     updateDirection(-1);
@@ -62,9 +62,9 @@ export default function PhonicsBeyond() {
       >
         <div className="w-full flex justify-center mb-8 relative">
           <img 
-            src="/phonics.webp" 
-            alt="Parent and child learning phonics" 
-            className="w-full max-w-[340px] object-contain"
+            src="/a-writing.jpeg" 
+            alt="Letter tracing and writing" 
+            className="w-full max-w-[360px] object-contain rounded-2xl shadow-sm"
           />
         </div>
 
