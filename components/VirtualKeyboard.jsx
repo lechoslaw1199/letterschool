@@ -87,7 +87,9 @@ export default function VirtualKeyboard({
       isFunctionKey = true;
       content = <span className="font-semibold text-[14px]">#+=</span>;
     } else if (key === '{space}') {
-      content = <span className="text-[14px] text-slate-500 font-normal">space</span>;
+      content = <span className="text-[14px] text-slate-500 font-semibold">space</span>;
+    } else if (key === '.com') {
+      content = <span className="font-semibold text-[14px]">.com</span>;
     }
 
     return (
@@ -101,7 +103,7 @@ export default function VirtualKeyboard({
           e.stopPropagation();
           handleKeyPress(key);
         }}
-        className={`h-11 md:h-12 rounded-lg flex items-center justify-center font-medium shadow-[0_1px_1px_rgba(0,0,0,0.25)] select-none text-[18px] md:text-[20px] transition-colors ${
+        className={`h-11 md:h-12 rounded-lg flex items-center justify-center font-semibold shadow-[0_1px_1px_rgba(0,0,0,0.25)] select-none text-[18px] md:text-[20px] transition-colors ${
           isFunctionKey
             ? 'bg-[#B0B7C1] text-slate-900 active:bg-[#9EA5AF]'
             : 'bg-white text-slate-900 active:bg-slate-200'

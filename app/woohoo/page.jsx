@@ -28,7 +28,7 @@ export default function EmailEntry() {
   const router = useRouter();
   const { parentEmail, setParentEmail, direction, updateDirection } = useOnboarding();
   const [email, setEmail] = useState(parentEmail || "");
-  const [showKeyboard, setShowKeyboard] = useState(true);
+  const [showKeyboard, setShowKeyboard] = useState(false);
   const isReady = useImagePreload(["/letterschool-logo-name.svg", "/Join.webp"]);
 
   const handleContinue = () => {
@@ -41,7 +41,7 @@ export default function EmailEntry() {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center bg-white md:px-6 font-quicksand overflow-x-hidden pb-[340px]">
+    <div className={`w-full min-h-screen flex flex-col items-center bg-white md:px-6 font-quicksand overflow-x-hidden transition-all duration-300 ${showKeyboard ? 'pb-[340px]' : 'pb-12'}`}>
       {/* Header */}
       <header className="w-full max-w-[450px] flex justify-center py-6">
         <img src="/letterschool-logo-name.svg" alt="LetterSchool" className="h-6 object-contain" />
@@ -63,11 +63,13 @@ export default function EmailEntry() {
         <div className="w-full px-4 mb-6">
           <input
             type="email"
+            inputMode="none"
             value={email}
+            onClick={() => setShowKeyboard(true)}
             onFocus={() => setShowKeyboard(true)}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
-            className="w-full h-14 px-5 rounded-2xl border-2 border-slate-300 bg-white outline-none focus:border-[#099FF9] transition-all text-[17px] font-medium text-[#221750] placeholder:text-slate-400 shadow-sm"
+            className="w-full h-14 px-5 rounded-2xl border-2 border-slate-300 bg-white outline-none focus:border-[#099FF9] transition-all text-[17px] font-medium text-[#221750] placeholder:text-slate-400 shadow-sm cursor-pointer"
           />
         </div>
 
