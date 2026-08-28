@@ -81,7 +81,7 @@ export default function ValueProposition() {
           LetterSchool's proven method uses letter tracing, phonics, and spelling games — empowering children to master letter formation through guided play.
         </p>
 
-        <p className="text-center text-black font-normal text-[18px] mb-8">
+        <p className="text-center text-black font-normal text-[18px]">
           It will work for your child as well!
         </p>
       </motion.main>
@@ -92,7 +92,7 @@ export default function ValueProposition() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[480px] px-8 sticky bottom-4 z-50 mt-auto pb-4"
+        className="fixed bottom-0 w-full max-w-[480px] px-8 z-50 pb-3 pt-2"
       >
         <motion.button 
           whileTap={{ scale: 0.98 }}
