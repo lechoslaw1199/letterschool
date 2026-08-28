@@ -106,7 +106,7 @@ export default function SocialProofAutism() {
       >
         <motion.button
           whileTap={{ scale: 0.98 }}
-          className="w-full h-14 bg-[#5032F5] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
+          className="w-full h-14 bg-[#099FF9] hover:bg-[#0088EE] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
           onClick={() => {
             updateDirection(1);
             router.push("/school-method");
