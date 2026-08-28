@@ -29,44 +29,32 @@ export default function ReviewsPage() {
   
   const reviews = [
     {
-      author: "Sarah M. (Kindergarten Mom)",
-      text: "My 4-year-old son refused to hold a pencil or practice letters. LetterSchool made it feel like an exciting game! The multi-sensory tracing and animations keep him focused, and his preschool teacher already noticed huge improvements in his pencil grip and confidence."
-    },
-    {
-      author: "Emily R., MS, OTR/L (Occupational Therapist)",
-      text: "As a pediatric OT, I recommend LetterSchool to all my clients with fine motor or sensory processing delays. The 3-step learning method (See, Trace, Write) builds proper letter formation habits without the frustration of traditional worksheets."
-    },
-    {
-      author: "David K. (Homeschool Parent of 2)",
-      text: "Homeschooling our daughter was overwhelming when it came to letter writing. LetterSchool took all the stress away. The choice of curricula (Handwriting Without Tears & D'Nealian) matches our state standards, and she proudly shows us every letter she writes!"
-    },
-    {
-      author: "AppySmarts.com",
+      source: "AppySmarts.com",
       text: "What we liked: The concept. Fun visuals. Ease of use. Extensive set of 3 letter words. 3 difficulty levels. Great for early learning practice (phonics, word and syllable formation and spelling)."
     },
     {
-      author: "Best Apps for Kids",
+      source: "Best Apps for Kids",
       text: "What a Fantastic Job these Developers Did! A handwriting lesson the fun way! Extremely enticing for kids and filled with colors, stars and praise. Certainly this is an app that should be in all preschool and kindergarten classes! This app is a great addition to your kid’s toolbox for life!"
     },
     {
-      author: "Your Therapy Source",
+      source: "Your Therapy Source",
       text: "Pretty impressed... I have tested out a few letter tracing apps and I give this one the award for the best so far."
     },
     {
-      author: "The iPhone App Review",
+      source: "The iPhone App Review",
       text: "Truly impressive! The app sets a definitive bar for teaching young children to write letters and numbers, and with a wealth of incredibly detailed and gorgeous animations, it will even entertain the tikes, too. It’s a truly impressive effort, and as this level of high-quality animation persists throughout the entire app, we can’t possibly recommend the graphics enough. Simply put, they’re divine."
     },
     {
-      author: "MakeUseOf.com",
+      source: "MakeUseOf.com",
       text: "One of “4 Wonderful Educational iPad Apps For Kids” LetterSchool is the kind of app I wish I had around when I was younger. In three easy steps, it teaches kids how to write letters and numbers, using just the right gradient to make it super easy to learn. The process includes different amusing effects for each letter, which makes the whole process fun and interesting."
     },
     {
-      author: "BestKidsApps.com",
+      source: "BestKidsApps.com",
       text: "This is educational technology as it should be! LetterSchool is a “best of the bunch” letter learning and handwriting app that will keep kids coming back for more. Subtle audio clues help kids learn the correct way to form letters. Simple animations boost the replay value. Teachers and occupational therapists will love the fact that they can designate lower or upper case letters (or numbers) as well as choose from three handwriting learning programs."
     }
   ];
 
-  const isReady = useImagePreload(["/letterschool-logo-name.svg", "/stars.webp"]);
+  const isReady = useImagePreload(["/letterschool-logo-name.svg"]);
 
   const handleBack = () => {
     updateDirection(-1);
@@ -115,13 +103,15 @@ export default function ReviewsPage() {
               key={index} 
               className="w-full bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 text-start transition-all"
             >
-              <img src="/stars.webp" alt="5 Stars" className="w-28 mb-3" />
-              <h3 className="text-[#221750] font-bold text-[17px] mb-2 leading-snug">
-                {review.author}
-              </h3>
-              <p className="text-slate-600 text-[15px] leading-[1.6] font-normal">
-                {review.text}
+              <div className="flex text-[#F59E0B] text-[18px] mb-3 tracking-widest">
+                ★★★★★
+              </div>
+              <p className="text-slate-600 text-[15px] leading-[1.6] font-normal mb-4">
+                &ldquo;{review.text}&rdquo;
               </p>
+              <h3 className="text-[#221750] font-bold text-[16px]">
+                {review.source}
+              </h3>
             </div>
           ))}
         </div>
