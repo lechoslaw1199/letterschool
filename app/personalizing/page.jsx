@@ -15,7 +15,7 @@ const pageVariants = {
 export default function Personalizing() {
   const router = useRouter();
   const { childName, selectedReason, homeChallenge, selectedStatus, setTeacherRecommended } = useOnboarding();
-  const isReady = useImagePreload("/personalizing.webp");
+  const isReady = useImagePreload("/kindergarten.webp");
   const [percentages, setPercentages] = useState([0, 0, 0, 0]);
   const [complete, setComplete] = useState(false);
   const [currentStepInfo, setCurrentStepInfo] = useState({ step: 0, startPercent: 0 });
@@ -130,9 +130,9 @@ export default function Personalizing() {
 
         <div className="w-full flex flex-col items-center">
           <img 
-            src="/personalizing.webp" 
-            alt="Did you know" 
-            className="w-full max-w-[400px] pt-3 object-contain"
+            src="/kindergarten.webp" 
+            alt="Kindergarten preparation" 
+            className="w-full max-w-[400px] pt-3 object-contain rounded-2xl"
           />
         </div>
       </motion.div>
