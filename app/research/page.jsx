@@ -58,7 +58,7 @@ export default function ValueProposition() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[480px] px-5 flex flex-col items-center flex-grow"
+        className="w-full max-w-[480px] px-5 flex flex-col items-center flex-grow pb-32"
       >
         <div className="flex flex-col items-center mt-4 w-full">
           <img src="/research-backed.webp" className="max-w-[280px] mb-6" alt="Research Backed" />
@@ -81,7 +81,7 @@ export default function ValueProposition() {
           LetterSchool's proven method uses letter tracing, phonics, and spelling games — empowering children to master letter formation through guided play.
         </p>
 
-        <p className="text-center text-black font-normal text-[18px]">
+        <p className="text-center text-black font-normal text-[18px] mb-8">
           It will work for your child as well!
         </p>
       </motion.main>
