@@ -100,7 +100,7 @@ export default function SocialProofPage() {
         </div>
 
         {/* Review Cards */}
-        <div className="w-full flex flex-col gap-4 mb-6">
+        <div className="w-full flex flex-col gap-4 mb-2">
           {parentReviews.map((review, index) => (
             <div
               key={index}
@@ -120,19 +120,6 @@ export default function SocialProofPage() {
               </p>
             </div>
           ))}
-        </div>
-
-        {/* Social Proof Footer */}
-        <div className="w-full flex flex-col items-center text-center px-4 mb-4 mt-2">
-          <p className="text-[14px] font-medium text-[#000000] leading-tight mb-4 uppercase tracking-wide">
-            THERE ARE THOUSANDS OF OTHER COMMENTS LIKE THIS ON SOCIAL MEDIA!
-          </p>
-          <p className="text-[#000000] font-bold mb-4">&</p>
-          <div className="flex flex-col items-center">
-            <div className="text-[#F59E0B] text-[18px] mb-1 tracking-[2px]">★★★★★</div>
-            <p className="text-[13px] font-bold text-[#182238] tracking-[0.5px] mb-1 uppercase">4.5 / 5 STARS RATED</p>
-            <p className="text-[13px] font-semibold text-[#64748B] tracking-[0.5px] uppercase">FROM 20,000+ PARENTS, TEACHERS & OTS</p>
-          </div>
         </div>
       </motion.main>
 
