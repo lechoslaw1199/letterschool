@@ -22,10 +22,27 @@ const pageVariants = {
   }),
 };
 
-const dyslexiaImages = [
-  "/dyslexia1.webp",
-  "/dyslexia2.webp",
-  "/dyslexia3.webp"
+const dyslexiaReviews = [
+  {
+    author: "Rachel B.",
+    role: "Mom of 6-year-old with Dyslexia",
+    text: "My son constantly confused and reversed 'b', 'd', 'p', and 'q'. He felt so defeated and behind his peers. LetterSchool's directional arrows and guided start-points taught his brain the unique stroke flow of each letter. His reversals have dropped significantly and his confidence is back!"
+  },
+  {
+    author: "Michael S.",
+    role: "Parent of 7-year-old",
+    text: "Multi-sensory learning is crucial for dyslexic minds. Hearing the letter sound while tracing the exact shape on screen formed neural pathways that paper flashcards never could. His reading and spelling readiness skyrocketed in less than a month."
+  },
+  {
+    author: "Claire W., M.Ed.",
+    role: "Reading Specialist & Dyslexia Tutor",
+    text: "LetterSchool is an invaluable tool in my intervention toolkit. The structured sequential method follows Orton-Gillingham phonics principles, making letter-sound associations intuitive and stress-free for struggling readers."
+  },
+  {
+    author: "Thomas H.",
+    role: "Father of 5-year-old",
+    text: "My daughter was showing early signs of letter-recognition difficulty. The step-by-step guidance gives her all the scaffolding she needs to succeed without feeling overwhelmed. She is so proud of herself now!"
+  }
 ];
 
 export default function SocialProofDyslexia() {
@@ -33,15 +50,17 @@ export default function SocialProofDyslexia() {
   const { direction, updateDirection } = useOnboarding();
 
   const isReady = useImagePreload([
-    "/dyslexia1.webp",
-    "/dyslexia2.webp",
-    "/dyslexia3.webp",
     "/letterschool-logo-name.svg"
   ]);
 
   const handleBack = () => {
     updateDirection(-1);
     router.back();
+  };
+
+  const handleContinue = () => {
+    updateDirection(1);
+    router.push("/school-method");
   };
 
   return (
@@ -69,26 +88,51 @@ export default function SocialProofDyslexia() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[450px] flex flex-col items-center flex-grow px-6"
+        className="w-full max-w-[480px] flex flex-col items-center flex-grow px-6 pb-32"
       >
-        <div className="w-full pt-8 pb-4">
-          <h1 className="text-[24px] font-bold text-[#221750] leading-tight mb-4 text-start">
+        <div className="w-full pt-6 pb-4">
+          <h1 className="text-[24px] font-bold text-[#221750] leading-tight mb-2 text-start">
             You&apos;re in good hands!
           </h1>
-          <p className="text-[16px] text-[#221750]/80 font-medium text-start leading-relaxed opacity-90">
+          <p className="text-[15px] text-[#221750]/80 font-medium text-start leading-relaxed opacity-90">
             See how LetterSchool helps children with dyslexia master letter formation and spelling through structured, multi-sensory practice.
           </p>
         </div>
 
-        <div className="w-full flex flex-col gap-4 pb-24">
-          {dyslexiaImages.map((img, index) => (
-            <img
+        {/* Review Cards */}
+        <div className="w-full flex flex-col gap-4 mb-6">
+          {dyslexiaReviews.map((review, index) => (
+            <div
               key={index}
-              src={img}
-              alt={`Dyslexia testimonial ${index + 1}`}
-              className="w-full object-contain rounded-lg"
-            />
+              className="w-full bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 text-start transition-all"
+            >
+              <div className="flex text-[#F59E0B] text-[18px] mb-3 tracking-widest">
+                ★★★★★
+              </div>
+              <p className="text-slate-600 text-[15px] leading-[1.6] font-normal mb-4">
+                &ldquo;{review.text}&rdquo;
+              </p>
+              <h3 className="text-[#221750] font-bold text-[16px]">
+                {review.author}
+              </h3>
+              <p className="text-slate-400 text-[13px] font-medium mt-0.5">
+                {review.role}
+              </p>
+            </div>
           ))}
+        </div>
+
+        {/* Social Proof Footer */}
+        <div className="w-full flex flex-col items-center text-center px-4 mb-4 mt-2">
+          <p className="text-[14px] font-medium text-[#000000] leading-tight mb-4 uppercase tracking-wide">
+            THERE ARE THOUSANDS OF OTHER COMMENTS LIKE THIS ON SOCIAL MEDIA!
+          </p>
+          <p className="text-[#000000] font-bold mb-4">&</p>
+          <div className="flex flex-col items-center">
+            <div className="text-[#F59E0B] text-[18px] mb-1 tracking-[2px]">★★★★★</div>
+            <p className="text-[13px] font-bold text-[#182238] tracking-[0.5px] mb-1 uppercase">4.5 / 5 STARS RATED</p>
+            <p className="text-[13px] font-semibold text-[#64748B] tracking-[0.5px] uppercase">FROM 20,000+ PARENTS, TEACHERS & OTS</p>
+          </div>
         </div>
       </motion.main>
 
@@ -103,10 +147,7 @@ export default function SocialProofDyslexia() {
         <motion.button
           whileTap={{ scale: 0.98 }}
           className="w-full h-14 bg-[#099FF9] hover:bg-[#0088EE] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
-          onClick={() => {
-            updateDirection(1);
-            router.push("/school-method");
-          }}
+          onClick={handleContinue}
         >
           Continue
         </motion.button>

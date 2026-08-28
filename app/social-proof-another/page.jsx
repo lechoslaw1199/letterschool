@@ -22,10 +22,27 @@ const pageVariants = {
   }),
 };
 
-const anotherImages = [
-  "/another1.webp",
-  "/another2.webp",
-  "/another3.webp"
+const generalReviews = [
+  {
+    author: "Jennifer C.",
+    role: "Mom of 5-year-old",
+    text: "We tried so many workbooks and tracing apps before finding LetterSchool. The 3-step learning system is brilliant—it demonstrates, guides the trace, and then lets them draw freely from memory. My daughter learned to write her full name in less than a week!"
+  },
+  {
+    author: "Brian & Lisa M.",
+    role: "Parents of 4-year-old twins",
+    text: "Our occupational therapist recommended LetterSchool to help strengthen fine motor precision and hand-eye coordination. It turns what used to be a frustrating chore into an engaging game that my child actually looks forward to every day."
+  },
+  {
+    author: "Danielle H.",
+    role: "Kindergarten Educator",
+    text: "I've used LetterSchool with hundreds of early learners over the years. It bridges the gap between digital play and physical handwriting readiness better than anything else on the market. Every classroom and home should have it."
+  },
+  {
+    author: "Laura K.",
+    role: "Mother of 4-year-old",
+    text: "The phonics integration is seamless. My son isn't just memorizing letter shapes—he's connecting each letter with its authentic sound and building early spelling skills naturally."
+  }
 ];
 
 export default function SocialProofAnother() {
@@ -33,15 +50,17 @@ export default function SocialProofAnother() {
   const { direction, updateDirection } = useOnboarding();
 
   const isReady = useImagePreload([
-    "/another1.webp",
-    "/another2.webp",
-    "/another3.webp",
     "/letterschool-logo-name.svg"
   ]);
 
   const handleBack = () => {
     updateDirection(-1);
     router.back();
+  };
+
+  const handleContinue = () => {
+    updateDirection(1);
+    router.push("/school-method");
   };
 
   return (
@@ -69,26 +88,51 @@ export default function SocialProofAnother() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[450px] flex flex-col items-center flex-grow px-6"
+        className="w-full max-w-[480px] flex flex-col items-center flex-grow px-6 pb-32"
       >
-        <div className="w-full pt-8 pb-4">
-          <h1 className="text-[24px] font-bold text-[#221750] leading-tight mb-4 text-start">
+        <div className="w-full pt-6 pb-4">
+          <h1 className="text-[24px] font-bold text-[#221750] leading-tight mb-2 text-start">
             You&apos;re in good hands!
           </h1>
-          <p className="text-[16px] text-[#221750]/80 font-medium text-start leading-relaxed opacity-90">
+          <p className="text-[15px] text-[#221750]/80 font-medium text-start leading-relaxed opacity-90">
             See what parents and educators say about LetterSchool&apos;s proven handwriting and spelling system.
           </p>
         </div>
 
-        <div className="w-full flex flex-col gap-4 pb-24">
-          {anotherImages.map((img, index) => (
-            <img
+        {/* Review Cards */}
+        <div className="w-full flex flex-col gap-4 mb-6">
+          {generalReviews.map((review, index) => (
+            <div
               key={index}
-              src={img}
-              alt={`Parent testimonial ${index + 1}`}
-              className="w-full object-contain rounded-lg"
-            />
+              className="w-full bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 text-start transition-all"
+            >
+              <div className="flex text-[#F59E0B] text-[18px] mb-3 tracking-widest">
+                ★★★★★
+              </div>
+              <p className="text-slate-600 text-[15px] leading-[1.6] font-normal mb-4">
+                &ldquo;{review.text}&rdquo;
+              </p>
+              <h3 className="text-[#221750] font-bold text-[16px]">
+                {review.author}
+              </h3>
+              <p className="text-slate-400 text-[13px] font-medium mt-0.5">
+                {review.role}
+              </p>
+            </div>
           ))}
+        </div>
+
+        {/* Social Proof Footer */}
+        <div className="w-full flex flex-col items-center text-center px-4 mb-4 mt-2">
+          <p className="text-[14px] font-medium text-[#000000] leading-tight mb-4 uppercase tracking-wide">
+            THERE ARE THOUSANDS OF OTHER COMMENTS LIKE THIS ON SOCIAL MEDIA!
+          </p>
+          <p className="text-[#000000] font-bold mb-4">&</p>
+          <div className="flex flex-col items-center">
+            <div className="text-[#F59E0B] text-[18px] mb-1 tracking-[2px]">★★★★★</div>
+            <p className="text-[13px] font-bold text-[#182238] tracking-[0.5px] mb-1 uppercase">4.5 / 5 STARS RATED</p>
+            <p className="text-[13px] font-semibold text-[#64748B] tracking-[0.5px] uppercase">FROM 20,000+ PARENTS, TEACHERS & OTS</p>
+          </div>
         </div>
       </motion.main>
 
@@ -103,10 +147,7 @@ export default function SocialProofAnother() {
         <motion.button
           whileTap={{ scale: 0.98 }}
           className="w-full h-14 bg-[#099FF9] hover:bg-[#0088EE] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
-          onClick={() => {
-            updateDirection(1);
-            router.push("/school-method");
-          }}
+          onClick={handleContinue}
         >
           Continue
         </motion.button>

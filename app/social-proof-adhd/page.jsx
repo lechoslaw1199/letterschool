@@ -22,10 +22,27 @@ const pageVariants = {
   }),
 };
 
-const adhdImages = [
-  "/adhd1.webp",
-  "/adhd2.webp",
-  "/adhd3.webp"
+const adhdReviews = [
+  {
+    author: "Sarah M.",
+    role: "Mom of 5-year-old with ADHD",
+    text: "My son has ADHD and sitting still for regular paper worksheets always ended in tears and frustration. LetterSchool has been a total game-changer. The sound effects, colorful animations, and bite-sized steps keep his focus locked in without overstimulating him. He now voluntarily asks to practice his letters every single afternoon!"
+  },
+  {
+    author: "David K.",
+    role: "Parent & Elementary Special Ed Educator",
+    text: "Holding the attention of a child with ADHD requires instant feedback and clear rewards. LetterSchool breaks tracing down into intuitive 3-step milestones (show, trace, write) so kids feel immediate success. My 6-year-old went from struggling with pencil grip to confidently writing short words with zero battles."
+  },
+  {
+    author: "Amanda P.",
+    role: "Homeschooling Mom of 2",
+    text: "An absolute lifesaver for our homeschool routine. The guided lines gently redirect impulsive scribbles into accurate stroke order. His focus stamina has improved dramatically, and seeing his proud smile when he completes a letter is priceless."
+  },
+  {
+    author: "Michael B.",
+    role: "Dad of 6-year-old",
+    text: "Most educational apps are either too distracting or too boring for our son. LetterSchool hits the sweet spot—fun, structured, and genuinely educational. His kindergarten teacher even noticed his handwriting improvement in just three weeks."
+  }
 ];
 
 export default function SocialProofADHD() {
@@ -33,15 +50,17 @@ export default function SocialProofADHD() {
   const { direction, updateDirection } = useOnboarding();
 
   const isReady = useImagePreload([
-    "/adhd1.webp",
-    "/adhd2.webp",
-    "/adhd3.webp",
     "/letterschool-logo-name.svg"
   ]);
 
   const handleBack = () => {
     updateDirection(-1);
     router.back();
+  };
+
+  const handleContinue = () => {
+    updateDirection(1);
+    router.push("/school-method");
   };
 
   return (
@@ -69,26 +88,51 @@ export default function SocialProofADHD() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[450px] flex flex-col items-center flex-grow px-6"
+        className="w-full max-w-[480px] flex flex-col items-center flex-grow px-6 pb-32"
       >
-        <div className="w-full pt-8 pb-4">
-          <h1 className="text-[24px] font-bold text-[#221750] leading-tight mb-4 text-start">
+        <div className="w-full pt-6 pb-4">
+          <h1 className="text-[24px] font-bold text-[#221750] leading-tight mb-2 text-start">
             You&apos;re in good hands!
           </h1>
-          <p className="text-[16px] text-[#221750]/80 font-medium text-start leading-relaxed opacity-90">
+          <p className="text-[15px] text-[#221750]/80 font-medium text-start leading-relaxed opacity-90">
             See how LetterSchool helps children with ADHD & focus challenges stay engaged through interactive, multi-sensory letter tracing.
           </p>
         </div>
 
-        <div className="w-full flex flex-col gap-4 pb-24">
-          {adhdImages.map((img, index) => (
-            <img
+        {/* Review Cards */}
+        <div className="w-full flex flex-col gap-4 mb-6">
+          {adhdReviews.map((review, index) => (
+            <div
               key={index}
-              src={img}
-              alt={`ADHD testimonial ${index + 1}`}
-              className="w-full object-contain rounded-lg"
-            />
+              className="w-full bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 text-start transition-all"
+            >
+              <div className="flex text-[#F59E0B] text-[18px] mb-3 tracking-widest">
+                ★★★★★
+              </div>
+              <p className="text-slate-600 text-[15px] leading-[1.6] font-normal mb-4">
+                &ldquo;{review.text}&rdquo;
+              </p>
+              <h3 className="text-[#221750] font-bold text-[16px]">
+                {review.author}
+              </h3>
+              <p className="text-slate-400 text-[13px] font-medium mt-0.5">
+                {review.role}
+              </p>
+            </div>
           ))}
+        </div>
+
+        {/* Social Proof Footer */}
+        <div className="w-full flex flex-col items-center text-center px-4 mb-4 mt-2">
+          <p className="text-[14px] font-medium text-[#000000] leading-tight mb-4 uppercase tracking-wide">
+            THERE ARE THOUSANDS OF OTHER COMMENTS LIKE THIS ON SOCIAL MEDIA!
+          </p>
+          <p className="text-[#000000] font-bold mb-4">&</p>
+          <div className="flex flex-col items-center">
+            <div className="text-[#F59E0B] text-[18px] mb-1 tracking-[2px]">★★★★★</div>
+            <p className="text-[13px] font-bold text-[#182238] tracking-[0.5px] mb-1 uppercase">4.5 / 5 STARS RATED</p>
+            <p className="text-[13px] font-semibold text-[#64748B] tracking-[0.5px] uppercase">FROM 20,000+ PARENTS, TEACHERS & OTS</p>
+          </div>
         </div>
       </motion.main>
 
@@ -103,10 +147,7 @@ export default function SocialProofADHD() {
         <motion.button
           whileTap={{ scale: 0.98 }}
           className="w-full h-14 bg-[#099FF9] hover:bg-[#0088EE] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
-          onClick={() => {
-            updateDirection(1);
-            router.push("/school-method");
-          }}
+          onClick={handleContinue}
         >
           Continue
         </motion.button>

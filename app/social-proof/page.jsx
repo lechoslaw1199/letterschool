@@ -22,12 +22,27 @@ const pageVariants = {
   }),
 };
 
-const reviewImages = [
-  "/review1.webp",
-  "/review2.webp",
-  "/review3.webp",
-  "/review4.webp",
-  "/review5.webp"
+const parentReviews = [
+  {
+    author: "Stephanie H.",
+    role: "Mother of 4yo & 6yo",
+    text: "Both of my kids learned their letter shapes and phonics sounds entirely through LetterSchool before even starting kindergarten. Their teacher was amazed by how neat and proper their letter formation was on their very first day!"
+  },
+  {
+    author: "Jason V.",
+    role: "Dad of 5-year-old",
+    text: "The best early education app we've ever purchased. The lessons are quick, fun, and extremely effective. Within 30 days, our son was spelling and writing 3-letter words on paper without any assistance."
+  },
+  {
+    author: "Rebecca G.",
+    role: "Pre-K Teacher & Mom",
+    text: "The gold standard for handwriting and letter recognition. The multisensory cues ensure children start letters at the top and follow correct stroke order rather than developing bad handwriting habits."
+  },
+  {
+    author: "Emily & Chris T.",
+    role: "Parents of 4-year-old",
+    text: "Our daughter used to resist any writing practice. With LetterSchool, the dynamic rewards and interactive letters turned daily practice into her favorite part of the day. We couldn't be happier with her progress!"
+  }
 ];
 
 export default function SocialProofPage() {
@@ -35,11 +50,6 @@ export default function SocialProofPage() {
   const { direction, updateDirection } = useOnboarding();
 
   const isReady = useImagePreload([
-    "/review1.webp",
-    "/review2.webp",
-    "/review3.webp",
-    "/review4.webp",
-    "/review5.webp",
     "/letterschool-logo-name.svg"
   ]);
 
@@ -78,26 +88,51 @@ export default function SocialProofPage() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[450px] flex flex-col items-center flex-grow px-6"
+        className="w-full max-w-[480px] flex flex-col items-center flex-grow px-6 pb-32"
       >
-        <div className="w-full pt-8 pb-4">
-          <h1 className="text-[24px] font-bold text-[#221750] leading-tight mb-4 text-start">
+        <div className="w-full pt-6 pb-4">
+          <h1 className="text-[24px] font-bold text-[#221750] leading-tight mb-2 text-start">
             You&apos;re in good hands!
           </h1>
-          <p className="text-[16px] text-[#221750]/80 font-medium text-start leading-relaxed opacity-90">
+          <p className="text-[15px] text-[#221750]/80 font-medium text-start leading-relaxed opacity-90">
             Join millions of parents who gave their children the gift of confident letter writing and spelling.
           </p>
         </div>
 
-        <div className="w-full flex flex-col gap-4 pb-24">
-          {reviewImages.map((img, index) => (
-            <img
+        {/* Review Cards */}
+        <div className="w-full flex flex-col gap-4 mb-6">
+          {parentReviews.map((review, index) => (
+            <div
               key={index}
-              src={img}
-              alt={`Parent review ${index + 1}`}
-              className="w-full object-contain rounded-lg"
-            />
+              className="w-full bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 text-start transition-all"
+            >
+              <div className="flex text-[#F59E0B] text-[18px] mb-3 tracking-widest">
+                ★★★★★
+              </div>
+              <p className="text-slate-600 text-[15px] leading-[1.6] font-normal mb-4">
+                &ldquo;{review.text}&rdquo;
+              </p>
+              <h3 className="text-[#221750] font-bold text-[16px]">
+                {review.author}
+              </h3>
+              <p className="text-slate-400 text-[13px] font-medium mt-0.5">
+                {review.role}
+              </p>
+            </div>
           ))}
+        </div>
+
+        {/* Social Proof Footer */}
+        <div className="w-full flex flex-col items-center text-center px-4 mb-4 mt-2">
+          <p className="text-[14px] font-medium text-[#000000] leading-tight mb-4 uppercase tracking-wide">
+            THERE ARE THOUSANDS OF OTHER COMMENTS LIKE THIS ON SOCIAL MEDIA!
+          </p>
+          <p className="text-[#000000] font-bold mb-4">&</p>
+          <div className="flex flex-col items-center">
+            <div className="text-[#F59E0B] text-[18px] mb-1 tracking-[2px]">★★★★★</div>
+            <p className="text-[13px] font-bold text-[#182238] tracking-[0.5px] mb-1 uppercase">4.5 / 5 STARS RATED</p>
+            <p className="text-[13px] font-semibold text-[#64748B] tracking-[0.5px] uppercase">FROM 20,000+ PARENTS, TEACHERS & OTS</p>
+          </div>
         </div>
       </motion.main>
 

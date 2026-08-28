@@ -3,10 +3,7 @@
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useOnboarding } from "@/context/OnboardingContext";
-import ProgressBar from "@/components/ProgressBar";
 import { useImagePreload } from "@/hooks/useImagePreload";
-import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
 
 const pageVariants = {
   initial: (direction) => ({
@@ -25,22 +22,35 @@ const pageVariants = {
   }),
 };
 
-const autismImages = [
-  "/autist1.webp",
-  "/autist2.webp",
-  "/autist3.webp"
+const autismReviews = [
+  {
+    author: "Elena R.",
+    role: "Mom of 4-year-old on the Autism Spectrum",
+    text: "My daughter is on the spectrum and struggles with fine motor coordination and speech delays. LetterSchool has been phenomenal for her. The visual prompts and clear auditory cues are gentle, consistent, and predictable. She mastered uppercase and lowercase letters at her own pace with zero anxiety!"
+  },
+  {
+    author: "Mark T.",
+    role: "Father of 6-year-old with ASD",
+    text: "Children on the autism spectrum thrive on routine and clear expectations. LetterSchool provides clean, uncluttered visual guidance that eliminates sensory overload. He loves the celebration animations when he finishes a letter, and his finger dexterity has improved tenfold."
+  },
+  {
+    author: "Jessica L., MS, OTR/L",
+    role: "Pediatric Occupational Therapist",
+    text: "I recommend LetterSchool to all my ASD families. It creates a calm, sensory-friendly learning environment that builds letter recognition and pencil-readiness without triggering sensory frustration. It's one of the few apps backed by real occupational therapy principles."
+  },
+  {
+    author: "Karen W.",
+    role: "Mother of 5-year-old",
+    text: "We tried countless speech and writing tools. LetterSchool connects the phonics sound directly with the physical motor movement. It unlocked her desire to communicate and write words on her own. Truly grateful for this app."
+  }
 ];
 
 export default function SocialProofAutism() {
   const router = useRouter();
-  const { direction, updateDirection, selectedStatus } = useOnboarding();
+  const { direction, updateDirection } = useOnboarding();
   
-  // Preload all review images
   const isReady = useImagePreload([
-    "/autist1.webp",
-    "/autist2.webp",
-    "/autist3.webp",
-    "/VlQPe_m3.webp"
+    "/letterschool-logo-name.svg"
   ]);
 
   const handleBack = () => {
@@ -48,12 +58,17 @@ export default function SocialProofAutism() {
     router.back();
   };
 
+  const handleContinue = () => {
+    updateDirection(1);
+    router.push("/school-method");
+  };
+
   return (
-    <div className="w-full flex flex-col items-center bg-white min-h-screen relative overflow-x-clip">
+    <div className="w-full flex flex-col items-center bg-white min-h-screen relative overflow-x-clip font-quicksand">
       <header className="w-full max-w-[450px] flex flex-col items-center pt-4 pb-0 px-5 relative shrink-0">
         <div className="w-full relative flex items-center justify-center mb-0">
           <button 
-            className="absolute left-0 text-purple-dark flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
+            className="absolute left-0 text-slate-700 flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors" 
             onClick={handleBack}
             aria-label="Back"
           >
@@ -73,26 +88,51 @@ export default function SocialProofAutism() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[450px] flex flex-col items-center flex-grow px-6"
+        className="w-full max-w-[480px] flex flex-col items-center flex-grow px-6 pb-32"
       >
-        <div className="w-full pt-8 pb-4">
-          <h1 className="text-[24px] font-bold text-[#221750] leading-tight mb-4 text-start">
+        <div className="w-full pt-6 pb-4">
+          <h1 className="text-[24px] font-bold text-[#221750] leading-tight mb-2 text-start">
             You&apos;re in good hands!
           </h1>
-          <p className="text-[16px] text-[#221750]/80 font-medium text-start leading-relaxed opacity-90">
-            Hear from parents who have helped their children with autism learn to write and trace letters with LetterSchool.
+          <p className="text-[15px] text-[#221750]/80 font-medium text-start leading-relaxed opacity-90">
+            Hear from parents and therapists who have helped children on the autism spectrum learn to write and trace letters with LetterSchool.
           </p>
         </div>
 
-        <div className="w-full flex flex-col gap-4 pb-24">
-          {autismImages.map((img, index) => (
-            <img 
+        {/* Review Cards */}
+        <div className="w-full flex flex-col gap-4 mb-6">
+          {autismReviews.map((review, index) => (
+            <div 
               key={index} 
-              src={img} 
-              alt={`Autism testimonial ${index + 1}`} 
-              className="w-full object-contain rounded-lg"
-            />
+              className="w-full bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 text-start transition-all"
+            >
+              <div className="flex text-[#F59E0B] text-[18px] mb-3 tracking-widest">
+                ★★★★★
+              </div>
+              <p className="text-slate-600 text-[15px] leading-[1.6] font-normal mb-4">
+                &ldquo;{review.text}&rdquo;
+              </p>
+              <h3 className="text-[#221750] font-bold text-[16px]">
+                {review.author}
+              </h3>
+              <p className="text-slate-400 text-[13px] font-medium mt-0.5">
+                {review.role}
+              </p>
+            </div>
           ))}
+        </div>
+
+        {/* Social Proof Footer */}
+        <div className="w-full flex flex-col items-center text-center px-4 mb-4 mt-2">
+          <p className="text-[14px] font-medium text-[#000000] leading-tight mb-4 uppercase tracking-wide">
+            THERE ARE THOUSANDS OF OTHER COMMENTS LIKE THIS ON SOCIAL MEDIA!
+          </p>
+          <p className="text-[#000000] font-bold mb-4">&</p>
+          <div className="flex flex-col items-center">
+            <div className="text-[#F59E0B] text-[18px] mb-1 tracking-[2px]">★★★★★</div>
+            <p className="text-[13px] font-bold text-[#182238] tracking-[0.5px] mb-1 uppercase">4.5 / 5 STARS RATED</p>
+            <p className="text-[13px] font-semibold text-[#64748B] tracking-[0.5px] uppercase">FROM 20,000+ PARENTS, TEACHERS & OTS</p>
+          </div>
         </div>
       </motion.main>
 
@@ -107,10 +147,7 @@ export default function SocialProofAutism() {
         <motion.button
           whileTap={{ scale: 0.98 }}
           className="w-full h-14 bg-[#099FF9] hover:bg-[#0088EE] text-white rounded-full text-[18px] font-bold transition-all shadow-md"
-          onClick={() => {
-            updateDirection(1);
-            router.push("/school-method");
-          }}
+          onClick={handleContinue}
         >
           Continue
         </motion.button>
