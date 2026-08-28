@@ -27,28 +27,28 @@ const challengeContent = {
   "Lack of time": {
     title: "We get it: life gets busy!",
     content: "That's why we've created short 15-minute lessons that you can fit into your schedule a few times a week.\n\nDon't try to do too much. Consistency is key, and slow and steady wins the race!",
-    image: "/not_yet_image.webp"
+    image: "/program.jpg"
   },
   "Too expensive": {
     title: "Less expensive than a tutor!",
     content: "While the LetterSchool program requires a paid subscription, we do our best to keep it affordable.",
     highlight: "It's a fraction of the cost of a private tutor!",
-    image: "/not_yet_image.webp"
+    image: "/program.jpg"
   },
   "Ineffective program(s)": {
     title: "LetterSchool is research-backed and proven to work!",
     content: "Not to throw shade on other \"educational\" apps, but a lot of them provide entertainment without real learning.\n\nOur guided letter-tracing method is based on proven handwriting pedagogy and proven to work!",
-    image: "/not_yet_image.webp"
+    image: "/program.jpg"
   },
   "Lack of motivation from them": {
     title: "Quick progress + fun = motivation",
     content: "Our lessons are fun and built so that your child progresses quickly, feels accomplished, and comes back for more!",
-    image: "/not_yet_image.webp"
+    image: "/program.jpg"
   },
   "Something else": {
     title: "LetterSchool is research-backed and proven to work!",
     content: "Most apps for teaching letter writing can be boring or ineffective.\n\nWe're confident we've built the most engaging letter-writing and spelling program on earth, so you never have to look anywhere else!",
-    image: "/not_yet_image.webp"
+    image: "/program.jpg"
   }
 };
 
@@ -99,7 +99,7 @@ export default function ChallengeResponse() {
           <img 
             src={currentContent.image} 
             alt="Teaching challenge" 
-            className="w-full max-w-[380px] object-contain"
+            className="w-full max-w-[380px] object-contain rounded-2xl shadow-sm"
           />
         </div>
 
