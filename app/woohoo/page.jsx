@@ -63,21 +63,28 @@ export default function EmailEntry() {
         <div className="w-full px-4 mb-6">
           <div
             onClick={() => setShowKeyboard(true)}
-            className={`w-full h-14 px-5 rounded-2xl border-2 transition-all flex items-center shadow-sm cursor-pointer ${
+            className={`w-full h-14 px-5 rounded-2xl border-2 transition-all flex items-center shadow-sm cursor-pointer overflow-hidden ${
               showKeyboard ? 'border-[#099FF9] ring-2 ring-[#099FF9]/20 bg-white' : 'border-slate-300 bg-white'
             }`}
           >
-            <input
-              type="text"
-              readOnly
-              tabIndex={-1}
-              inputMode="none"
-              value={email}
-              placeholder="Enter your email"
-              className="w-full bg-transparent outline-none text-[17px] font-medium text-[#221750] placeholder:text-slate-400 cursor-pointer pointer-events-none"
-            />
-            {showKeyboard && (
-              <span className="w-[2px] h-6 bg-[#099FF9] animate-pulse ml-0.5 inline-block shrink-0" />
+            {!email ? (
+              <div className="flex items-center w-full">
+                {showKeyboard && (
+                  <span className="w-[2px] h-6 bg-[#099FF9] animate-pulse mr-0.5 inline-block shrink-0" />
+                )}
+                <span className="text-[17px] font-medium text-slate-400 select-none">
+                  Enter your email
+                </span>
+              </div>
+            ) : (
+              <div className="flex items-center w-full">
+                <span className="text-[17px] font-medium text-[#221750] whitespace-pre select-none">
+                  {email}
+                </span>
+                {showKeyboard && (
+                  <span className="w-[2px] h-6 bg-[#099FF9] animate-pulse ml-0.5 inline-block shrink-0" />
+                )}
+              </div>
             )}
           </div>
         </div>
