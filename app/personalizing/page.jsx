@@ -128,11 +128,11 @@ export default function Personalizing() {
           })}
         </div>
 
-        <div className="w-full flex flex-col items-center">
+        <div className="w-full flex flex-col items-center mt-6">
           <img 
             src="/kindergarten.webp" 
             alt="Kindergarten preparation" 
-            className="w-full max-w-[400px] pt-3 object-contain rounded-2xl"
+            className="w-full max-w-[450px] object-contain rounded-2xl shadow-sm"
           />
         </div>
       </motion.div>
