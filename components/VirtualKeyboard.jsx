@@ -12,6 +12,34 @@ export default function VirtualKeyboard({
   type = "default", // "default" or "email"
 }) {
   const [layout, setLayout] = useState('lowercase'); // 'lowercase', 'uppercase', 'numbers', 'symbols'
+  
+  React.useEffect(() => {
+    if (!showKeyboard) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Backspace') {
+        e.preventDefault();
+        if (value.length > 0) {
+          onChange(value.slice(0, -1));
+        }
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (onDone) onDone();
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        if (onCancel) onCancel();
+      } else if (e.key === ' ') {
+        e.preventDefault();
+        onChange(value + ' ');
+      } else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        e.preventDefault();
+        onChange(value + e.key);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [showKeyboard, value, onChange, onDone, onCancel]);
 
   if (!showKeyboard) return null;
 

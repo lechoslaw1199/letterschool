@@ -80,16 +80,25 @@ export default function ChildNamePage() {
           <label className="block text-[15px] font-semibold text-[#221750] mb-2">
             What&apos;s your child&apos;s first name?
           </label>
-          <input
-            type="text"
-            inputMode="none"
-            value={name}
+          <div
             onClick={() => setShowKeyboard(true)}
-            onFocus={() => setShowKeyboard(true)}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Add name"
-            className="w-full h-14 px-5 rounded-2xl border-2 border-slate-300 bg-white outline-none focus:border-[#099FF9] transition-all text-[17px] font-medium text-[#221750] placeholder:text-slate-400 shadow-sm cursor-pointer"
-          />
+            className={`w-full h-14 px-5 rounded-2xl border-2 transition-all flex items-center shadow-sm cursor-pointer ${
+              showKeyboard ? 'border-[#099FF9] ring-2 ring-[#099FF9]/20 bg-white' : 'border-slate-300 bg-white'
+            }`}
+          >
+            <input
+              type="text"
+              readOnly
+              tabIndex={-1}
+              inputMode="none"
+              value={name}
+              placeholder="Add name"
+              className="w-full bg-transparent outline-none text-[17px] font-medium text-[#221750] placeholder:text-slate-400 cursor-pointer pointer-events-none"
+            />
+            {showKeyboard && (
+              <span className="w-[2px] h-6 bg-[#099FF9] animate-pulse ml-0.5 inline-block shrink-0" />
+            )}
+          </div>
         </div>
 
         {/* Continue Button */}
