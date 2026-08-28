@@ -26,7 +26,7 @@ const pageVariants = {
 export default function ValueProposition() {
   const router = useRouter();
   const { direction, updateDirection } = useOnboarding();
-  const isReady = useImagePreload(["/research-backed.webp", "/welcome_p.webp"]);
+  const isReady = useImagePreload(["/research-backed.webp", "/welcome.jpeg"]);
 
   const handleBack = () => {
     updateDirection(-1); // Moving backward
@@ -63,7 +63,7 @@ export default function ValueProposition() {
         <div className="flex flex-col items-center mt-4 w-full">
           <img src="/research-backed.webp" className="max-w-[280px] mb-6" alt="Research Backed" />
           
-          <img src="/welcome_p.webp" className="w-full max-w-[480px] mb-2 object-contain" alt="Kids learning" />
+          <img src="/welcome.jpeg" className="w-full max-w-[480px] mb-2 object-contain" alt="Kids learning" />
           
           <p className="text-[14px] italic text-[#221750] font-medium text-center mb-4">
             Join <span className="font-bold">more than 7 million children</span> <br /> who've learned to write and spell with LetterSchool!
