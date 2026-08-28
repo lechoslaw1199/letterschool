@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useOnboarding } from "@/context/OnboardingContext";
 import { useState } from "react";
 import { useImagePreload } from "@/hooks/useImagePreload";
+import VirtualKeyboard from "@/components/VirtualKeyboard";
 
 const pageVariants = {
   initial: (direction) => ({
@@ -27,6 +28,7 @@ export default function ChildNamePage() {
   const router = useRouter();
   const { childName, setChildName, direction, updateDirection } = useOnboarding();
   const [name, setName] = useState(childName || "");
+  const [showKeyboard, setShowKeyboard] = useState(true);
   const isReady = useImagePreload(["/letterschool-logo-name.svg", "/kidSafe.webp"]);
 
   const handleBack = () => {
@@ -43,7 +45,7 @@ export default function ChildNamePage() {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center bg-white px-6 font-quicksand overflow-x-hidden">
+    <div className="w-full min-h-screen flex flex-col items-center bg-white px-6 font-quicksand overflow-x-hidden pb-[340px]">
       {/* Header */}
       <header className="w-full max-w-[450px] flex items-center justify-center py-6 relative">
         <button 
@@ -66,18 +68,25 @@ export default function ChildNamePage() {
         exit="exit"
         className="w-full max-w-[430px] flex flex-col items-center"
       >
-        <h1 className="text-[24px] font-bold text-[#221750] text-center mb-6 leading-tight px-4">
-          What is your child&apos;s first name or nickname?
+        <h1 className="text-[24px] font-bold text-[#221750] text-center mb-2 leading-tight px-4">
+          Give your child the best learning journey!
         </h1>
+        <p className="text-[14px] text-slate-500 text-center mb-6 px-4">
+          Providing this info helps us pick content that&apos;s just right
+        </p>
 
         {/* Name Input */}
-        <div className="w-full px-4 mb-6">
+        <div className="w-full px-4 mb-5">
+          <label className="block text-[15px] font-semibold text-[#221750] mb-2">
+            What&apos;s your child&apos;s first name?
+          </label>
           <input
             type="text"
             value={name}
+            onFocus={() => setShowKeyboard(true)}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Enter your child's first name or nickname"
-            className="w-full h-14 px-6 rounded-xl border-2 border-black bg-white outline-none focus:border-[#a2a2a2] transition-all text-[16px] font-medium text-[#221750] placeholder:text-slate-400 shadow-sm"
+            placeholder="Add name"
+            className="w-full h-14 px-5 rounded-2xl border-2 border-slate-300 bg-white outline-none focus:border-[#099FF9] transition-all text-[17px] font-medium text-[#221750] placeholder:text-slate-400 shadow-sm"
           />
         </div>
 
@@ -96,31 +105,37 @@ export default function ChildNamePage() {
         </div>
 
         {/* Tip Box */}
-        <div className="w-full px-4 mb-8">
-          <div className="bg-[#FFECFF] border border-[#FBA0FF] rounded-xl py-2 px-4 text-center">
-            <p className="text-[14px] text-[#221750] font-medium">
+        <div className="w-full px-4 mb-6">
+          <div className="bg-[#FFECFF] border border-[#FBA0FF] rounded-xl py-2.5 px-4 text-center">
+            <p className="text-[13px] text-[#221750] font-medium">
               Tip: You can add more profiles later (up to 3 children)
             </p>
           </div>
         </div>
 
         {/* kidSAFE Logo */}
-        <div className="flex flex-col items-center mb-6">
+        <div className="flex flex-col items-center mb-4">
           <img 
             src="/kidSafe.webp" 
             alt="kidSAFE Certified" 
-            className="h-14 object-contain mb-3"
+            className="h-12 object-contain mb-2"
           />
           <div className="text-center px-4">
-            <p className="text-[12px] text-slate-500 font-medium leading-tight mb-1">
-              We never share or sell any information!
-            </p>
             <p className="text-[12px] text-slate-500 font-medium leading-tight">
-              Your child name is only used to personalize the experience.
+              We never share or sell any information!
             </p>
           </div>
         </div>
       </motion.main>
+
+      {/* On-Screen Virtual Keyboard */}
+      <VirtualKeyboard
+        value={name}
+        onChange={setName}
+        onDone={handleContinue}
+        onCancel={() => setShowKeyboard(false)}
+        showKeyboard={showKeyboard}
+      />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useOnboarding } from "@/context/OnboardingContext";
 import { useState } from "react";
 import { useImagePreload } from "@/hooks/useImagePreload";
+import VirtualKeyboard from "@/components/VirtualKeyboard";
 
 const pageVariants = {
   initial: (direction) => ({
@@ -27,6 +28,7 @@ export default function EmailEntry() {
   const router = useRouter();
   const { parentEmail, setParentEmail, direction, updateDirection } = useOnboarding();
   const [email, setEmail] = useState(parentEmail || "");
+  const [showKeyboard, setShowKeyboard] = useState(true);
   const isReady = useImagePreload(["/letterschool-logo-name.svg", "/Join.webp"]);
 
   const handleContinue = () => {
@@ -39,7 +41,7 @@ export default function EmailEntry() {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center bg-white md:px-6 font-quicksand overflow-x-hidden">
+    <div className="w-full min-h-screen flex flex-col items-center bg-white md:px-6 font-quicksand overflow-x-hidden pb-[340px]">
       {/* Header */}
       <header className="w-full max-w-[450px] flex justify-center py-6">
         <img src="/letterschool-logo-name.svg" alt="LetterSchool" className="h-6 object-contain" />
@@ -51,7 +53,7 @@ export default function EmailEntry() {
         initial="initial"
         animate={isReady ? "animate" : "initial"}
         exit="exit"
-        className="w-full max-w-[430px] flex flex-col items-center pt-8"
+        className="w-full max-w-[430px] flex flex-col items-center pt-4"
       >
         <h1 className="text-[24px] font-bold text-[#221750] text-center mb-6 leading-tight px-4">
           Enter your email to get started with a personalized writing plan
@@ -62,14 +64,15 @@ export default function EmailEntry() {
           <input
             type="email"
             value={email}
+            onFocus={() => setShowKeyboard(true)}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
-            className="w-full h-14 px-3 rounded-xl border-2 border-[#000] bg-[#F5F9FF]/30 outline-none focus:border-[#a2a2a2] transition-all text-[16px] font-medium text-[#221750] placeholder:text-slate-400 shadow-sm"
+            className="w-full h-14 px-5 rounded-2xl border-2 border-slate-300 bg-white outline-none focus:border-[#099FF9] transition-all text-[17px] font-medium text-[#221750] placeholder:text-slate-400 shadow-sm"
           />
         </div>
 
         {/* Continue Button */}
-        <div className="w-full px-4 mb-8">
+        <div className="w-full px-4 mb-6">
           <motion.button
             whileTap={email.includes('@') ? { scale: 0.98 } : {}}
             disabled={!email.includes('@')}
@@ -83,8 +86,8 @@ export default function EmailEntry() {
         </div>
 
         {/* Privacy Note */}
-        <div className="w-full px-8 text-center mb-8">
-          <p className="text-[14px] text-slate-700 font-medium leading-relaxed">
+        <div className="w-full px-8 text-center mb-6">
+          <p className="text-[13px] text-slate-500 font-medium leading-relaxed">
             We respect your privacy and never spam. Please read our{" "}
             <a href="#" className="underline text-[#5032F5]">Privacy Policy</a>{" "}
             to understand how we use your data.
@@ -92,17 +95,27 @@ export default function EmailEntry() {
         </div>
 
         {/* Social Proof Footer */}
-        <div className="w-full flex flex-col items-center mt-auto pb-10">
+        <div className="w-full flex flex-col items-center mt-auto pb-4">
           <img 
             src="/Join.webp" 
             alt="Parents joining" 
-            className="h-10 object-contain mb-3"
+            className="h-10 object-contain mb-2"
           />
-          <p className="text-[14px] text-center text-[#221750] font-medium leading-tight px-24 italic opacity-80">
-            Join <span className="font-bold">more than 7 million kids</span> who've learned to write and spell with LetterSchool!
+          <p className="text-[13px] text-center text-[#221750] font-medium leading-tight px-12 italic opacity-80">
+            Join <span className="font-bold">more than 7 million kids</span> who&apos;ve learned to write and spell with LetterSchool!
           </p>
         </div>
       </motion.main>
+
+      {/* On-Screen Virtual Keyboard */}
+      <VirtualKeyboard
+        value={email}
+        onChange={setEmail}
+        onDone={handleContinue}
+        onCancel={() => setShowKeyboard(false)}
+        showKeyboard={showKeyboard}
+        type="email"
+      />
     </div>
   );
 }
